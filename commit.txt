@@ -1,0 +1,4 @@
+init repo with some work done
+
+added logging based on SHOW_LOGS env param
+added storyblokBridge mixin which looks for a storyblokBridgeMixin component data object and requests data for the specific page or indexed pages if [isIndex] is true. If [isIndex] mixin assigns page data to [this.story] based on [name === 'Index'] and indexed pages to [this.index]. This'll allow easy generation of previews etc. 

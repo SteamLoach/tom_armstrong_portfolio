@@ -1,0 +1,24 @@
+//Colorscheme
+$brand-hue: 199;
+$brand-saturation: 87%;
+$accent-hue: 219;
+$accent-saturation: 66%;
+
+@import 'steamloach-scss/variables/color';
+@import url('https://fonts.googleapis.com/css2?&family=Roboto&family=Nunito&family=Source+Sans+Pro&display=swap');
+
+//Fonts
+$text-font: 'Nunito', sans-serif;
+$title-font: 'Nunito', sans-serif;
+$title-color: $shade-darkest;
+$text-color: $shade-darker;
+$page-background: $shade-white;
+
+//Component Width
+$super-wide-width: 1600px;
+$extra-wide-width: 1420px;
+$wider-width: 1248px;
+$wide-width: 1024px;
+$medium-width: 768px;
+$narrow-width: 550px;
+$extra-narrow-width: 400px;
