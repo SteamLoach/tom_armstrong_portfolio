@@ -14,7 +14,8 @@ export default {
 
   computed: {
     richText: function() {
-      return this.$storyapi.richTextResolver.render(this.raw);
+      const src = this.raw ? this.raw : {content: []}
+      return this.$storyapi.richTextResolver.render(src);
     }
   }
 

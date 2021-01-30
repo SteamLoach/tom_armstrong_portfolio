@@ -73,14 +73,18 @@ export const storyblokBridge = {
 
         const res = await this.$storyapi.get(reqRoute, reqConfig);
 
-        logger.line(res.data, 'return')
-
         if(isIndex) {
           const {stories} = res.data
+
           this.story = stories.find(story => story.name === 'Index')
+          logger.line('page data assigned to [this.story]')
+
           this.index = stories.filter(story => story.name !== 'Index')
+          logger.line('index data assigned to [this.index]')
+
         } else {
           this.story = res.data.story;
+          logger.line('page data assigned to [this.story]')
         }
 
         logger.line('request complete', 'done')

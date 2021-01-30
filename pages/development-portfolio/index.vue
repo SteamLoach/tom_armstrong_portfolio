@@ -1,16 +1,17 @@
 <template>
 
-  <main>
+  <main v-if="story.content"
+        v-editable="story.content">
 
-    <h1 class="title">Development Portfolio</h1>
+    <component v-for="panel in story.content.body"
+               :is="panel.component"
+               :content="panel"
+               :key="panel._uid" />
 
-    <nuxt-link to="/">
-      Home
-    </nuxt-link>
-
-    <nuxt-link to="/development-portfolio/inventory-manager">
-      Inventory Manager
-    </nuxt-link>
+    <content-panel-wrapper>
+      <project-preview-panel :projects="index"
+                             :componentRef="'dev'"/>
+    </content-panel-wrapper>
 
   </main>
 

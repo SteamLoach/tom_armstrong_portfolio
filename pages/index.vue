@@ -1,12 +1,12 @@
 <template>
 
-  <main>
+  <main v-if="story.content"
+        v-editable="story.content">
 
-    <h1 class="title">Tom Armstrong</h1>
-
-    <nuxt-link to="/development-portfolio">
-      Development Porfolio
-    </nuxt-link>
+    <component v-for="panel in story.content.body"
+               :is="panel.component"
+               :content="panel"
+               :key="panel._uid" />
 
   </main>
 
@@ -34,6 +34,12 @@ export default {
 
     }
 
+  },
+
+  methods: {
+    updateStory: function(e) {
+      this.story.content = e;
+    }
   }
 
 }
@@ -44,13 +50,6 @@ export default {
 
   .title {
     color: $brand-darker;
-  }
-
-  .content-panel {
-    height: 250px;
-    @include row(center, center);
-    background: $accent-lighter;
-    border-bottom: 1px solid $shade-dark;
   }
 
 </style>
