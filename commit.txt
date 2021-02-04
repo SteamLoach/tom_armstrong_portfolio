@@ -1,0 +1,5 @@
+format <rich-text> | add [darkMode] and [withJargon] toggles
+
+added copy formatting to <rich-text> component, along with computed classObject based on cms class extensions and any passed thru the classExt prop.
+
+added <dark-mode-toggle> and <jargon-toggle> - both components write to state localStorage. Added a check for existing preferences to layout mount (sets defaults if none found)

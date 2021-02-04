@@ -1,6 +1,6 @@
 <template>
 
-  <main v-if="story.content"
+  <page-wrapper v-if="story.content"
         v-editable="story.content">
 
     <component v-for="panel in story.content.body"
@@ -8,7 +8,7 @@
                :content="panel"
                :key="panel._uid" />
 
-  </main>
+  </page-wrapper>
 
 
 
@@ -47,9 +47,5 @@ export default {
 </script>
 
 <style lang="scss">
-
-  .title {
-    color: $brand-darker;
-  }
 
 </style>

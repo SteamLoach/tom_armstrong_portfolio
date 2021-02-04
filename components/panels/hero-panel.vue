@@ -1,7 +1,7 @@
 <template>
 
   <content-panel-wrapper v-editable="content">
-    <rich-text :raw="content.text" />
+    <rich-text :content="content.text" />
   </content-panel-wrapper>
 
 </template>

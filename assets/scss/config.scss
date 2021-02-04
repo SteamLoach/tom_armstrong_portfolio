@@ -5,11 +5,12 @@ $accent-hue: 219;
 $accent-saturation: 66%;
 
 @import 'steamloach-scss/variables/color';
-@import url('https://fonts.googleapis.com/css2?&family=Roboto&family=Nunito&family=Source+Sans+Pro&display=swap');
+@import url('https://fonts.googleapis.com/css2?&family=Overpass&family=Nunito&family=Playfair+Display&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Overpass:wght@100;200&display=swap');
 
 //Fonts
-$text-font: 'Nunito', sans-serif;
-$title-font: 'Nunito', sans-serif;
+$text-font: 'Overpass', sans-serif;
+$title-font: 'Playfair Display', sans-serif;
 $title-color: $shade-darkest;
 $text-color: $shade-darker;
 $page-background: $shade-white;
