@@ -15,7 +15,7 @@ export default {
     content: Object,
     classExt: {
       type: Array,
-      default: [],
+      default: () => [],
     },
     displayCondition: {
       type: Boolean,
@@ -36,7 +36,7 @@ export default {
       this.classExt.forEach(ext =>
         classObject[this.$toolkit.kebabCase(ext)] = true
       );
-      if(this.content) {
+      if(this.content && this.content.class_extensions) {
         const classExtensions = this.content.class_extensions.split(',');
         classExtensions.forEach(ext =>
           classObject[this.$toolkit.kebabCase(ext)] = true
@@ -139,9 +139,25 @@ export default {
 
     &.with-border-bottom {
       padding-bottom: $space-2;
-      border-bottom: 1px solid $shade-darkest;
+      //border-bottom: 1px solid $shade-darkest;
     }
 
+  }
+
+
+  //Dark Mode
+  .dark-mode {
+    .rich-text {
+
+      a {
+        color: $brand-light;
+      }
+
+      &.with-border-bottom {
+        border-color: $shade-lighter;
+      }
+
+    }
   }
 
 </style>

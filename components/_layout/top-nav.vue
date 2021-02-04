@@ -44,6 +44,7 @@ export default {
 <style lang="scss">
 
   .top-nav {
+    @include media-until($tablet, display, none);
     @include row(between, center);
     @include pad-scale(
       x,

@@ -4,35 +4,52 @@
         v-editable="story.content">
 
     <header class="development-project-header">
-      <h1 class="development-project-title">
-        {{story.content.title}}.
-      </h1>
-      <p class="development-project-summary">
-        {{story.content.summary}}
-      </p>
-      <ul class="development-project-tags">
-        <li v-for="tag in story.tag_list"
-            :key="`${tag}-tag`">
-          {{tag}}
-        </li>
-      </ul>
+      <div class="development-project-title-wrapper">
+        <h1 class="development-project-title">
+          {{story.content.title}}.
+        </h1>
+        <p class="development-project-summary">
+          {{story.content.summary}}
+        </p>
+        <ul class="development-project-tags">
+          <li v-for="tag in story.tag_list"
+              :key="`${tag}-tag`">
+            {{tag}}
+          </li>
+        </ul>
+      </div>
+
     </header>
 
-    <article class="development-project-copy">
+    <article class="development-project-body">
 
-      <component v-for="item in story.content.body"
-                 :is="item.component"
-                 :content="item"
-                 :classExt="['medium-copy-width']"
-                 :displayCondition="displayCondition(item)"
-                 v-editable="item"
-                 :key="item._uid" />
+      <section class="development-project-copy">
+        <component v-for="item in story.content.body"
+                  :is="item.component"
+                  :content="item"
+                  :displayCondition="displayCondition(item)"
+                  v-editable="item"
+                  :key="item._uid" />
+      </section>
+
+      <aside class="development-project-media">
+        <ul>
+          <li v-for="item in story.content.images"
+              class="captioned-media"
+              :key="item.id">
+            <img :src="item.filename"
+                 :alt="item.alt"/>
+            <p class="caption">
+              {{item.title}}
+            </p>
+          </li>
+        </ul>
+      </aside>
+
 
     </article>
 
   </page-wrapper>
-
-
 
 </template>
 
@@ -94,15 +111,22 @@ export default {
 <style lang="scss">
 
   .development-project-header {
-    @include height-scale(
-      $default: 75vh,
-      $on-laptop: 90vh,
-    );
+
+  }
+
+  .development-project-title-wrapper {
+    max-width: $medium-width;
     @include pad-scale(
       top,
-      $default: $space-8,
+      $default: $space-9,
       $on-tablet: $space-11,
       $on-laptop: $space-11,
+    );
+    @include pad-scale(
+      bottom,
+      $default: $space-10,
+      $on-tablet: $space-12,
+      $on-laptop: $space-13,
     )
   }
 
@@ -127,15 +151,88 @@ export default {
       display: inline-block;
       font-size: $text-smaller;
 
-      &:not(:last-child) {
-        padding-right: $space-2;
-        margin-right: $space-2;
-        border-right: 1px solid $shade-light;
+      &:not(:first-child) {
+        padding-left: $space-2;
+        margin-left: $space-2;
+        border-left: 1px solid $shade-light;
       }
 
     }
   }
 
-  .development-project-copy {}
+  .development-project-body {
+    @include row(start, start);
+    max-width: $extra-wide-width;
+    margin: 0 auto;
+  }
+
+  .development-project-copy {
+    @include custom-scale(
+      $default: 100%,
+      $on-tablet: $narrow-width,
+      $on-desktop: $medium-width,
+    );
+  }
+
+  .development-project-media {
+    @include media-from($laptop, flex, 1);
+    @include media-until($laptop, width, 100%);
+    @include y-margin($space-8);
+    @include y-pad($space-4);
+    @include pad-scale(
+      left,
+      $default: 0,
+      $on-laptop: $space-6,
+    );
+    @include margin-scale(
+      left,
+      $default: 0,
+      $on-laptop: $space-8,
+    );
+
+    @include border-from(
+      $laptop,
+      $dir: left,
+      $style: 1px solid $shade-darkest
+    );
+    background: $shade-lightest;
+
+    .captioned-media {
+      @include margin-scale(
+        bottom,
+        $default: $space-8,
+        $on-laptop: $space-8,
+      );
+      img {
+        margin-bottom: $space-2;
+        border-radius: $space-2;
+        @include shadow($elevation-medium);
+        @include transition();
+        &:hover {
+          cursor: pointer;
+          @include shadow($elevation-heavy);
+        }
+      }
+      p {
+        @include x-pad($space-2);
+        margin-left: $space-2;
+      }
+    }
+
+  }
+
+
+  //Dark Mode
+  .dark-mode {
+    .development-project-media {
+      border-color: $shade-lighter;
+      background: $shade-darkest;
+      .captioned-media {
+        img {
+          @include shadow($elevation-medium, $shade: $shade-black);
+        }
+      }
+    }
+  }
 
 </style>

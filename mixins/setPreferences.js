@@ -22,7 +22,7 @@ export const setPreferences = {
       }
 
       logger.line(`set preferences in local storage`)
-      logger.line(preferences)
+      logger.line(preferences, 'return')
 
       window.localStorage.setItem('preferences',
         JSON.stringify(preferences)

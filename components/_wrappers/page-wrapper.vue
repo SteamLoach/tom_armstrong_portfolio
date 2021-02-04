@@ -17,7 +17,7 @@ export default {
   .page-wrapper {
     @include pad-scale(
       x,
-      $default: $space-2,
+      $default: $space-4,
       $on-tablet: $space-4,
       $on-laptop: $space-6,
     );
