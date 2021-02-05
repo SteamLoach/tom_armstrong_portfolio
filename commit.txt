@@ -1,3 +1,2 @@
-add images to development-portfolio/_project
-
-image column flexes when >$laptop width and falls underneath copy when smaller. Need to add lightbox and a scroll widget to move between copy and media on smaller screens. 
+add <lightbox-gallery> component with associated mixin
+also added basic transitions

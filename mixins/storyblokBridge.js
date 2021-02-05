@@ -23,7 +23,7 @@ export const storyblokBridge = {
 
   data() {
     return {
-      story: { content: {} },
+      story: {},
       index: [],
     }
   },

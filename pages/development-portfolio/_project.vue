@@ -18,8 +18,15 @@
           </li>
         </ul>
       </div>
-
     </header>
+
+    <transition name="lightbox-gallery">
+      <lightbox-gallery v-if="lightboxGalleryMixin.isActive"
+                        :images="story.content.images"
+                        :currentIndex="lightboxGalleryMixin.currentIndex"
+                        @setImage="setLightboxGalleryIndex"
+                        @closeLightboxGallery="closeLightboxGallery" />
+    </transition>
 
     <article class="development-project-body">
 
@@ -34,11 +41,12 @@
 
       <aside class="development-project-media">
         <ul>
-          <li v-for="item in story.content.images"
+          <li v-for="(item, index) in story.content.images"
               class="captioned-media"
               :key="item.id">
             <img :src="item.filename"
-                 :alt="item.alt"/>
+                 :alt="item.alt"
+                 @click="openLightboxGallery(index)" />
             <p class="caption">
               {{item.title}}
             </p>
@@ -56,11 +64,13 @@
 <script>
 
 import {storyblokBridge} from '@/mixins/storyblokBridge';
+import {lightboxGallery} from '@/mixins/lightboxGallery';
 
 export default {
 
   mixins: [
     storyblokBridge,
+    lightboxGallery
   ],
 
   data() {
@@ -69,6 +79,12 @@ export default {
 
       storyblokBridgeMixin: {
         logRef: this.$route.path,
+      },
+
+      lightboxGalleryMixin: {
+        logRef: '<development-project>',
+        isActive: false,
+        currentIndex: 0,
       },
 
       jargonConfig: {
@@ -99,7 +115,8 @@ export default {
       } else {
         return true;
       }
-    }
+    },
+
   }
 
 
@@ -175,8 +192,8 @@ export default {
   }
 
   .development-project-media {
-    @include media-from($laptop, flex, 1);
     @include media-until($laptop, width, 100%);
+    @include media-from($laptop, flex, 1);
     @include y-margin($space-8);
     @include y-pad($space-4);
     @include pad-scale(
@@ -206,6 +223,7 @@ export default {
       img {
         margin-bottom: $space-2;
         border-radius: $space-2;
+        border: 1px solid transparent;
         @include shadow($elevation-medium);
         @include transition();
         &:hover {
@@ -216,6 +234,7 @@ export default {
       p {
         @include x-pad($space-2);
         margin-left: $space-2;
+        font-size: $text-smaller;
       }
     }
 
@@ -230,6 +249,9 @@ export default {
       .captioned-media {
         img {
           @include shadow($elevation-medium, $shade: $shade-black);
+          &:hover {
+            @include shadow($elevation-heavy, $shade: $shade-black);
+          }
         }
       }
     }
