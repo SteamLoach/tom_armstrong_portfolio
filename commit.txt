@@ -1,2 +1,1 @@
-add <lightbox-gallery> component with associated mixin
-also added basic transitions
+<lightbox-gallery> styling and transitions

@@ -20,13 +20,13 @@
       </div>
     </header>
 
-    <transition name="lightbox-gallery">
+    <fade-transition>
       <lightbox-gallery v-if="lightboxGalleryMixin.isActive"
                         :images="story.content.images"
                         :currentIndex="lightboxGalleryMixin.currentIndex"
                         @setImage="setLightboxGalleryIndex"
                         @closeLightboxGallery="closeLightboxGallery" />
-    </transition>
+    </fade-transition>
 
     <article class="development-project-body">
 
@@ -67,6 +67,8 @@ import {storyblokBridge} from '@/mixins/storyblokBridge';
 import {lightboxGallery} from '@/mixins/lightboxGallery';
 
 export default {
+
+  transition: 'page',
 
   mixins: [
     storyblokBridge,

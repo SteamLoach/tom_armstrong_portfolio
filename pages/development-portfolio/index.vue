@@ -25,6 +25,8 @@ import {storyblokBridge} from '@/mixins/storyblokBridge';
 
 export default {
 
+  transition: 'page',
+
   mixins: [
     storyblokBridge,
   ],

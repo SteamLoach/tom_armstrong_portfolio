@@ -10,7 +10,8 @@ import developmentProjectPreview from
 import designProjectPreview from
   '~/components/content/design-project-preview'
 
-
+//Transitions
+import Transitions from 'vue2-transitions'
 
 //Panels
 Vue.component('hero-panel', heroPanel)
@@ -19,3 +20,6 @@ Vue.component('hero-panel', heroPanel)
 Vue.component('rich-text', richText);
 Vue.component('development-project-preview', developmentProjectPreview);
 Vue.component('design-project-preview', designProjectPreview);
+
+//Trnasitions
+Vue.use(Transitions);

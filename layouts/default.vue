@@ -146,4 +146,15 @@ export default {
     flex: 1;
   }
 
+  //Transition
+  .page-enter-active,
+  .page-leave-active {
+    transition: opacity .1s;
+  }
+
+  .page-enter,
+  .page-leave-active {
+    opacity: 0;
+  }
+
 </style>
