@@ -71,7 +71,11 @@ export default {
       $on-tablet: $space-10,
       $on-laptop: $space-12,
     );
-    font-size: $title-largest;
+    @include font-size-scale(
+      $default: $title-large,
+      $on-tablet: $title-larger,
+      $on-laptop: $title-largest,
+    );
   }
 
 </style>

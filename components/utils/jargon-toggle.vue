@@ -1,7 +1,7 @@
 <template>
 
   <button class="jargon-toggle"
-          :class="classObject"
+          :class="{'is-active': withJargon}"
           @click="setPreference('withJargon')">
            Jargon {{withJargon ? '(On)' : '(Off)'}}
   </button>
@@ -11,7 +11,7 @@
 
 <script>
 
-import {mapMutations} from 'vuex'
+import {mapMutations, mapState} from 'vuex'
 import {setPreferences} from '@/mixins/setPreferences.js'
 
 export default {
@@ -20,15 +20,7 @@ export default {
 
   computed: {
 
-    withJargon: function() {
-      return this.$store.state.withJargon
-    },
-
-    classObject: function() {
-      return {
-        'is-active': this.withJargon
-      }
-    }
+    ...mapState(['withJargon'])
 
   },
 

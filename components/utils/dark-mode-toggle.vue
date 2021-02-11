@@ -1,7 +1,7 @@
 <template>
 
   <button class="dark-mode-toggle"
-          :class="classObject"
+          :class="{'is-active': darkMode}"
           @click="setPreference('darkMode')">
            Dark Mode {{darkMode ? '(On)' : '(Off)'}}
   </button>
@@ -11,7 +11,7 @@
 
 <script>
 
-import {mapMutations} from 'vuex'
+import {mapMutations, mapState} from 'vuex'
 import {setPreferences} from '@/mixins/setPreferences.js'
 
 export default {
@@ -20,15 +20,13 @@ export default {
 
   computed: {
 
-    darkMode: function() {
-      return this.$store.state.darkMode
-    },
-
     classObject: function() {
       return {
         'is-active': this.darkMode
       }
-    }
+    },
+
+    ...mapState(['darkMode'])
 
   },
 

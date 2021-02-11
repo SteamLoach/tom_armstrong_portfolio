@@ -6,5 +6,6 @@ export default () => ({
 
   //Sizing
   windowWidth: '',
+  showHandheldNav: false,
 
 })

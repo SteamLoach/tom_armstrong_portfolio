@@ -15,7 +15,7 @@ const logger = log({
   ref: 'Init Preferences (Mixin)'
 })
 
-import {mapMutations} from 'vuex'
+import {mapMutations, mapState} from 'vuex'
 
 export const initPreferences = {
 

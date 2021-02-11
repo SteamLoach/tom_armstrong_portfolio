@@ -4,7 +4,11 @@
        class="site-wrapper"
        :class="{'dark-mode': this.darkMode}">
 
-    <top-nav />
+    <top-nav :routes="routes"/>
+    <zoom-y-transition>
+      <handheld-nav v-if="showHandheldNav"
+                    :routes="routes" />
+    </zoom-y-transition>
 
     <Nuxt />
 
@@ -17,7 +21,7 @@
 <script>
 
 
-import {mapMutations} from 'vuex'
+import {mapMutations, mapState} from 'vuex'
 
 import {initPreferences} from '@/mixins/initPreferences'
 import {initWindowWidth} from '@/mixins/initWindowWidth'
@@ -33,6 +37,25 @@ export default {
   data() {
     return {
 
+      routes: [
+        {
+          name: 'Home',
+          to: '/'
+        },
+        {
+          name: 'Development',
+          to: '/development-portfolio'
+        },
+        {
+          name: 'Design',
+          to: '/design-portfolio'
+        },
+        {
+          name: 'Contact',
+          to: '/contact'
+        }
+      ],
+
       initPreferencesMixin: {
         isComplete: false,
         preferences: ['darkMode', 'withJargon']
@@ -43,13 +66,11 @@ export default {
 
   computed: {
 
-    darkMode: function() {
-      return this.$store.state.darkMode
-    },
-
-    withJargon: function() {
-      return this.$store.state.withJargon
-    },
+    ...mapState([
+      'showHandheldNav',
+      'darkMode',
+      'withJargon'
+    ])
 
   },
 
