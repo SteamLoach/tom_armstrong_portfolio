@@ -1,1 +1,1 @@
-<lightbox-gallery> styling and transitions
+add <media-card> component | move app-level mounted hooks to mixins

@@ -1,14 +1,17 @@
 import Vue from 'vue'
 
 //Panels
-import heroPanel from '~/components/panels/hero-panel'
+import heroPanel from '~/components/content-panels/hero-panel'
+
 
 //Content
-import richText from '~/components/content/rich-text'
 import developmentProjectPreview from
-   '~/components/content/development-project-preview'
+   '~/components/content-items/development-project-preview'
 import designProjectPreview from
-  '~/components/content/design-project-preview'
+   '~/components/content-items/design-project-preview'
+import richText from '~/components/content-items/rich-text'
+
+
 
 //Transitions
 import Transitions from 'vue2-transitions'

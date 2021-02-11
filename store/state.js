@@ -4,4 +4,7 @@ export default () => ({
   darkMode: false,
   withJargon: true,
 
+  //Sizing
+  windowWidth: '',
+
 })

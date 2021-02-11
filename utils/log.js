@@ -1,4 +1,5 @@
 const logType = {
+  app: true,
   store: true,
   component: true,
   script: true,
@@ -32,7 +33,7 @@ const setStyle = (type) => {
   }
 
   //orange
-  if(type === 'reducer') {
+  if(type === 'app') {
     return 'background-color: #f46036; font-weight: 600; color: white'
   }
 

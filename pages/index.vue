@@ -1,6 +1,6 @@
 <template>
 
-  <page-wrapper v-if="story.content"
+  <main v-if="story.content"
         v-editable="story.content">
 
     <component v-for="panel in story.content.body"
@@ -8,7 +8,7 @@
                :content="panel"
                :key="panel._uid" />
 
-  </page-wrapper>
+  </main>
 
 
 

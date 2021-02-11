@@ -1,19 +1,24 @@
 <template>
 
-  <page-wrapper v-if="story.content"
+  <main v-if="story.content"
         v-editable="story.content">
 
-    <component v-for="panel in story.content.body"
-               :is="panel.component"
-               :content="panel"
-               :key="panel._uid" />
+    <page-header-wrapper>
+      <h1 class="development-portfolio--title">
+         {{story.content.title}}.
+      </h1>
+    </page-header-wrapper>
 
     <content-panel-wrapper>
-      <project-preview-panel :projects="index"
-                             :componentRef="'dev'"/>
+      <development-project-preview v-for="(project, i) in index"
+                                  :index="i"
+                                  :content="project.content"
+                                  :fullSlug="project.full_slug"
+                                  :tags="project.tag_list"
+                                  :key="project._uid" />
     </content-panel-wrapper>
 
-  </page-wrapper>
+  </main>
 
 
 
@@ -42,8 +47,31 @@ export default {
 
     }
 
-  }
+  },
+
+
 
 }
 
 </script>
+
+<style lang="scss">
+
+  .development-portfolio--title {
+    max-width: $narrow-width;
+    @include pad-scale(
+      top,
+      $default: $space-9,
+      $on-tablet: $space-11,
+      $on-laptop: $space-11,
+    );
+    @include pad-scale(
+      bottom,
+      $default: $space-8,
+      $on-tablet: $space-10,
+      $on-laptop: $space-12,
+    );
+    font-size: $title-largest;
+  }
+
+</style>

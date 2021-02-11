@@ -128,8 +128,6 @@ export default {
       }
     }
 
-    &.is-component {}
-
     &.narrow-copy-width {
       max-width: $narrow-width;
     }
@@ -142,22 +140,19 @@ export default {
       //border-bottom: 1px solid $shade-darkest;
     }
 
-  }
-
-
-  //Dark Mode
-  .dark-mode {
-    .rich-text {
+    //Dark Mode
+    .dark-mode & {
 
       a {
-        color: $brand-light;
-      }
-
-      &.with-border-bottom {
-        border-color: $shade-lighter;
+        color: $dark-mode-link-color;
       }
 
     }
+
+
   }
+
+
+
 
 </style>

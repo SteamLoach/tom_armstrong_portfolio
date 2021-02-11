@@ -27,6 +27,7 @@ export default {
   plugins: [
     '~/plugins/globalComponents.js',
     '~/plugins/toolkit.js',
+    '~/plugins/numbers.js',
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -36,6 +37,7 @@ export default {
   buildModules: [
     // https://go.nuxtjs.dev/eslint
     // '@nuxtjs/eslint-module'
+    "@nuxtjs/svg"
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules

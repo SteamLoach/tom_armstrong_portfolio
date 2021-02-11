@@ -1,8 +1,8 @@
 <template>
 
-  <div v-if="initData"
+  <div v-if="initPreferencesMixin.isComplete"
        class="site-wrapper"
-       :class="classObject">
+       :class="{'dark-mode': this.darkMode}">
 
     <top-nav />
 
@@ -16,54 +16,28 @@
 
 <script>
 
-import {mapMutations} from 'vuex'
-import log from '@/utils/log'
 
-const logger = log({
-  type: 'store',
-  ref: 'Init Preferences'
-})
+import {mapMutations} from 'vuex'
+
+import {initPreferences} from '@/mixins/initPreferences'
+import {initWindowWidth} from '@/mixins/initWindowWidth'
 
 export default {
 
-  mounted() {
+  mixins: [
+    initPreferences,
+    initWindowWidth,
+  ],
 
-    logger.group('Check Existing')
-
-    if(window.localStorage.preferences) {
-
-      logger.line('preferences found in localStorage', 'done')
-      const preferences = JSON.parse(window.localStorage.preferences)
-      logger.line(preferences, 'return')
-
-      logger.line('set preferences in state')
-      this.setState({
-        target: 'darkMode',
-        payload: preferences.darkMode
-      })
-      this.setState({
-        target: 'withJargon',
-        payload: preferences.withJargon
-      })
-
-    } else {
-      logger.line('no preferences found in localStorage', 'issue')
-      logger.line('setting defaults')
-      window.localStorage.setItem('preferences', JSON.stringify({
-        darkMode: this.darkMode,
-        withJargon: this.withJargon
-      }))
-    }
-
-    this.initData = true;
-
-    logger.groupEnd('Check Existing')
-
-  },
 
   data() {
     return {
-      initData: false,
+
+      initPreferencesMixin: {
+        isComplete: false,
+        preferences: ['darkMode', 'withJargon']
+      }
+
     }
   },
 
@@ -77,17 +51,7 @@ export default {
       return this.$store.state.withJargon
     },
 
-    classObject: function() {
-      return {
-        'dark-mode': this.darkMode
-      }
-    }
   },
-
-  methods: {
-    ...mapMutations(['setState'])
-  }
-
 
 }
 
@@ -128,13 +92,22 @@ export default {
       color: $title-color;
     }
 
+
+    svg {
+      fill: $title-color;
+    }
+
      &.dark-mode {
-      color: $shade-lightest;
-      background: $shade-darkest;
+      color: $dark-mode-text-color;
+      background: $dark-mode-page-background;
 
       h1, h2, h3,
       h4, h5, h6 {
-        color: $shade-lighter;
+        color: $dark-mode-title-color;
+      }
+
+      svg {
+        fill: $dark-mode-text-color;
       }
 
      }

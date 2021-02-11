@@ -1,24 +1,25 @@
 <template>
 
-  <page-wrapper v-if="story.content"
+  <main v-if="story.content"
         v-editable="story.content">
 
-    <header class="development-project-header">
-      <div class="development-project-title-wrapper">
-        <h1 class="development-project-title">
+    <page-header-wrapper>
+      <div class="development-project--title-wrapper">
+        <h1 class="development-project--title">
           {{story.content.title}}.
         </h1>
-        <p class="development-project-summary">
+        <p class="development-project--summary">
           {{story.content.summary}}
         </p>
-        <ul class="development-project-tags">
+        <ul class="development-project--tags">
           <li v-for="tag in story.tag_list"
               :key="`${tag}-tag`">
             {{tag}}
           </li>
         </ul>
       </div>
-    </header>
+    </page-header-wrapper>
+
 
     <fade-transition>
       <lightbox-gallery v-if="lightboxGalleryMixin.isActive"
@@ -28,9 +29,10 @@
                         @closeLightboxGallery="closeLightboxGallery" />
     </fade-transition>
 
-    <article class="development-project-body">
 
-      <section class="development-project-copy">
+    <article class="development-project--body">
+
+      <section class="development-project--copy">
         <component v-for="item in story.content.body"
                   :is="item.component"
                   :content="item"
@@ -39,15 +41,15 @@
                   :key="item._uid" />
       </section>
 
-      <aside class="development-project-media">
+      <aside class="development-project--media">
         <ul>
           <li v-for="(item, index) in story.content.images"
-              class="captioned-media"
+              class="development-project--media--item"
               :key="item.id">
             <img :src="item.filename"
                  :alt="item.alt"
                  @click="openLightboxGallery(index)" />
-            <p class="caption">
+            <p>
               {{item.title}}
             </p>
           </li>
@@ -57,7 +59,7 @@
 
     </article>
 
-  </page-wrapper>
+  </main>
 
 </template>
 
@@ -129,11 +131,17 @@ export default {
 
 <style lang="scss">
 
-  .development-project-header {
-
+  .development-project--header {
+    @include pad-scale(
+      x,
+      $default: $space-3,
+      $on-lrg-mobile: $space-4,
+      $on-tablet: $space-6,
+      $on-laptop: $space-8,
+    );
   }
 
-  .development-project-title-wrapper {
+  .development-project--title-wrapper {
     max-width: $medium-width;
     @include pad-scale(
       top,
@@ -149,21 +157,24 @@ export default {
     )
   }
 
-  .development-project-title {
+  .development-project--title {
     width: 100%;
-    margin-bottom: $space-2;
+    margin-bottom: $space-4;
     font-size: $title-larger;
   }
 
-  .development-project-summary {
-    @include single-margin-until($tablet, right, $space-6);
-    padding-bottom: $space-1;
-    margin-bottom: $space-2;
+  .development-project--summary {
+    padding-bottom: $space-2;
+    margin-bottom: $space-3;
     font-size: $text-body;
-    border-bottom: 1px solid $shade-darker;
+    border-bottom: 1px solid $border-color;
+
+    .dark-mode & {
+      border-color: $dark-mode-border-color;
+    }
   }
 
-  .development-project-tags {
+  .development-project--tags {
     width: 100%;
     padding: 0 $space-2 $space-2 $space-2;
     li {
@@ -179,13 +190,20 @@ export default {
     }
   }
 
-  .development-project-body {
+  .development-project--body {
     @include row(start, start);
     max-width: $extra-wide-width;
+    @include pad-scale(
+      x,
+      $default: $space-4,
+      $on-lrg-mobile: $space-5,
+      $on-tablet: $space-7,
+      $on-laptop: $space-8,
+    );
     margin: 0 auto;
   }
 
-  .development-project-copy {
+  .development-project--copy {
     @include custom-scale(
       $default: 100%,
       $on-tablet: $narrow-width,
@@ -193,7 +211,7 @@ export default {
     );
   }
 
-  .development-project-media {
+  .development-project--media {
     @include media-until($laptop, width, 100%);
     @include media-from($laptop, flex, 1);
     @include y-margin($space-8);
@@ -212,50 +230,32 @@ export default {
     @include border-from(
       $laptop,
       $dir: left,
-      $style: 1px solid $shade-darkest
+      $style: 1px solid $border-color,
     );
-    background: $shade-lightest;
 
-    .captioned-media {
-      @include margin-scale(
-        bottom,
-        $default: $space-8,
-        $on-laptop: $space-8,
-      );
-      img {
-        margin-bottom: $space-2;
-        border-radius: $space-2;
-        border: 1px solid transparent;
-        @include shadow($elevation-medium);
-        @include transition();
-        &:hover {
-          cursor: pointer;
-          @include shadow($elevation-heavy);
-        }
-      }
-      p {
-        @include x-pad($space-2);
-        margin-left: $space-2;
-        font-size: $text-smaller;
-      }
+    .dark-mode & {
+      border-color: $dark-mode-border-color;
     }
 
   }
 
-
-  //Dark Mode
-  .dark-mode {
-    .development-project-media {
-      border-color: $shade-lighter;
-      background: $shade-darkest;
-      .captioned-media {
-        img {
-          @include shadow($elevation-medium, $shade: $shade-black);
-          &:hover {
-            @include shadow($elevation-heavy, $shade: $shade-black);
-          }
-        }
+  .development-project--media--item {
+    @include margin-scale(
+      bottom,
+      $default: $space-8,
+      $on-laptop: $space-8,
+    );
+    img {
+      margin-bottom: $space-2;
+      @include transition();
+      &:hover {
+        cursor: pointer;
       }
+    }
+    p {
+      @include x-pad($space-2);
+      margin-left: $space-2;
+      font-size: $text-smaller;
     }
   }
 

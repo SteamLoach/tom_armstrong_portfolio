@@ -1,11 +1,7 @@
 <template>
-
-  <section class="content-panel-wrapper">
-
+  <header class="page-header-wrapper">
     <slot />
-
-  </section>
-
+  </header>
 </template>
 
 <script>
@@ -16,16 +12,14 @@ export default {
 
 <style lang="scss">
 
-  .content-panel-wrapper {
-
+  .page-header-wrapper {
     @include pad-scale(
       x,
-      $default: $space-4,
-      $on-lrg-mobile: $space-5,
+      $default: $space-3,
+      $on-lrg-mobile: $space-4,
       $on-tablet: $space-6,
       $on-laptop: $space-8,
-    )
-
+    );
   }
 
 </style>

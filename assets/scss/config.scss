@@ -5,6 +5,7 @@ $accent-hue: 219;
 $accent-saturation: 66%;
 
 @import 'steamloach-scss/variables/color';
+@import 'steamloach-scss/variables/spacing';
 @import url('https://fonts.googleapis.com/css2?family=Overpass:wght@100;200;300;400;600;700;800;900&family=Playfair+Display:wght@400;500;600;700;800;900&display=swap');
 
 //Fonts
@@ -12,7 +13,22 @@ $text-font: 'Overpass', sans-serif;
 $title-font: 'Playfair Display', sans-serif;
 $title-color: $shade-darkest;
 $text-color: $shade-darker;
+$link-color: $brand-dark;
 $page-background: $shade-white;
+$border-color: $shade-dark;
+
+//Dark Mode
+$dark-mode-title-color: $shade-lighter;
+$dark-mode-text-color: $shade-lightest;
+$dark-mode-link-color: $brand-light;
+$dark-mode-page-background: $shade-darkest;
+$dark-mode-border-color: $shade-lighter;
+
+
+//Misc
+$light-border-radius: $space-1;
+$medium-border-radius: $space-2;
+$heavy-border-radius: $space-4;
 
 //Component Width
 $super-wide-width: 1600px;
