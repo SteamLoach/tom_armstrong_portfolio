@@ -82,6 +82,8 @@ export default {
       font-size: $title-smallest;
     }
 
+
+    h1,
     h2, h3 {
       margin-bottom: $space-5;
     }
@@ -89,6 +91,7 @@ export default {
       margin-bottom: $space-2;
     }
 
+    p + h1,
     p + h2, p + h3,
     ul + h2, ul + h3,
     ol + h2, ol + h3 {

@@ -47,12 +47,12 @@ export default {
     @include row-from($tablet, between, center);
     @include pad-scale(
       y,
-      $default: $space-2,
-      $on-phablet: $space-3,
+      $default: $space-4,
+      $on-phablet: $space-4,
     );
     @include pad-scale(
       x,
-      $default: $space-2,
+      $default: $space-3,
       $on-phablet: $space-3,
       $on-tablet: $space-4,
       $on-laptop: $space-6,

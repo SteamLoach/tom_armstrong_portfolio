@@ -1,1 +1,1 @@
-add <handheld-nav>, toggle, and store prop
+<handheld-nav> and <hero-panel> styling

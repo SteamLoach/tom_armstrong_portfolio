@@ -5,10 +5,10 @@
        :class="{'dark-mode': this.darkMode}">
 
     <top-nav :routes="routes"/>
-    <zoom-y-transition>
+    <slide-x-right-transition>
       <handheld-nav v-if="showHandheldNav"
                     :routes="routes" />
-    </zoom-y-transition>
+    </slide-x-right-transition>
 
     <Nuxt />
 

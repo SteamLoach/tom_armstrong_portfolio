@@ -6,7 +6,8 @@
     <component v-for="panel in story.content.body"
                :is="panel.component"
                :content="panel"
-               :key="panel._uid" />
+               :key="panel._uid"
+               v-editable="panel" />
 
   </main>
 

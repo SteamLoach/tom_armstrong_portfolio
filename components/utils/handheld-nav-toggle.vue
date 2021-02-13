@@ -46,13 +46,18 @@ export default {
 }
 
 %burger-bar {
+  height: 4px;
+  width: 45px;
   background-color: $title-color;
-  height: 3px;
-  width: 30px;
-  border-radius: 15px;
+  border-radius: 20px;
   transition-property: background-color, transform;
   transition-duration: $transition-duration;
   transition-timing-function: ease;
+
+  .dark-mode & {
+    background-color: $dark-mode-title-color;
+  }
+
 }
 
 .handheld-nav-toggle--inner {
@@ -69,23 +74,23 @@ export default {
 
   }
   &:before {
-    top: 8px
+    top: 10px
   }
   &:after {
-    top: 16px
+    top: 20px
   }
 }
 
 .handheld-nav-toggle--inner {
 
   &.is-active {
-  transform: translate(0px, 8px) rotate(-135deg);
+  transform: translate(0px, 10px) rotate(-135deg);
 
   &:before {
     transform: scale(0) translate(0px, -8px) rotate(-270deg);
   }
   &:after {
-    transform: translate(0px, -16px) rotate(270deg);
+    transform: translate(0px, -20px) rotate(270deg);
   }
   }
 

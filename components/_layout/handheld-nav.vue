@@ -3,9 +3,10 @@
   <nav class="handheld-nav">
     <ul class="handheld-nav--links">
       <li v-for="(route, index) in routes"
-          :key="`route-${index}`">
+          :key="`route-${index}`"
+          @click="closeHandheldNav">
         <nuxt-link :to="route.to">
-          {{route.name}}
+          <span>{{route.name}}</span>
         </nuxt-link>
       </li>
     </ul>
@@ -22,11 +23,27 @@
 </template>
 
 <script>
+
+import {mapState, mapMutations} from 'vuex'
+
 export default {
 
   props: {
     routes: Array,
     default: () => [],
+  },
+
+  methods: {
+
+    closeHandheldNav: function() {
+      this.setState({target: 'showHandheldNav', payload: false})
+    },
+
+    ...mapMutations(['setState'])
+  },
+
+  computed: {
+    ...mapState(['showHandheldNav'])
   }
 
 }
@@ -43,9 +60,10 @@ export default {
       top: 0;
       left: 0;
     background: $shade-lightest;
+    @include x-pad($space-4);
     @include pad-scale(
       y,
-      $default: $space-6,
+      $default: $space-9,
     );
 
     .dark-mode & {
@@ -53,5 +71,30 @@ export default {
     }
 
   }
+
+  .handheld-nav--links,
+  .handheld-nav--controls {
+    font-size: $text-largest;
+    font-weight: 200;
+    li {
+      text-align: center;
+    }
+  }
+
+  .handheld-nav--links {
+    margin-bottom: $space-6;
+    border-bottom: 1px solid $border-color;
+
+    li {
+      margin-bottom: $space-6;
+    }
+
+    .dark-mode & {
+      border-color: $dark-mode-border-color;
+    }
+
+  }
+
+
 
 </style>
