@@ -5,10 +5,12 @@
     <div class="hero-panel--copy">
       <rich-text :content="content.copy" />
       <span v-if="hasLinks">
-        <button-link v-for="link in content.call_to_action"
-                     :key="$toolkit.kebabCase(link.name)"
-                     :route="link">
-        </button-link>
+        <ui-button v-for="link in content.call_to_action"
+                    type="link"
+                   :name="link.name"
+                   :to="link.to"
+                   :key="$toolkit.kebabCase(link.name)">
+        </ui-button>
       </span>
     </div>
     <div class="hero-panel--media">

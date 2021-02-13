@@ -2,14 +2,18 @@
 
   <section v-if="displayCondition"
            class="rich-text"
-           :class="classObject"
+           :class="[{'is-component' : isComponent}, classExtensions]"
            v-html="resolvedText" />
 
 </template>
 
 <script>
 
+import {classExtensions} from '@/mixins/classExtensions'
+
 export default {
+
+  mixins: [classExtensions],
 
   props: {
     content: Object,
@@ -23,26 +27,18 @@ export default {
     }
   },
 
+  data() {
+    return {
+      classExtensionsMixin: {
+        logRef: `<rich-text> [${new Date().getTime()}]`
+      }
+    }
+  },
+
   computed: {
 
     isComponent: function() {
       return this.content ? this.content.component : false;
-    },
-
-    classObject: function() {
-      const classObject = {
-        'is-component': this.isComponent ? true : false,
-      }
-      this.classExt.forEach(ext =>
-        classObject[this.$toolkit.kebabCase(ext)] = true
-      );
-      if(this.content && this.content.class_extensions) {
-        const classExtensions = this.content.class_extensions.split(',');
-        classExtensions.forEach(ext =>
-          classObject[this.$toolkit.kebabCase(ext)] = true
-        );
-      }
-      return classObject;
     },
 
     resolvedText: function() {

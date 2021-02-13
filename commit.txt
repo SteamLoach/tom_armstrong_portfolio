@@ -1,1 +1,3 @@
-<handheld-nav> and <hero-panel> styling
+add <card-panel> component
+
+component takes an array of cards and various formatting options. <media-card> is the only available ui component at the moment but <card-panel> should be fairly easy to extend for other cards.
