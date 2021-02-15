@@ -1,22 +1,22 @@
 <template>
 
-  <content-panel-wrapper class="card-panel"
+  <content-panel-wrapper class="media-card-panel"
                          :class="[classExtensions]">
 
-    <h2 class="card-panel--title"> {{content.title}}  </h2>
+    <h2 class="media-card-panel--title"> {{content.title}}  </h2>
 
-    <section class="card-panel--cards">
+    <section class="media-card-panel--cards">
 
-      <component v-for="(card, index) in content.cards"
-                 :is="card.component"
-                 :content="card"
-                 :layout="content.card_layout"
-                 :alignMedia="mediaAlignment(index)"
-                 :key="card._uid"
-                 v-editable="card">
+      <media-card v-for="(card, index) in content.cards"
+                  :is="card.component"
+                  :content="card"
+                  :layout="content.card_layout"
+                  :alignMedia="mediaAlignment(index)"
+                  :classExt="content.card_class_extensions.split(',')"
+                  :key="card._uid"
+                  v-editable="card">
 
-        <template v-if="isMediaCard(card)"
-                  v-slot:copy>
+        <template v-slot:copy>
           <component v-for="item in card.copy"
                      :is="item.component"
                      :content="item"
@@ -24,12 +24,11 @@
                      v-editable="item" />
         </template>
 
-        <template v-if="isMediaCard(card)"
-                  v-slot:media>
+        <template v-slot:media>
           <placeholder-image :width="450"/>
         </template>
 
-      </component>
+      </media-card>
 
     </section>
 
@@ -59,19 +58,17 @@ export default {
   data() {
     return {
       classExtensionsMixin: {
-        logRef: '<card-panel>'
+        logRef: '<media-card-panel>',
+        prop: 'panel_class_extensions'
       }
     }
   },
 
   methods: {
-    isMediaCard: function(card) {
-      return card.component === 'media-card'
-    },
+
     mediaAlignment: function(index) {
       if(this.content.align_media) {
         if(['left', 'right'].includes(this.content.align_media)) {
-          console.log('alignment from cms')
           return this.content.align_media
         } else if (this.content.align_media === 'alternate') {
             if(!this.$store.getters.isHandheld) {
@@ -90,21 +87,13 @@ export default {
 
 <style lang="scss">
 
-  .card-panel {
-    &.three-column {
-      .card-panel--cards {
-        .media-card {
-          @include column-scale(
-            $default: 24,
-            $on-tablet: 12,
-            $on-laptop: 8,
-          );
-        }
-      }
-    }
+  .media-card-panel--title {
+    margin-bottom: $space-8;
+    text-align: center;
+    font-size: $title-large;
   }
 
-  .card-panel--cards {
+  .media-card-panel--cards {
     @include row(center, start);
   }
 

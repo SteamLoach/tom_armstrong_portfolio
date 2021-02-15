@@ -1,9 +1,10 @@
 import log from '@/utils/log'
 
 /*
-Mixin takes an optional [classExtensionsMixin] data object:
+Mixin requires an [classExtensionsMixin] data object:
   {
-    logRef: for logging output
+    logRef: for logging output,
+    prop: prop in content containing class extension string
   }
 */
 
@@ -32,11 +33,14 @@ export const classExtensions = {
 
         if(this.classExt) {
 
+          const classProp = this.classExtensionsMixin.prop ?
+            this.classExtensionsMixin.prop : 'class_extensions'
+
           const classObject = {};
           this.classExt.forEach(ext =>
             classObject[this.$toolkit.kebabCase(ext)] = true
           );
-          if(this.content && this.content.class_extensions) {
+          if(this.content && this.content[classProp]) {
             const classExtensions = this.content.class_extensions.split(',');
             classExtensions.forEach(ext =>
               classObject[this.$toolkit.kebabCase(ext)] = true

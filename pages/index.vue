@@ -39,6 +39,12 @@ export default {
 
   },
 
+  computed: {
+    formSchema: function() {
+      return JSON.parse(this.story.content.body[2].schema)
+    }
+  },
+
   methods: {
     updateStory: function(e) {
       this.story.content = e;
