@@ -40,8 +40,9 @@ export default {
 
     return {
 
+      logRef: `<${this.$route.path}> [${new Date().getTime()}]`,
+
       storyblokBridgeMixin: {
-        logRef: 'Development Portfolio Page',
         isIndex: true,
       }
 

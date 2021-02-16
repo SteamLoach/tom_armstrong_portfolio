@@ -18,6 +18,12 @@ export default {
 
   mixins: [setPreferences],
 
+  data() {
+    return {
+      logRef: `<dark-mode-toggle> [${new Date().getTime()}]`
+    }
+  },
+
   computed: {
 
     classObject: function() {

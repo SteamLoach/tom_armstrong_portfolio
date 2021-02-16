@@ -3,7 +3,6 @@ import log from '@/utils/log'
 /*
 Mixin requires an [classExtensionsMixin] data object:
   {
-    logRef: for logging output,
     prop: prop in content containing class extension string
   }
 */
@@ -18,7 +17,7 @@ Mixin requires a [classExt] prop on parent component:
 
 const logger = log({
   type: 'component',
-  ref: 'Class Extensions'
+  ref: 'Class Extensions (Mixin)',
 })
 
 
@@ -49,19 +48,20 @@ export const classExtensions = {
           return classObject;
 
         } else {
-          logger.group(this.classExtensionsMixin.logRef)
+          logger.group(this.logRef);
           logger.warn('define a [classExt] Array prop with an empty array as default')
-          logger.groupEnd(this.classExtensionsMixin.logRef);
+          logger.groupEnd(this.logRef);
         }
 
       } else {
+        logger.group(this.logRef);
         logger.warn('define a [classExtensionsMixin] config object')
+        logger.groupEnd(this.logRef);
       }
 
 
+
     },
-
-
 
   }
 

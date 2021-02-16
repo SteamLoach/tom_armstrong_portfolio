@@ -1,1 +1,3 @@
-<media-card> styling and options | formBuilder mixin
+add validation to formBuilder mixin
+
+mixin takes a config object with [schema] and [format] props. [schema] can be JSON (in which case [format] must be specified) or an array from an internal/external source

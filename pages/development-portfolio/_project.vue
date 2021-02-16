@@ -81,12 +81,11 @@ export default {
 
     return {
 
-      storyblokBridgeMixin: {
-        logRef: this.$route.path,
-      },
+      logRef: `<${this.$route.path}> [${new Date().getTime()}]`,
+
+      storyblokBridgeMixin: {},
 
       lightboxGalleryMixin: {
-        logRef: '<development-project>',
         isActive: false,
         currentIndex: 0,
       },

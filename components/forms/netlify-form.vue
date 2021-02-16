@@ -7,7 +7,7 @@
         method="post"
         target="hidden-iframe">
 
-    <p> {{this.formFields.length}} </p>
+    <p> {{this.fields.length}} </p>
 
 
   </form>
@@ -22,14 +22,6 @@ export default {
 
   mixins: [formBuilder],
 
-  data() {
-    return {
-      formBuilderMixin: {
-        logRef: '<netlify-form>'
-      }
-    }
-  },
-
   props: {
     content: {
       type: Object,
@@ -37,11 +29,18 @@ export default {
     }
   },
 
-  computed: {
-    schema: function() {
-      return JSON.parse(this.content.schema).schema;
+  data() {
+    return {
+
+      logRef: `<netflify-form> [${new Date().getTime()}]`,
+
+      formBuilderMixin: {
+        schema: this.content.schema,
+        format: 'JSON',
+      },
+
     }
-  }
+  },
 
 }
 

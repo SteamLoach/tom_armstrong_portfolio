@@ -21,7 +21,7 @@ export const initPreferences = {
 
   mounted() {
 
-    logger.group('Check Existing')
+    logger.group(this.logRef)
 
     if(this.initPreferencesMixin) {
 
@@ -58,7 +58,7 @@ export const initPreferences = {
       logger.warn('define an [initPreferencesMixin] config object')
     }
 
-    logger.groupEnd('Check Existing');
+    logger.groupEnd(this.logRef);
 
   },
 

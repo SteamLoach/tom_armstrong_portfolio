@@ -57,11 +57,15 @@ export default {
 
   data() {
     return {
+
+      logRef: `<media-card-panel> [${new Date().getTime()}]`,
+
       classExtensionsMixin: {
-        logRef: '<media-card-panel>',
         prop: 'panel_class_extensions'
       }
+
     }
+
   },
 
   methods: {

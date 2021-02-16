@@ -31,9 +31,9 @@ export default {
 
     return {
 
-      storyblokBridgeMixin: {
-        logRef: 'Homepage'
-      }
+      logRef: `<${this.$route.path}> [${new Date().getTime()}]`,
+
+      storyblokBridgeMixin: {}
 
     }
 

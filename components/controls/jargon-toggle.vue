@@ -18,6 +18,12 @@ export default {
 
   mixins: [setPreferences],
 
+  data() {
+    return {
+      logRef: `<jargon-toggle> [${new Date().getTime()}]`
+    }
+  },
+
   computed: {
 
     ...mapState(['withJargon'])

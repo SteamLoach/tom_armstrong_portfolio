@@ -37,6 +37,8 @@ export default {
   data() {
     return {
 
+      logRef: `<default-layout> [${new Date().getTime()}]`,
+
       routes: [
         {
           name: 'Home',

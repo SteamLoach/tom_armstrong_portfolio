@@ -29,8 +29,9 @@ export default {
 
   data() {
     return {
+      logRef: `<rich-text> [${new Date().getTime()}]`,
       classExtensionsMixin: {
-        logRef: `<rich-text> [${new Date().getTime()}]`
+        prop: 'class_extensions',
       }
     }
   },

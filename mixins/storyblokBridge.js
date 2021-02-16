@@ -47,9 +47,9 @@ export const storyblokBridge = {
 
   async fetch() {
 
-    if(this.storyblokBridgeMixin) {
+    logger.group(this.logRef);
 
-      logger.group(this.storyblokBridgeMixin.logRef);
+    if(this.storyblokBridgeMixin) {
 
       try {
 
@@ -93,11 +93,13 @@ export const storyblokBridge = {
         logger.error(err);
       }
 
-      logger.groupEnd(this.storyblokBridgeMixin.logRef);
+
 
     } else {
       logger.warn('define a [storyblokBridgeMixin] config object')
     }
+
+    logger.groupEnd(this.logRef);
 
   },
 

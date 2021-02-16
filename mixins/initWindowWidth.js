@@ -11,13 +11,13 @@ export const initWindowWidth = {
 
   mounted() {
 
-    logger.group('Window width');
+    logger.group(this.logRef);
 
     logger.line('set event listener')
     window.addEventListener('resize', this.setWindowWidth);
     this.setWindowWidth();
 
-    logger.groupEnd('Window width');
+    logger.groupEnd(this.logRef);
 
   },
 

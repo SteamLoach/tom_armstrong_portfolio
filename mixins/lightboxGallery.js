@@ -12,7 +12,7 @@ export const lightboxGallery = {
 
     openLightboxGallery: function(index) {
 
-      logger.group(this.lightboxGalleryMixin.logRef)
+      logger.group(this.logRef)
 
       if(this.lightboxGalleryMixin) {
 
@@ -24,22 +24,22 @@ export const lightboxGallery = {
         logger.warn('define a [lightboxGalleryMixin] config object')
       }
 
-      logger.groupEnd(this.lightboxGalleryMixin.logRef)
+      logger.groupEnd(this.logRef)
 
     },
 
     setLightboxGalleryIndex: function(e) {
-      logger.group(this.lightboxGalleryMixin.logRef)
+      logger.group(this.logRef)
       logger.line(`set index to ${e}`)
       this.lightboxGalleryMixin.currentIndex = e;
-      logger.groupEnd(this.lightboxGalleryMixin.logRef)
+      logger.groupEnd(this.logRef)
     },
 
     closeLightboxGallery: function() {
-      logger.group(this.lightboxGalleryMixin.logRef)
+      logger.group(this.logRef)
       logger.line('close lightbox')
       this.lightboxGalleryMixin.isActive = false;
-      logger.groupEnd(this.lightboxGalleryMixin.logRef)
+      logger.groupEnd(this.logRef)
     },
 
   }
