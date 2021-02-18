@@ -1,0 +1,40 @@
+{
+  "schema": [
+    {
+      "label": "Your Email",
+      "validations": {
+        "required": {
+          "params": null,
+          "message": "Please enter your email"
+        },
+        "email": {
+          "params": null,
+          "message": "Something doesn't look right..."
+        }
+      }
+    },
+    {
+      "label": "Subject",
+      "field": {
+        "tag": "select",
+        "options": [
+          "General Question",
+          "Development Work",
+          "Design Work"
+        ]
+      }
+    },
+    {
+      "label": "Your Message",
+      "field": {
+        "tag": "textarea"
+      },
+      "validations": {
+        "required": {
+          "params": null,
+          "message": "Give me something to work with!"
+        }
+      }
+    }
+  ]
+}

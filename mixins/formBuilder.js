@@ -1,6 +1,8 @@
 import log from '@/utils/log'
 
 import * as Validators from 'vuelidate/lib/validators'
+const isEmpty = (val) => val === '';
+const isTrue = (val) => val === true;
 
 const logger = log({
   type: 'script',
@@ -23,6 +25,7 @@ Mixin requires a [formBuilderMixin] config object:
         defaultValue: (optional),
         break: (optional) - returns a break if true
       }
+    format (optional) - must be specified if using JSON
 */
 
 import {validationMixin} from 'vuelidate'
@@ -33,8 +36,14 @@ export const formBuilder = {
 
   created() {
     this.fields.forEach(field => {
-      this.$set(this.form, field.ref, null)
+      this.$set(this.form, field.ref, null);
     })
+    if(this.content.show_privacy_statement) {
+      this.$set(this.form, 'user_consent', false);
+    }
+    if(this.formBuilderMixin.netlify) {
+      this.$set(this.form, 'honeypot', '');
+    }
   },
 
   data() {
@@ -59,7 +68,13 @@ export const formBuilder = {
 
     fields: function() {
       return this.setFields();
+    },
+
+    canSubmit: function() {
+      return !this.$v.form.$invalid;
     }
+
+
   },
 
   methods: {
@@ -102,7 +117,7 @@ export const formBuilder = {
             desc: item.desc,
             ref: item.ref ?
               item.ref : this.$toolkit.snakeCase(item.label),
-            field: {},
+            field: item.field ? item.field : {},
             validations: item.validations ? item.validations : {}
           }
           fieldObj.key = `${this.$toolkit.kebabCase(fieldObj.ref)}-${index}`
@@ -185,6 +200,16 @@ export const formBuilder = {
 
     setValidations: function() {
       const validationObj = {};
+      if(this.content.require_consent) {
+        validationObj.user_consent = {
+          isTrue,
+        }
+      }
+      if(this.formBuilderMixin.netlify) {
+        validationObj.honeypot = {
+          isEmpty,
+        };
+      }
       this.fields.forEach(field => {
         if(field.validations) {
           let fieldRules = {};
@@ -202,6 +227,10 @@ export const formBuilder = {
         }
       })
       return validationObj
+    },
+
+    postForm: function() {
+      console.log('sending form')
     }
 
   }

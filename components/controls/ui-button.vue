@@ -23,7 +23,7 @@ export default {
       type: String,
       default: 'button',
       validator: function(val) {
-        return ['button', 'link'].includes(val);
+        return ['button', 'link', 'submit'].includes(val);
       }
     },
     name: {
