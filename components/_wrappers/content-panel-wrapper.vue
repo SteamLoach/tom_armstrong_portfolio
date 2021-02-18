@@ -31,7 +31,7 @@ export default {
       $on-laptop: $space-8,
     );
 
-  &.flex {
+  &.flex-row {
     @include row(center, center);
   }
 

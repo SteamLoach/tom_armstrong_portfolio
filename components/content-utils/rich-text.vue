@@ -106,7 +106,7 @@ export default {
 
     p,
     h3, h4, h5, h6 {
-      padding-left: $space-2;
+      //padding-left: $space-2;
     }
 
     ul {
@@ -133,6 +133,14 @@ export default {
     }
     &.medium-copy-width {
       max-width: $medium-width;
+    }
+
+    &.root-copy-size {
+      font-size: $text-root;
+    }
+
+    &.small-copy-size {
+      font-size: $text-small;
     }
 
     &.with-border-bottom {

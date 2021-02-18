@@ -3,35 +3,59 @@
   <content-panel-wrapper>
 
     <!-- Same Page Target -->
-    <iframe name="hidden_iframe"
-            id="hidden_iframe"
+    <iframe name="hidden-iframe"
+            id="hidden-iframe"
             style="display:none;"></iframe>
     <!-- End Same Page Target -->
 
     <form class="form"
+          :class="{'row-layout': isRowLayout}"
           data-netlify="true"
-          name="Contact Form"
+          :name="content.name"
           data-netlify-honeypot="bot-field"
           method="post"
           v-on:submit="postForm"
-          target="hidden_iframe">
+          target="hidden-iframe">
+
+      <header class="form--header">
+        <rich-text :content="content.header" />
+      </header>
 
       <section class="form--body">
 
-        <h2 class="form--title"> {{content.title}} </h2>
+        <!-- Netlify Form Name Prop
+        <input type="hidden"
+               name="form-name"
+              :value="content.name" />
+        -->
+
+        <!-- Bot Field -->
+        <input v-if="formHandlerMixin.netlify"
+               v-model="$v.form.honeypot.$model"
+               class="honeypot"
+               name="bot-field"
+               type="text"
+               id="paranoidandroid"
+               placeholder="sneaky sneaky"
+               style="display: none;"/>
+        <!-- End Bot Field -->
 
         <div v-for="item in fields"
             class="form--field"
             :key="item.key">
 
           <label :for="item.label">
-            <strong> {{item.label}} </strong>
+            <strong>
+               {{item.label}}{{item.validations.required ? '*' : ''}}
+            </strong>
           </label>
 
           <select v-if="item.field.tag === 'select'"
                   v-model="$v.form[item.name].$model"
                   :name="item.name"
-                  :id="item.id">
+                  :id="item.id"
+                  :required="item.validations.required"
+                  :placeholder="item.field.placeholder">
 
             <option v-for="(option, index) in item.field.options"
                     :key="`${item.name}-option-${index}`">
@@ -44,52 +68,57 @@
                     v-model="$v.form[item.name].$model"
                     :name="item.name"
                     :id="item.id"
+                    :required="item.validations.required"
+                    :placeholder="item.field.placeholder"
                     rows="5" />
 
           <input v-else
                 v-model="$v.form[item.name].$model"
                 :type="item.field.type"
                 :name="item.name"
-                :id="item.id" />
+                :id="item.id"
+                :required="item.validations.required"
+                :placeholder="item.field.placeholder" />
+
+          <fade-transition>
+            <ul v-if="fieldHasErrors(item)"
+                class="form--field--error">
+              <li v-for="(error, index) in fieldErrors[item.name]"
+                  :key="`${item.name}-error-${index}`">
+                {{error}}
+              </li>
+            </ul>
+          </fade-transition>
 
         </div>
 
-        <!-- Bot Field -->
-        <input v-if="formBuilderMixin.netlify"
-               v-model="$v.form.honeypot.$model"
-               class="honeypot"
-               name="bot-field"
-               type="text"
-               id="paranoidandroid"
-               placeholder="sneaky sneaky"
-               style="display: none;"/>
-        <!-- End Bot Field -->
-
       </section>
 
-      <section class="form--controls">
+      <aside class="form--aside">
 
         <rich-text v-if="content.show_privacy_statement"
+                   class="small-copy-size"
                    :content="content.privacy_statement" />
 
         <div v-if="content.require_consent"
-            class="form--field checkbox">
+             class="form--field checkbox">
           <input v-model="$v.form.user_consent.$model"
                 type="checkbox"
                 name="user_consent"
                 id="user-consent" />
-          <label for="user-consent">
+          <label class="user-consent"
+                 for="user-consent">
             {{content.consent_message}}
           </label>
         </div>
 
+      </aside>
+
+      <div class="form--submit">
         <input type="submit"
                value="Send"
                :disabled="!canSubmit" />
-
-
-      </section>
-
+      </div>
 
     </form>
 
@@ -99,11 +128,11 @@
 
 <script>
 
-import {formBuilder} from '@/mixins/formBuilder';
+import {formHandler} from '@/mixins/formHandler';
 
 export default {
 
-  mixins: [formBuilder],
+  mixins: [formHandler],
 
   props: {
     content: {
@@ -117,7 +146,7 @@ export default {
 
       logRef: `<netflify-form> [${new Date().getTime()}]`,
 
-      formBuilderMixin: {
+      formHandlerMixin: {
         schema: this.content.schema,
         format: 'JSON',
         netlify: true,
@@ -126,27 +155,100 @@ export default {
     }
   },
 
+  computed: {
+    isRowLayout: function() {
+      return this.content.layout === 'row'
+    }
+  }
+
 }
 
 </script>
 
 <style lang="scss">
 
-  #hidden_iframe, .honeypot {
+  #hidden-iframe, .honeypot {
     display: none !important;
   }
 
   .form {
-    max-width: $narrow-width;
-    margin: 0 auto;
+    max-width: $wide-width;
     @include y-pad($space-8);
+    margin: 0 auto;
+
+    &.row-layout {
+      @include container(start, stretch);
+    }
+
   }
 
-  .form--title {
+  .form--header {
+    width: 100%;
     margin-bottom: $space-6;
   }
 
+  .form--body,
+  .form--aside {
+    max-width: $narrow-width;
+  }
+
+  .form--body,
+  .form--submit {
+    @include column-scale(
+      $default: 24,
+      $on-tablet: 12,
+    );
+    @include margin-scale(
+      right,
+      $on-tablet: $space-6,
+      $on-laptop: $space-8,
+    );
+  }
+
+  .form--aside {
+    @include media-until($tablet, width, 100%);
+    @include media-from($tablet, flex, 1);
+  }
+
+  .form--submit {
+    max-width: $narrow-width;
+    input {
+      width: 100%;
+      padding: $space-2 $space-3;
+      font-size: $text-body;
+      color: $title-color;
+      border: 2px solid $title-color;
+
+      .dark-mode & {
+        color: $dark-mode-title-color;
+        border-color: $dark-mode-title-color;
+      }
+
+      &:hover:not(:disabled) {
+        cursor: pointer;
+        color: $dark-mode-title-color;
+        background: $title-color;
+
+        .dark-mode & {
+          color: $title-color;
+          background: $dark-mode-title-color;
+        }
+
+      }
+      &:disabled {
+        cursor: not-allowed;
+        color: $shade-light;
+        border-color: $shade-light;
+        .dark-mode & {
+          color: $shade-darker;
+          border-color: $shade-darker;
+        }
+      }
+    }
+  }
+
   .form--field {
+    position: relative;
     margin-bottom: $space-5;
 
     label {
@@ -165,6 +267,8 @@ export default {
       border: 2px solid $border-color;
       border-radius: $border-radius;
 
+
+
       .dark-mode & {
         color: $dark-mode-text-color;
         border-color: $dark-mode-border-color;
@@ -172,14 +276,29 @@ export default {
       }
     }
 
+    .user-consent {
+      font-size: $text-small;
+    }
+
     &.checkbox {
-      @include wrapper(start, center);
+      @include wrapper(start, start, $no-wrap: true);
       input {
         width: auto;
+        margin-top: 4px;
         margin-right: $space-2;
       }
     }
 
+  }
+
+  .form--field--error {
+    position: absolute;
+    font-size: $text-small;
+    color: $danger-dark;
+
+    .dark-mode & {
+      color: $danger-light;
+    }
   }
 
 </style>

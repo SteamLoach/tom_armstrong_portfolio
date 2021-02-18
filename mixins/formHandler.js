@@ -6,12 +6,12 @@ const isTrue = (val) => val === true;
 
 const logger = log({
   type: 'script',
-  ref: 'formBuilder (Mixin)',
+  ref: 'formHandler (Mixin)',
 })
 
 
 /*
-Mixin requires a [formBuilderMixin] config object:
+Mixin requires a [formHandlerMixin] config object:
     schema: array of field objects in the following format -
       {
         label,
@@ -30,18 +30,22 @@ Mixin requires a [formBuilderMixin] config object:
 
 import {validationMixin} from 'vuelidate'
 
-export const formBuilder = {
+export const formHandler = {
 
   mixins: [validationMixin],
 
   created() {
     this.fields.forEach(field => {
-      this.$set(this.form, field.ref, null);
+      this.$set(
+        this.form,
+        field.ref,
+        field.defaultValue ? field.defaultValue : null
+      );
     })
     if(this.content.show_privacy_statement) {
       this.$set(this.form, 'user_consent', false);
     }
-    if(this.formBuilderMixin.netlify) {
+    if(this.formHandlerMixin.netlify) {
       this.$set(this.form, 'honeypot', '');
     }
   },
@@ -59,10 +63,10 @@ export const formBuilder = {
   computed: {
 
     schema: function() {
-      if(this.formBuilderMixin.format === 'JSON') {
-        return JSON.parse(this.formBuilderMixin.schema).schema;
+      if(this.formHandlerMixin.format === 'JSON') {
+        return JSON.parse(this.formHandlerMixin.schema).schema;
       } else {
-        return this.formBuilderMixin.schema
+        return this.formHandlerMixin.schema
       }
     },
 
@@ -72,8 +76,23 @@ export const formBuilder = {
 
     canSubmit: function() {
       return !this.$v.form.$invalid;
-    }
+    },
 
+    fieldErrors: function() {
+      const errorObj = {};
+      this.fields.forEach(field => {
+        errorObj[field.name] = [];
+        Object.keys(field.validations).forEach(rule => {
+          if(!this.$v.form[field.name][rule]) {
+            errorObj[field.name].push(
+              field.validations[rule].message ?
+                field.validations[rule].message : 'Error in field'
+            );
+          }
+        })
+      })
+      return errorObj;
+    }
 
   },
 
@@ -84,7 +103,7 @@ export const formBuilder = {
       logger.group(this.logRef);
       let fieldArr = [];
 
-      if(this.formBuilderMixin) {
+      if(this.formHandlerMixin) {
 
         this.schema.forEach((item, index) => {
 
@@ -189,7 +208,7 @@ export const formBuilder = {
         })
 
       } else {
-        logger.warn('define a [formBuilderMixin] config object')
+        logger.warn('define a [formHandlerMixin] config object')
       }
 
       logger.line(fieldArr, 'return');
@@ -205,7 +224,7 @@ export const formBuilder = {
           isTrue,
         }
       }
-      if(this.formBuilderMixin.netlify) {
+      if(this.formHandlerMixin.netlify) {
         validationObj.honeypot = {
           isEmpty,
         };
@@ -231,7 +250,18 @@ export const formBuilder = {
 
     postForm: function() {
       console.log('sending form')
-    }
+    },
+
+    fieldHasErrors: function(field) {
+      if(
+        !this.$toolkit.isEmpty(this.fieldErrors[field.name])
+        && this.$v.form[field.name].$dirty
+      ) {
+        return true;
+      } else {
+        return false;
+      }
+    },
 
   }
 
