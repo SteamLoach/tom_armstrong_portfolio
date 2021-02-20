@@ -91,6 +91,11 @@ export default {
 
 <style lang="scss">
 
+  .media-card-panel {
+    max-width: $extra-wide-width;
+    margin: 0 auto;
+  }
+
   .media-card-panel--title {
     margin-bottom: $space-8;
     text-align: center;

@@ -8,15 +8,8 @@
         <h1 class="development-project--title">
           {{story.content.title}}.
         </h1>
-        <p class="development-project--summary">
-          {{story.content.summary}}
-        </p>
-        <ul class="development-project--tags">
-          <li v-for="tag in story.tag_list"
-              :key="`${tag}-tag`">
-            {{tag}}
-          </li>
-        </ul>
+        <project-summary :content="story.content.summary" />
+        <tag-list :tags="story.tag_list" />
       </div>
     </page-header-wrapper>
 
@@ -162,32 +155,6 @@ export default {
     font-size: $title-larger;
   }
 
-  .development-project--summary {
-    padding-bottom: $space-2;
-    margin-bottom: $space-3;
-    font-size: $text-body;
-    border-bottom: 1px solid $border-color;
-
-    .dark-mode & {
-      border-color: $dark-mode-border-color;
-    }
-  }
-
-  .development-project--tags {
-    width: 100%;
-    padding: 0 $space-2 $space-2 $space-2;
-    li {
-      display: inline-block;
-      font-size: $text-smaller;
-
-      &:not(:first-child) {
-        padding-left: $space-2;
-        margin-left: $space-2;
-        border-left: 1px solid $shade-light;
-      }
-
-    }
-  }
 
   .development-project--body {
     @include row(start, start);

@@ -106,7 +106,7 @@ export default {
     max-width: 100%;
 
     color: $text-color;
-    background: $shade-lightest;
+    background: $page-background;
 
     @include transition();
 

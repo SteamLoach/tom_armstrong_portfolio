@@ -10,12 +10,32 @@
     </page-header-wrapper>
 
     <content-panel-wrapper>
-      <development-project-preview v-for="(project, i) in index"
-                                  :index="i"
-                                  :content="project.content"
-                                  :fullSlug="project.full_slug"
-                                  :tags="project.tag_list"
-                                  :key="project._uid" />
+
+      <media-card v-for="(project, i) in index"
+                  class="development-portfolio--project-preview"
+                  :alignMedia="mediaAlignment(i)"
+                  :classExt="['wide']"
+                  :key="project._uid">
+        <template v-slot:copy>
+          <div class="development-portfolio--project-preview--copy">
+            <h1> {{project.content.title}} </h1>
+            <project-summary :content="project.content.summary" />
+            <tag-list :tags="project.tag_list" />
+            <ui-button :content="{
+                        name: 'Read More',
+                        type: 'link',
+                        to: project.full_slug,
+                       }"
+                       :classExt="['neutral', 'hover-state']" />
+          </div>
+        </template>
+        <template v-slot:media>
+          <img v-if="project.content.images[0]"
+                :src="project.content.images[0].filename"
+                :alt="project.content.images[0].alt" />
+        </template>
+      </media-card>
+
     </content-panel-wrapper>
 
   </main>
@@ -50,6 +70,14 @@ export default {
 
   },
 
+  methods: {
+    mediaAlignment: function(i) {
+      if(!this.$store.getters.isHandheld) {
+        return this.$toolkit.isEven(i) ? 'left' : 'right';
+      }
+    }
+  }
+
 
 
 }
@@ -77,6 +105,23 @@ export default {
       $on-tablet: $title-larger,
       $on-laptop: $title-largest,
     );
+  }
+
+  .development-portfolio--project-preview {
+    @include row(center, start);
+    margin: 0 auto;
+    @include margin-scale(
+      bottom,
+      $default: $space-9,
+      $on-laptop: $space-11,
+    );
+  }
+
+  .development-portfolio--project-preview--copy {
+    h1 {
+      font-size: $title-medium;
+      margin-bottom: $space-4;
+    }
   }
 
 </style>

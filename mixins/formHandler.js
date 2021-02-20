@@ -35,24 +35,14 @@ export const formHandler = {
   mixins: [validationMixin],
 
   created() {
-    this.fields.forEach(field => {
-      this.$set(
-        this.form,
-        field.ref,
-        field.defaultValue ? field.defaultValue : null
-      );
-    })
-    if(this.content.show_privacy_statement) {
-      this.$set(this.form, 'user_consent', false);
-    }
-    if(this.formHandlerMixin.netlify) {
-      this.$set(this.form, 'honeypot', '');
-    }
+    this.resetForm();
   },
 
   data() {
     return {
       form: {},
+      isSubmitting: false,
+      hasSubmitted: false,
     }
   },
 
@@ -75,7 +65,11 @@ export const formHandler = {
     },
 
     canSubmit: function() {
-      return !this.$v.form.$invalid;
+      return (
+        !this.$v.form.$invalid
+        && !this.isSubmitting
+        && !this.hasSubmitted
+        );
     },
 
     fieldErrors: function() {
@@ -249,7 +243,35 @@ export const formHandler = {
     },
 
     postForm: function() {
-      console.log('sending form')
+      logger.group(this.logRef)
+      logger.warn('[postForm] function is not hooked up to <form> onsubmit')
+      logger.groupEnd(this.logRef)
+      this.isSubmitting = true;
+      setTimeout(() => {
+        this.isSubmitting = false;
+        this.hasSubmitted = true;
+        this.resetForm();
+      }, 2500);
+      setTimeout(() => {
+        this.hasSubmitted = false;
+      }, 10000)
+    },
+
+    resetForm: function() {
+      this.fields.forEach(field => {
+        this.$set(
+          this.form,
+          field.ref,
+          field.defaultValue ? field.defaultValue : null
+        );
+      })
+      if(this.content.show_privacy_statement) {
+        this.$set(this.form, 'user_consent', false);
+      }
+      if(this.formHandlerMixin.netlify) {
+        this.$set(this.form, 'honeypot', '');
+      }
+      this.$v.$reset();
     },
 
     fieldHasErrors: function(field) {

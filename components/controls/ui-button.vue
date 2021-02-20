@@ -1,47 +1,65 @@
 <template>
 
-
-  <span class="ui-button">
-    <nuxt-link v-if="isLink"
-               :to="to">
-      {{name}}
-    </nuxt-link>
-    <button v-else-if="isButton">
-      {{name}}
-    </button>
-  </span>
-
-
+  <component :is="tag"
+             :type="content.type"
+             class="ui-button"
+             :class="classExtensions"
+             :to="content.to"
+             :disabled="disabled"
+             @click="onClick">
+    {{content.name}}
+  </component>
 
 </template>
 
 <script>
+
+import {classExtensions} from '@/mixins/classExtensions'
+
 export default {
 
+  mixins: [classExtensions],
+
   props: {
-    type: {
-      type: String,
-      default: 'button',
-      validator: function(val) {
-        return ['button', 'link', 'submit'].includes(val);
-      }
-    },
-    name: {
-      type: String,
+    content: {
+      type: Object,
       required: true,
     },
-    to: {
-      type: String,
-      required: function() {return this.type === 'link'},
+    action: {
+      type: Function,
+    },
+    disabled: {
+      type: Boolean,
+      default: false,
+    },
+    classExt: {
+      type: Array,
+      default: () => [],
+    }
+  },
+
+  data() {
+    return {
+      logRef: `<netflify-form> [${new Date().getTime()}]`,
+      classExtensionsMixin: {
+        prop: 'class_extensions',
+      }
+    }
+  },
+
+  methods: {
+    onClick: function(e) {
+      this.$emit('handleClick')
     }
   },
 
   computed: {
-    isButton: function() {
-      return this.type === 'button'
-    },
-    isLink: function() {
-      return this.type === 'link'
+    tag: function() {
+      if(this.content.type === 'link') {
+        return 'nuxt-link';
+      } else {
+        return 'button';
+      }
     }
   }
 
@@ -50,25 +68,117 @@ export default {
 
 <style lang="scss">
 
+  @mixin button(
+    $fill,
+    $dark-mode-fill: false,
+  ) {
+
+
+    color: $dark-mode-title-color;
+    background: $fill;
+    border: 2px solid $fill;
+    @include transition($duration: 0.1s);
+
+
+    .dark-mode & {
+
+      color: $dark-mode-page-background;
+
+      @if $dark-mode-fill {
+        background: $dark-mode-fill;
+        border-color: $dark-mode-fill;
+      }
+
+    }
+
+    &:hover:not(:disabled) {
+      cursor: pointer;
+    }
+
+
+    &.hover-state {
+
+      color: $fill;
+      border-color: $fill;
+      background: $page-background;
+
+      .dark-mode & {
+
+        color: $dark-mode-fill;
+        border-color: $dark-mode-fill;
+        background: $dark-mode-page-background;
+
+      }
+
+      &:hover:not(:disabled) {
+
+        color: $dark-mode-title-color;
+        background: $fill;
+
+        .dark-mode & {
+          color: $title-color;
+          background: $dark-mode-fill;
+        }
+
+      }
+
+    }
+
+    &:disabled {
+      cursor: not-allowed;
+      color: $shade-light;
+      background: $page-background;
+      border-color: $shade-light;
+      .dark-mode & {
+        color: $shade-darker;
+        background: $dark-mode-page-background;
+        border-color: $shade-darker;
+      }
+    }
+
+
+  }
+
   .ui-button {
 
-    &:not(:first-child) {
+    padding: $space-2 $space-3;
+    font-weight: 600;
+
+    &:not(:first-of-type) {
       margin-left: $space-4;
     }
 
-    button,
-    a {
-      padding: $space-2 $space-4;
-      font-weight: 600;
-      color: $title-color;
-      border: 2px solid $title-color;
+    &.with-icon-right {
+      @include wrapper(center, center, $no-wrap: true);
+    }
+
+    &.full-width {
+       width: 100%;
+    }
+
+    &.rounded {
       border-radius: $border-radius;
+    }
 
-      .dark-mode & {
-        color: $dark-mode-title-color;
-        border-color: $dark-mode-title-color;
-      }
+    &.neutral {
+      @include button(
+        $fill: $title-color,
+        $dark-mode-fill: $dark-mode-title-color,
+      );
+    }
 
+    &.brand {
+      @include button(
+        $fill: $brand-dark,
+        $dark-mode-fill: $brand-light,
+      );
+    }
+
+    &.accent {
+      @include button(
+        $fill: $accent-dark,
+        $dark-mode-fill: $accent-base,
+      )
     }
 
   }

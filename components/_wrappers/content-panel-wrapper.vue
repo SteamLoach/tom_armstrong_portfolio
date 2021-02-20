@@ -30,6 +30,11 @@ export default {
       $on-tablet: $space-6,
       $on-laptop: $space-8,
     );
+    @include pad-scale(
+      y,
+      $default: $space-6,
+      $on-tablet: $space-8,
+    );
 
   &.flex-row {
     @include row(center, center);

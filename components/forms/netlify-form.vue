@@ -14,7 +14,6 @@
           :name="content.name"
           data-netlify-honeypot="bot-field"
           method="post"
-          v-on:submit="postForm"
           target="hidden-iframe">
 
       <header class="form--header">
@@ -115,9 +114,29 @@
       </aside>
 
       <div class="form--submit">
-        <input type="submit"
-               value="Send"
-               :disabled="!canSubmit" />
+        <ui-button :classExt="[
+                    'neutral',
+                    'full-width',
+                    'hover-state',
+                    ]"
+                   :content="{
+                     name: 'Send',
+                     type: 'button'
+                    }"
+                   :disabled="!canSubmit"
+                   @handleClick="postForm" />
+
+          <slide-x-right-transition mode="out-in">
+          <div class="form--submit--sending"
+               :key="isSubmitting ? 'submitting' : 'has-submitted'">
+            <span v-if="isSubmitting">Sending message</span>
+            <span v-else-if="hasSubmitted">
+              {{content.thankyou_message}}
+            </span>
+            <circle-loader v-if="isSubmitting" class="margin-left"/>
+          </div>
+          </slide-x-right-transition>
+
       </div>
 
     </form>
@@ -173,7 +192,6 @@ export default {
 
   .form {
     max-width: $wide-width;
-    @include y-pad($space-8);
     margin: 0 auto;
 
     &.row-layout {
@@ -245,6 +263,13 @@ export default {
         }
       }
     }
+  }
+
+  .form--submit--sending,
+  .form--submit--complete {
+    @include row(center, center);
+    min-height: 45px;
+    padding: $space-2;
   }
 
   .form--field {

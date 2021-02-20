@@ -1,1 +1,3 @@
-<netlify-form> styling and error messaging
+simplify <development-portfolio> | add feedback to <netlify-form>
+
+removed <development-project-preview> and used <media-card v-for> directly instead.

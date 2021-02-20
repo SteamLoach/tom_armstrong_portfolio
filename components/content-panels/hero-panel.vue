@@ -2,7 +2,15 @@
 
   <page-header-wrapper class="hero-panel"
                        :class="content.class_extensions">
-    <div class="hero-panel--copy">
+    <section class="hero-panel--copy">
+      <component v-for="item in content.copy"
+                 :is="item.component"
+                 :key="item._uid"
+                 :content="item"
+                 v-editable="item">
+      </component>
+
+      <!--
       <rich-text :content="content.copy" />
       <span v-if="hasLinks">
         <ui-button v-for="link in content.call_to_action"
@@ -12,10 +20,13 @@
                    :key="$toolkit.kebabCase(link.name)">
         </ui-button>
       </span>
-    </div>
-    <div class="hero-panel--media">
+      -->
+    </section>
+
+    <section class="hero-panel--media">
       <placeholder-image :width="1200" :height="1000" />
-    </div>
+    </section>
+
   </page-header-wrapper>
 
 </template>
