@@ -58,6 +58,21 @@ export default {
 
 <style lang="scss">
 
+  $major-headers: 'h1', 'h2', 'h3';
+  $minor-headers: 'h4', 'h5', 'h6';
+  $copy-components: 'p', 'ul', 'ol';
+
+  $major-copy-headers:
+    "p + h1",
+    "p + h2", "p + h3",
+    "ul + h2", "ul + h3",
+    "ol + h2", "ol + h3";
+
+  $minor-copy-headers:
+    "p + h4", "p + h5", "p + h6",
+    "ul + h4", "ul + h5", "ul + h6",
+    "ol + h4", "ol + h5", "ul + h6";
+
   .rich-text {
 
     margin-bottom: $space-6;
@@ -80,33 +95,22 @@ export default {
     }
 
 
-    h1,
-    h2, h3 {
+    #{$major-headers} {
       margin-bottom: $space-5;
     }
-    h4, h5, h6 {
+    #{$minor-headers} {
       margin-bottom: $space-2;
     }
 
-    p + h1,
-    p + h2, p + h3,
-    ul + h2, ul + h3,
-    ol + h2, ol + h3 {
+    #{$major-copy-headers} {
       margin-top: $space-5;
     }
-    p + h4, p + h5, p + h6,
-    ul + h4, ul + h5, ul + h6,
-    ol + h4, ol + h5, ul + h6 {
+    #{$minor-copy-headers} {
       margin-top: $space-4;
     }
 
-    p, ul, ol {
+    #{$copy-components} {
       margin-bottom: $space-3;
-    }
-
-    p,
-    h3, h4, h5, h6 {
-      //padding-left: $space-2;
     }
 
     ul {
@@ -135,13 +139,36 @@ export default {
       max-width: $medium-width;
     }
 
-    &.root-copy-size {
+    &.small-copy-size {
       font-size: $text-root;
+      h3 {
+        font-size: $title-smaller;
+        margin-bottom: $space-3;
+      }
+      h4 {
+        font-size: $title-smallest;
+      }
+      h5 {
+        font-size: $text-body;
+      }
+      h6 {
+        font-size: $text-root;
+      }
+      #{$minor-headers} {
+        margin-bottom: $space-1;
+      }
+      #{$minor-copy-headers} {
+        margin-top: $space-3;
+      }
+      #{$copy-components} {
+        margin-bottom: $space-1;
+      }
+      ul, ol {
+        padding-left: $space-5;
+      }
     }
 
-    &.small-copy-size {
-      font-size: $text-small;
-    }
+
 
     &.with-border-bottom {
       padding-bottom: $space-2;

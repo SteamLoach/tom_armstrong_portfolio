@@ -4,12 +4,19 @@
         v-editable="story.content">
 
     <page-header-wrapper>
-      <div class="development-project--title-wrapper">
-        <h1 class="development-project--title">
-          {{story.content.title}}.
-        </h1>
-        <project-summary :content="story.content.summary" />
-        <tag-list :tags="story.tag_list" />
+      <div class="development-project--header">
+        <div class="development-project--title">
+          <h1>
+            {{story.content.title}}.
+          </h1>
+          <project-summary :content="story.content.summary" />
+          <tag-list :tags="story.tag_list" />
+        </div>
+        <div v-if="featureImage"
+            class="development-project--feature-image">
+            <img :src="featureImage.filename"
+                :alt="featureImage.alt" />
+        </div>
       </div>
     </page-header-wrapper>
 
@@ -95,6 +102,16 @@ export default {
   computed: {
     withJargon: function() {
       return this.$store.state.withJargon
+    },
+    featureImage: function() {
+      const {content} = this.story;
+      if(content.feature_image) {
+        return content.feature_image
+      } else if(!this.$toolkit.isEmpty(content.images)) {
+        return content.image[0]
+      } else {
+        return false;
+      }
     }
   },
 
@@ -124,6 +141,8 @@ export default {
 <style lang="scss">
 
   .development-project--header {
+    max-width: $super-wide-width;
+    @include row(start, start);
     @include pad-scale(
       x,
       $default: $space-3,
@@ -131,28 +150,52 @@ export default {
       $on-tablet: $space-6,
       $on-laptop: $space-8,
     );
-  }
-
-  .development-project--title-wrapper {
-    max-width: $medium-width;
     @include pad-scale(
       top,
-      $default: $space-9,
-      $on-tablet: $space-11,
-      $on-laptop: $space-11,
+      $default: $space-6,
+      $on-tablet: $space-10,
     );
     @include pad-scale(
       bottom,
-      $default: $space-10,
-      $on-tablet: $space-12,
-      $on-laptop: $space-13,
-    )
+      $default: $space-8,
+      $on-phablet: $space-10,
+      $on-tablet: $space-11,
+      $on-laptop: $space-12,
+    );
+    margin: 0 auto;
   }
 
   .development-project--title {
-    width: 100%;
-    margin-bottom: $space-4;
-    font-size: $title-larger;
+    @include media-until($desktop, width, 100%);
+    @include media-from($desktop, max-width, $narrow-width);
+    @include pad-scale(
+      top,
+      $on-laptop: $space-6,
+    );
+    @include pad-scale(
+      bottom,
+      $default: $space-4,
+      $on-laptop: $space-6,
+      $on-desktop: $space-9,
+    );
+    @include margin-scale(
+      right,
+      $on-laptop: $space-6,
+    );
+    h1 {
+      width: 100%;
+      margin-bottom: $space-4;
+      font-size: $title-larger;
+    }
+  }
+
+  .development-project--feature-image {
+    @include media-until($desktop, width, 100%);
+    @include media-from($desktop, flex, 1);
+    img {
+      max-height: 625px;
+      margin: 0 auto;
+    }
   }
 
 

@@ -26,13 +26,13 @@
                         type: 'link',
                         to: project.full_slug,
                        }"
-                       :classExt="['neutral', 'hover-state']" />
+                       :classExt="['neutral', 'hover-state', 'full-width']" />
           </div>
         </template>
         <template v-slot:media>
-          <img v-if="project.content.images[0]"
-                :src="project.content.images[0].filename"
-                :alt="project.content.images[0].alt" />
+          <img v-if="previewImage(project)"
+                :src="previewImage(project).filename"
+                :alt="previewImage(project).alt" />
         </template>
       </media-card>
 
@@ -74,6 +74,15 @@ export default {
     mediaAlignment: function(i) {
       if(!this.$store.getters.isHandheld) {
         return this.$toolkit.isEven(i) ? 'left' : 'right';
+      }
+    },
+    previewImage: function(project) {
+      if(project.content.feature_image) {
+        return project.content.feature_image
+      } else if(!this.$toolkit.isEmpty(project.content.images)) {
+        return project.content.images[0]
+      } else {
+        return false;
       }
     }
   }

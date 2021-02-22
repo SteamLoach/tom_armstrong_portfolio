@@ -142,6 +142,7 @@ export default {
   .ui-button {
 
     padding: $space-2 $space-3;
+    text-align: center;
     font-weight: 600;
 
     &:not(:first-of-type) {

@@ -18,7 +18,6 @@ export default {
       $default: $space-3,
       $on-lrg-mobile: $space-4,
       $on-tablet: $space-6,
-      $on-laptop: $space-8,
     );
   }
 

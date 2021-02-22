@@ -8,6 +8,7 @@
             ]">
 
     <div class="media-card--inner">
+
       <div :class="[`media-card--${slotOrder[0]}`]">
         <slot :name="slotOrder[0]" />
       </div>
@@ -15,6 +16,7 @@
       <div :class="[`media-card--${slotOrder[1]}`]">
         <slot :name="slotOrder[1]" />
       </div>
+
     </div>
 
   </article>
@@ -67,7 +69,13 @@ export default {
   .media-card {
 
     &.pad-light {
-      padding: $space-4;
+      @include x-pad($space-4);
+    }
+    &.pad-medium {
+      @include x-pad($space-6);
+    }
+    &.pad-heavy {
+      @include x-pad($space-8);
     }
 
     &.wide {
@@ -122,12 +130,18 @@ export default {
     }
 
     &.column-layout {
-      @include x-pad($space-4);
 
       .media-card--copy,
       .media-card--media {
         width: 100%;
       }
+
+      &.media-left {
+        .media-card--media {
+          margin-bottom: $space-4;
+        }
+      }
+
     }
 
   }
@@ -138,7 +152,6 @@ export default {
   }
 
   .media-card--copy {
-
     @include margin-scale(
         bottom,
         $default: $space-4,
@@ -147,6 +160,22 @@ export default {
   }
 
   .media-card--media {
+
+    .thumbnail-image & {
+      img {
+        max-height: 175px;
+      }
+    }
+    .small-image & {
+      img {
+        max-height: 250px;
+      }
+    }
+    .medium-image & {
+      img {
+        max-height: 375px;
+      }
+    }
 
     img {
     @include max-height-scale(
