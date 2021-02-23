@@ -2,9 +2,9 @@
 
   <article class="media-card"
            :class="[
-              classExt,
+              classExtensions,
               `media-${alignMedia}`,
-              {'column-layout' : isColumn, 'row-layout': !isColumn}
+              `${layout}-layout`
             ]">
 
     <div class="media-card--inner">
@@ -25,14 +25,18 @@
 
 <script>
 
+import {classExtensions} from '@/mixins/classExtensions'
+
 export default {
+
+  mixins: [classExtensions],
 
   props: {
     layout: {
       type: String,
       default: 'row',
       validator: function(val) {
-        return ['row', 'column'].includes(val);
+        return ['row', 'column', 'split-panel'].includes(val);
       }
     },
     alignMedia: {
@@ -48,14 +52,20 @@ export default {
     }
   },
 
+  data() {
+    return {
+      logRef: `<media-card> [${new Date().getTime()}]`,
+      classExtensionsMixin: {
+        prop: 'class_extensions'
+      }
+    }
+  },
+
   computed: {
     slotOrder: function() {
       return this.alignMedia === 'right' ?
         ['copy', 'media'] : ['media', 'copy'];
     },
-    isColumn: function() {
-      return this.layout === 'row' ? false : true;
-    }
   }
 
 }
@@ -85,6 +95,11 @@ export default {
       max-width: $extra-wide-width;
     }
 
+    &.full-width {
+      width: 100%;
+    }
+
+    //Column Layout
     &.three-column {
       @include column-scale(
         $default: 24,
@@ -93,6 +108,21 @@ export default {
       );
     }
 
+    &.column-layout {
+
+      .media-card--copy,
+      .media-card--media {
+        width: 100%;
+      }
+      &.media-left {
+        .media-card--media {
+          margin-bottom: $space-4;
+        }
+      }
+
+    }
+
+    //Row Layout
     &.row-layout {
       .media-card--copy {
         @include column-scale(
@@ -129,26 +159,51 @@ export default {
       }
     }
 
-    &.column-layout {
-
-      .media-card--copy,
-      .media-card--media {
-        width: 100%;
-      }
-
-      &.media-left {
-        .media-card--media {
-          margin-bottom: $space-4;
-        }
-      }
-
+  //Split Panel Layout
+  &.split-panel-layout {
+    .media-card--inner {
+      @include row(center, center);
     }
+    .media-card--copy,
+    .media-card--media {
+      height: 100%;
+    }
+    .media-card--copy {
+      @include column-scale(
+        $default: 24,
+        $on-desktop: 9,
+      );
+      @include pad-scale(
+        x,
+        $on-desktop: $space-6,
+      );
+    }
+    .media-card--media {
+      @include column-scale(
+        $default: 24,
+        $on-desktop: 15,
+      );
+    }
+    &.media-right {
+      @include pad-scale(
+        left,
+        $on-desktop: $space-8,
+      );
+    }
+    &.media-left {
+      @include pad-scale(
+        right,
+        $on-desktop: $space-8,
+      );
+    }
+  }
 
   }
 
 
+
   .media-card--inner {
-    @include container(between, start);
+    @include container(between, stretch);
   }
 
   .media-card--copy {

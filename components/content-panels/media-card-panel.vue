@@ -103,7 +103,7 @@ export default {
   }
 
   .media-card-panel--cards {
-    @include row(center, start);
+    @include row(center, stretch);
   }
 
 </style>

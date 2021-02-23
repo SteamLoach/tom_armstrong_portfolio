@@ -18,7 +18,7 @@
                   :key="project._uid">
         <template v-slot:copy>
           <div class="development-portfolio--project-preview--copy">
-            <h1> {{project.content.title}} </h1>
+            <h2> {{project.content.title}} </h2>
             <project-summary :content="project.content.summary" />
             <tag-list :tags="project.tag_list" />
             <ui-button :content="{
@@ -127,7 +127,7 @@ export default {
   }
 
   .development-portfolio--project-preview--copy {
-    h1 {
+    h2 {
       font-size: $title-medium;
       margin-bottom: $space-4;
     }

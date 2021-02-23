@@ -1,1 +1,3 @@
-add [feature_image] to <development-project> previews and page headers
+add [classExtensions] and 'split-panel' layout to <media-card>
+
+'split-panel-layout' occupies full screen width, acting as more of a panel than a card.
