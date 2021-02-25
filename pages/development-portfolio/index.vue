@@ -30,9 +30,9 @@
           </div>
         </template>
         <template v-slot:media>
-          <img v-if="previewImage(project)"
-                :src="previewImage(project).filename"
-                :alt="previewImage(project).alt" />
+          <img v-if="featureImage(project)"
+                :src="featureImage(project).filename"
+                :alt="featureImage(project).alt" />
         </template>
       </media-card>
 
@@ -47,6 +47,7 @@
 <script>
 
 import {storyblokBridge} from '@/mixins/storyblokBridge';
+import {featureImage} from '@/mixins/featureImage';
 
 export default {
 
@@ -54,6 +55,7 @@ export default {
 
   mixins: [
     storyblokBridge,
+    featureImage,
   ],
 
   data() {
@@ -76,15 +78,6 @@ export default {
         return this.$toolkit.isEven(i) ? 'left' : 'right';
       }
     },
-    previewImage: function(project) {
-      if(project.content.feature_image) {
-        return project.content.feature_image
-      } else if(!this.$toolkit.isEmpty(project.content.images)) {
-        return project.content.images[0]
-      } else {
-        return false;
-      }
-    }
   }
 
 

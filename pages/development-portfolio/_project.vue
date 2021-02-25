@@ -12,10 +12,10 @@
           <project-summary :content="story.content.summary" />
           <tag-list :tags="story.tag_list" />
         </div>
-        <div v-if="featureImage"
+        <div v-if="featureImage(story)"
             class="development-project--feature-image">
-            <img :src="featureImage.filename"
-                :alt="featureImage.alt" />
+            <img :src="featureImage(story).filename"
+                :alt="featureImage(story).alt" />
         </div>
       </div>
     </page-header-wrapper>
@@ -37,8 +37,8 @@
                   :is="item.component"
                   :content="item"
                   :displayCondition="displayCondition(item)"
-                  v-editable="item"
-                  :key="item._uid" />
+                  :key="item._uid"
+                  v-editable="item" />
       </section>
 
       <aside class="development-project--media">
@@ -67,6 +67,7 @@
 
 import {storyblokBridge} from '@/mixins/storyblokBridge';
 import {lightboxGallery} from '@/mixins/lightboxGallery';
+import {featureImage} from '@/mixins/featureImage';
 
 export default {
 
@@ -74,7 +75,8 @@ export default {
 
   mixins: [
     storyblokBridge,
-    lightboxGallery
+    lightboxGallery,
+    featureImage,
   ],
 
   data() {
@@ -103,16 +105,6 @@ export default {
     withJargon: function() {
       return this.$store.state.withJargon
     },
-    featureImage: function() {
-      const {content} = this.story;
-      if(content.feature_image) {
-        return content.feature_image
-      } else if(!this.$toolkit.isEmpty(content.images)) {
-        return content.image[0]
-      } else {
-        return false;
-      }
-    }
   },
 
   methods: {
@@ -185,7 +177,11 @@ export default {
     h1 {
       width: 100%;
       margin-bottom: $space-4;
-      font-size: $title-larger;
+      @include font-size-scale(
+        $default: $title-medium,
+        $on-tablet: $title-large,
+        $on-laptop: $title-larger,
+      );
     }
   }
 

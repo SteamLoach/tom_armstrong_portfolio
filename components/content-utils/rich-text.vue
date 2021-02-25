@@ -132,6 +132,21 @@ export default {
       }
     }
 
+    img {
+      margin: $space-6 auto;
+      border-radius: $border-radius;
+      @include shadow($elevation-light);
+
+    }
+
+    &.plain-images {
+      img {
+        border-radius: 0;
+        box-shadow: none;
+      }
+
+    }
+
     &.narrow-copy-width {
       max-width: $narrow-width;
     }

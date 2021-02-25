@@ -158,5 +158,12 @@ export default {
 
     window.scrollTo(scrollOptions);
 
-  }
+  },
+
+  //Set background image (Vue only)
+  setBackgroundImage: (url) => {
+    return {backgroundImage: `url('${url}')`}
+  },
+
+
 }
