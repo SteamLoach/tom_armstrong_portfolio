@@ -74,15 +74,24 @@ export default {
     "ol + h4", "ol + h5", "ul + h6";
 
   .rich-text {
-
+    max-width: $medium-width;
     margin-bottom: $space-6;
-    font-size: $text-large;
+    @include font-size-scale(
+      $default: $text-body,
+      $on-tablet: $text-large,
+    );
 
     h1 {
-      font-size: $title-larger;
+      @include font-size-scale(
+        $default: $title-large,
+        $on-tablet: title-larger,
+      )
     }
     h2 {
-      font-size: $title-large;
+      @include font-size-scale(
+        $default: $title-medium,
+        $on-tablet: $title-large,
+      );
     }
     h3 {
       font-size: $title-small;
@@ -132,21 +141,6 @@ export default {
       }
     }
 
-    img {
-      margin: $space-6 auto;
-      border-radius: $border-radius;
-      @include shadow($elevation-light);
-
-    }
-
-    &.plain-images {
-      img {
-        border-radius: 0;
-        box-shadow: none;
-      }
-
-    }
-
     &.narrow-copy-width {
       max-width: $narrow-width;
     }
@@ -183,6 +177,41 @@ export default {
       }
     }
 
+    img {
+      max-height: 90vh;
+      margin: $space-8 auto;
+    }
+
+    &.thumbnail-images {
+      img {
+        @include media-from($tablet, max-width, 25%);
+      }
+    }
+
+    &.small-images {
+      img {
+        @include media-from($tablet, max-width, 50%);
+      }
+    }
+
+    &.medium-images {
+      img {
+        @include media-from($tablet, max-width, 75%);
+      }
+    }
+
+    &.large-images {
+      img {
+        @include media-from($tablet, max-width, 90%);
+      }
+    }
+
+    &.styled-images {
+      img {
+        border-radius: $space-1;
+        @include shadow($elevation-light);
+      }
+    }
 
 
     &.with-border-bottom {

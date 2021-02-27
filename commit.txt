@@ -1,1 +1,1 @@
-add [featureImage] as a mixin and initial styling for <design-project> pages
+add <two-column-panel> and <media-asset> components

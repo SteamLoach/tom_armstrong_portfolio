@@ -23,13 +23,11 @@
 
     </header>
 
-    <content-panel-wrapper class="design-project--body">
-      <component v-for="item in story.content.body"
-                :is="item.component"
-                :content="item"
-                :key="item._uid"
-                v-editable="item" />
-    </content-panel-wrapper>
+    <component v-for="item in story.content.body"
+              :is="item.component"
+              :content="item"
+              :key="item._uid"
+              v-editable="item" />
 
 
   </main>
@@ -80,7 +78,7 @@ export default {
     @include background-image(
       $position: left,
     );
-    background-color: pink;
+    //background-color: pink;
   }
 
   .design-project--title {
