@@ -66,23 +66,34 @@ export default {
 
   .design-project--feature-image,
   .design-project--title {
-    height: 80vh;
     @include column-scale(
       $default: 24,
       $on-laptop: 12,
     );
-    margin-bottom: $space-10;
   }
 
+
   .design-project--feature-image {
-    @include background-image(
-      $position: left,
+    height: 80vh;
+    @include margin-scale(
+      bottom,
+      $default: $space-6,
+      $on-laptop: $space-12,
     );
-    //background-color: pink;
+    @include background-image(
+      $position: center,
+    );
+    @include media-from($laptop, background-position, left);
   }
 
   .design-project--title {
     @include wrapper(center, center);
+    @include margin-scale(
+      bottom,
+      $default: $space-8,
+      $on-tablet: $space-10,
+      $on-laptop: $space-12,
+    );
     h1 {
       margin-bottom: $space-4;
       @include font-size-scale(
@@ -97,6 +108,8 @@ export default {
     max-width: $medium-width;
     @include pad-scale(
       x,
+      $default: $space-4,
+      $on-tablet: $space-6,
       $on-laptop: $space-6,
       $on-desktop: $space-8,
     );

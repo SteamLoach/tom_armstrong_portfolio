@@ -76,27 +76,6 @@ export default {
   .two-column-panel {
     @include row(center, start);
 
-    .two-column-panel--left {
-      @include pad-scale(
-        right,
-        $on-tablet: $space-4,
-        $on-laptop: $space-6,
-      );
-    }
-
-    .two-column-panel--right {
-      @include pad-scale(
-        left,
-        $on-tablet: $space-4,
-        $on-laptop: $space-6,
-      );
-    }
-
-
-    .two-column-panel--secondary {
-      margin-top: $space-2;
-    }
-
     &.half {
       .two-column-panel--primary,
       .two-column-panel--secondary {
@@ -133,6 +112,21 @@ export default {
       }
     }
 
+    &.wide-width {
+      margin: 0 auto;
+      max-width: $wide-width;
+    }
+
+    &.extra-wide-width {
+      margin: 0 auto;
+      max-width: $extra-wide-width;
+    }
+
+    &.super-wide-width {
+      margin: 0 auto;
+      max-width: $super-wide-width;
+    }
+
     &.border-left-between {
       .two-column-panel--left {
         @include border-from(
@@ -159,6 +153,27 @@ export default {
       }
     }
 
+  }
+
+  .two-column-panel--left {
+    @include pad-scale(
+      right,
+      $on-tablet: $space-4,
+      $on-laptop: $space-6,
+    );
+  }
+
+  .two-column-panel--right {
+    @include pad-scale(
+      left,
+      $on-tablet: $space-4,
+      $on-laptop: $space-6,
+    );
+  }
+
+
+  .two-column-panel--secondary {
+    margin-top: $space-2;
   }
 
 

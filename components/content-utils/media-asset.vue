@@ -6,10 +6,20 @@
             classExtensions
           ]">
 
-    <img :src="content.media.filename"
-         :alt="content.media.alt" />
+    <lightbox-modal v-if="content.enable_lightbox"
+                    :isActive="lightboxModalIsActive"
+                    :asset="content"
+                    :showCaption="content.show_caption"
+                    @close="closeLightboxModal" />
 
-    <figcaption v-if="content.show_caption">
+    <img class="media-asset--image"
+         :class="[{'can-lightbox': content.enable_lightbox}]"
+         :src="content.media.filename"
+         :alt="content.media.alt"
+         @click="openLightboxModal" />
+
+    <figcaption v-if="content.show_caption"
+                class="media-asset--caption">
       {{content.media.title}}
     </figcaption>
 
@@ -37,13 +47,29 @@ export default {
   },
 
   data() {
+
     return {
+
       logRef: `<media-asset> [${new Date().getTime()}]`,
       classExtensionsMixin: {
         prop: 'class_extensions'
-      }
+      },
+
+      lightboxModalIsActive: false,
+
     }
   },
+
+  methods: {
+    openLightboxModal: function() {
+      if(this.content.enable_lightbox) {
+        this.lightboxModalIsActive = true;
+      }
+    },
+    closeLightboxModal: function() {
+      this.lightboxModalIsActive = false;
+    }
+  }
 
 }
 </script>
@@ -58,60 +84,60 @@ export default {
       $on-laptop: $space-8,
     );
 
-    img {
+    .media-asset--image {
       max-height: 90vh;
     }
 
-    img, figcaption {
+    .media-asset--image, .media-asset--caption {
       margin: 0 auto;
     }
 
-    figcaption {
+    .media-asset--caption {
       @include x-pad($space-2);
       text-align: center;
     }
 
     &.with-caption {
-      img {
+      .media-asset--image {
         margin-bottom: $space-3;
       }
     }
 
     &.thumbnail-image {
-      img {
+      .media-asset--image {
         @include media-from($tablet, max-width, 25%);
       }
     }
 
     &.small-image {
-      img {
+      .media-asset--image {
         @include media-from($tablet, max-width, 50%);
       }
     }
 
     &.medium-image {
-      img {max-height: 60vh;}
-      img, figcaption {
+      .media-asset--image {max-height: 60vh;}
+      .media-asset--image, .media-asset--caption {
         @include media-from($tablet, max-width, 75%);
       }
     }
 
     &.large-image {
-      img {max-height: 75vh;}
-      img, figcaption {
+      .media-asset--image {max-height: 75vh;}
+      .media-asset--image, .media-asset--caption {
         @include media-from($tablet, max-width, 90%);
       }
     }
 
     &.styled-image {
-      img {
+      .media-asset--image {
         border-radius: $space-1;
         @include shadow($elevation-light);
       }
     }
 
     &.align-left {
-      img, figcaption {
+      .media-asset--image, .media-asset--caption {
         margin-left: 0;
       }
     }
@@ -129,6 +155,14 @@ export default {
       max-width: $extra-wide-width;
     }
 
+  }
+
+  .media-asset--image {
+    &.can-lightbox {
+      &:hover {
+        cursor: zoom-in;
+      }
+    }
   }
 
 </style>

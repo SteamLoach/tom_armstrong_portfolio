@@ -21,10 +21,6 @@ export default {
       type: Array,
       default: () => [],
     },
-    displayCondition: {
-      type: Boolean,
-      default: true,
-    }
   },
 
   data() {
@@ -37,6 +33,27 @@ export default {
   },
 
   computed: {
+
+    withJargon: function() {
+      return this.$store.state.withJargon;
+    },
+
+    displayCondition: function() {
+      if(this.withJargon) {
+        if(this.content.display_condition === 'no_jargon') {
+          return false;
+        } else {
+          return true;
+        }
+      }
+      if(!this.withJargon) {
+        if(this.content.display_condition === 'with_jargon') {
+          return false;
+        } else {
+          return true;
+        }
+      }
+    },
 
     isComponent: function() {
       return this.content ? this.content.component : false;
@@ -78,7 +95,6 @@ export default {
     margin-bottom: $space-6;
     @include font-size-scale(
       $default: $text-body,
-      $on-tablet: $text-large,
     );
 
     h1 {

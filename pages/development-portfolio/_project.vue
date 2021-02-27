@@ -20,7 +20,7 @@
       </div>
     </page-header-wrapper>
 
-
+  <!--
     <fade-transition>
       <lightbox-gallery v-if="lightboxGalleryMixin.isActive"
                         :images="story.content.images"
@@ -28,15 +28,21 @@
                         @setImage="setLightboxGalleryIndex"
                         @closeLightboxGallery="closeLightboxGallery" />
     </fade-transition>
+  -->
 
+   <component v-for="item in story.content.body"
+              :is="item.component"
+              :content="item"
+              :key="item._uid"
+              v-editable="item" />
 
+    <!--
     <article class="development-project--body">
 
       <section class="development-project--copy">
         <component v-for="item in story.content.body"
                   :is="item.component"
                   :content="item"
-                  :displayCondition="displayCondition(item)"
                   :key="item._uid"
                   v-editable="item" />
       </section>
@@ -55,9 +61,8 @@
           </li>
         </ul>
       </aside>
-
-
     </article>
+    -->
 
   </main>
 
@@ -92,39 +97,9 @@ export default {
         currentIndex: 0,
       },
 
-      jargonConfig: {
-        noJargonComponentRefs: ['solution'],
-        withJargonComponentRefs: ['solutionWithJargon']
-      }
-
     }
 
   },
-
-  computed: {
-    withJargon: function() {
-      return this.$store.state.withJargon
-    },
-  },
-
-  methods: {
-    //determines jargon/noJargon content
-    displayCondition(item) {
-      const itemRef = this.$toolkit.camelCase(item.reference);
-      const noJargonComponents = this.jargonConfig.noJargonComponentRefs;
-      const jargonComponents = this.jargonConfig.withJargonComponentRefs;
-      if(noJargonComponents.includes(itemRef)) {
-        return !this.withJargon;
-      } else if (jargonComponents.includes(itemRef)) {
-        return this.withJargon;
-      } else {
-        return true;
-      }
-    },
-
-  }
-
-
 
 }
 
