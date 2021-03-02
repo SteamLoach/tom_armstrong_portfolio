@@ -1,5 +1,1 @@
-add <lightbox-modal> component | minor refactor for <development-project>
-
-<lightbox-modal> takes an asset and a [showCaption] boolean. It renders inside <modal-wrapper> with the image as a background.
-
-<development-project> now takes a generic [body] prop and renders contents dynamically. This allows us to make use of <two-column-form> in the same way as <design-project>
+add <svg-loader> to cms and dynamically generate <media-card> media

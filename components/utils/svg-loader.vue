@@ -1,6 +1,6 @@
 <template>
 
-  <component :is="icon" />
+  <component :is="content.icon_name" />
 
 </template>
 
@@ -11,6 +11,9 @@ import developmentGlyphs from '~/assets/svg/development_glyphs.svg?inline';
 import closeIcon from '~/assets/svg/close_icon.svg?inline';
 import leftChevron from '~/assets/svg/left_chevron.svg?inline';
 import rightChevron from '~/assets/svg/right_chevron.svg?inline';
+import webdevSmall from '~/assets/svg/webdev_small.svg?inline';
+import designSmall from '~/assets/svg/design_small.svg?inline';
+import careerSmall from '~/assets/svg/career_small.svg?inline';
 
 export default {
 
@@ -19,10 +22,14 @@ export default {
     leftChevron,
     rightChevron,
     developmentGlyphs,
+    webdevSmall,
+    designSmall,
+    careerSmall,
   },
 
   props: {
-    icon: String,
+    content: Object,
+    required: true,
   }
 
 }

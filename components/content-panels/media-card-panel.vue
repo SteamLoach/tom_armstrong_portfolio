@@ -25,7 +25,11 @@
         </template>
 
         <template v-slot:media>
-          <placeholder-image :width="450"/>
+          <component v-for="item in card.media"
+                     :is="item.component"
+                     :content="item"
+                     :key="item._uid"
+                     v-editable="item" />
         </template>
 
       </media-card>

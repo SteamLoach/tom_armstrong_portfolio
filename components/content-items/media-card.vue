@@ -106,6 +106,11 @@ export default {
         $on-tablet: 12,
         $on-laptop: 8,
       );
+      @include margin-scale(
+        bottom,
+        $default: $space-10,
+        $on-laptop: 0,
+      );
     }
 
     &.column-layout {
@@ -116,7 +121,7 @@ export default {
       }
       &.media-left {
         .media-card--media {
-          margin-bottom: $space-4;
+          margin-bottom: $space-5;
         }
       }
 
@@ -217,17 +222,17 @@ export default {
   .media-card--media {
 
     .thumbnail-image & {
-      img {
+      img, svg {
         max-height: 175px;
       }
     }
     .small-image & {
-      img {
+      img, svg {
         max-height: 250px;
       }
     }
     .medium-image & {
-      img {
+      img, svg {
         max-height: 375px;
       }
     }

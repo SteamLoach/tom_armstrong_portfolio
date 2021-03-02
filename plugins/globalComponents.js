@@ -2,7 +2,7 @@ import Vue from 'vue'
 
 //Utils
 import uiButton from '~/components/controls/ui-button';
-
+import svgLoader from '~/components/utils/svg-loader';
 
 //Panels
 import heroPanel from '~/components/content-panels/hero-panel'
@@ -26,6 +26,7 @@ import Transitions from 'vue2-transitions'
 
 //Utils
 Vue.component('ui-button', uiButton);
+Vue.component('svg-loader', svgLoader);
 
 
 //Panels
