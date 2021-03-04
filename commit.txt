@@ -1,1 +1,1 @@
-add <svg-loader> to cms and dynamically generate <media-card> media
+<topnav>, <handheld-nav>, and <site-footer> styling

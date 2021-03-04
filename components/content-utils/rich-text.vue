@@ -157,6 +157,13 @@ export default {
       }
     }
 
+    b, strong {
+      color: $brand-base;
+      .dark-mode & {
+        color: $brand-light;
+      }
+    }
+
     &.narrow-copy-width {
       max-width: $narrow-width;
     }

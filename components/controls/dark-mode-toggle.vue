@@ -3,7 +3,10 @@
   <button class="dark-mode-toggle"
           :class="{'is-active': darkMode}"
           @click="setPreference('darkMode')">
-           Dark Mode {{darkMode ? '(On)' : '(Off)'}}
+          <slide-y-down-transition mode="out-in">
+           <svg-loader :content="{icon_name: iconName}"
+                       :key="iconName" />
+          </slide-y-down-transition>
   </button>
 
 </template>
@@ -26,10 +29,8 @@ export default {
 
   computed: {
 
-    classObject: function() {
-      return {
-        'is-active': this.darkMode
-      }
+    iconName: function() {
+      return this.darkMode ? 'moon-icon' : 'sun-icon';
     },
 
     ...mapState(['darkMode'])
@@ -49,8 +50,18 @@ export default {
 <style lang="scss">
 
   .dark-mode-toggle {
-    &.is-active {
-      //color: $shade-lightest;
+    @include wrapper(center, center);
+    padding: $space-1;
+    svg {
+      @include size($text-largest);
+      fill: $brand-base;
+      .dark-mode & {
+        fill: $brand-light;
+      }
+    }
+
+    &.in-footer {
+      @include size($text-large);
     }
   }
 

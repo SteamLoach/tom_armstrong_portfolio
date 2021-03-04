@@ -1,6 +1,7 @@
 <template>
 
   <div v-if="initPreferencesMixin.isComplete"
+       id="site-wrapper"
        class="site-wrapper"
        :class="{'dark-mode': this.darkMode}">
 
@@ -46,11 +47,13 @@ export default {
         },
         {
           name: 'Development',
-          to: '/development-portfolio'
+          to: '/development-portfolio',
+          isFolder: true,
         },
         {
           name: 'Design',
-          to: '/design-portfolio'
+          to: '/design-portfolio',
+          isFolder: true,
         },
         {
           name: 'Contact',

@@ -1,2 +1,43 @@
 @import './config.scss';
 @import '../../node_modules/steamloach-scss/steamloach.scss';
+
+
+//Global Mixins
+@mixin route-link() {
+  position: relative;
+  &:after {
+    content: '';
+    position: absolute;
+      left: 0;
+      bottom: 0;
+    height: 1px;
+    width: 0;
+    background: $border-color;
+    @include transition($duration: 0.1s);
+
+    .dark-mode & {
+      background: $dark-mode-border-color;
+    }
+
+  }
+  &:hover {
+    &:after {
+      width: 40%;
+    }
+  }
+  &.is-folder {
+    &.nuxt-link-active {
+      font-weight: 400;
+      &:after {
+        width: 80%;
+      }
+    }
+  }
+  &.nuxt-link-exact-active {
+    font-weight: 400;
+    &:after {
+      width: 80%;
+    }
+  }
+
+}

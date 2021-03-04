@@ -1,3 +1,5 @@
+import {version} from './package.json'
+
 export default {
   // Target: https://go.nuxtjs.dev/config-target
   target: 'static',
@@ -16,6 +18,10 @@ export default {
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
     ]
+  },
+
+  env: {
+    BUILD_VERSION: version,
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css

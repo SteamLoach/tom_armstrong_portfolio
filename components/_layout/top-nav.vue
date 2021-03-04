@@ -5,7 +5,8 @@
     <ul class="top-nav--links">
       <li v-for="(route, index) in routes"
           :key="`route-${index}`">
-        <nuxt-link :to="route.to">
+        <nuxt-link :to="route.to"
+                   :class="{'is-folder': route.isFolder}">
           {{route.name}}
         </nuxt-link>
       </li>
@@ -15,9 +16,11 @@
       <li>
         <dark-mode-toggle />
       </li>
+      <!--
       <li>
         <jargon-toggle />
       </li>
+      -->
     </ul>
 
     <handheld-nav-toggle />
@@ -70,6 +73,9 @@ export default {
       padding: $space-2 $space-4;
       font-size: $text-large;
       font-weight: 200;
+    }
+    a {
+      @include route-link();
     }
   }
 

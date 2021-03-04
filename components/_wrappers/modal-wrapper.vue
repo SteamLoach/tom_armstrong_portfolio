@@ -6,7 +6,7 @@
     <div class="modal-wrapper--control-row">
       <button class="modal-wrapper--close"
               @click="clickButtonClose">
-        <svg-loader icon="close-icon" />
+        <svg-loader :content="{icon_name: 'close-icon'}" />
       </button>
     </div>
 

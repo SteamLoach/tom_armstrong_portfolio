@@ -6,7 +6,7 @@
          :class="classExtensions">
 
       <section  class="two-column-panel--left"
-                :class="`two-column-panel--${favour[0]}`">
+                :class="`${favour[0]}`">
         <component v-for="item in content.left_column"
                   :is="item.component"
                   :content="item"
@@ -15,7 +15,7 @@
       </section>
 
       <section  class="two-column-panel--right"
-               :class="`two-column-panel--${favour[1]}`">
+               :class="`${favour[1]}`">
         <component v-for="item in content.right_column"
                   :is="item.component"
                   :content="item"
@@ -77,8 +77,8 @@ export default {
     @include row(center, start);
 
     &.half {
-      .two-column-panel--primary,
-      .two-column-panel--secondary {
+      .primary,
+      .secondary {
         @include column-scale(
           $default: 24,
           $on-tablet: 12,
@@ -87,12 +87,12 @@ export default {
     }
 
     &.third {
-      .two-column-panel--primary {
+      .primary {
         @include column-scale(
           $on-tablet: 16,
         );
       }
-      .two-column-panel--secondary {
+      .secondary {
         @include column-scale(
           $on-tablet: 8,
         )
@@ -100,12 +100,12 @@ export default {
     }
 
     &.quarter {
-      .two-column-panel--primary {
+      .primary {
         @include column-scale(
           $on-tablet: 18,
         );
       }
-      .two-column-panel--secondary {
+      .secondary {
         @include column-scale(
           $on-tablet: 6,
         )
@@ -172,7 +172,7 @@ export default {
   }
 
 
-  .two-column-panel--secondary {
+  .secondary {
     margin-top: $space-2;
   }
 

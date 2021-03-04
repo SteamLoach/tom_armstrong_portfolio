@@ -1,6 +1,6 @@
 //Colorscheme
-$brand-hue: 199;
-$brand-saturation: 87%;
+$brand-hue: 271;
+$brand-saturation: 60%;
 $accent-hue: 219;
 $accent-saturation: 66%;
 
@@ -17,7 +17,7 @@ $title-color: $shade-darkest;
 $text-color: $shade-darker;
 $link-color: $brand-dark;
 $page-background: $shade-lightest;
-$border-color: $shade-dark;
+$border-color: $brand-base;
 $modal-shade: rgba($shade-white, 0.9);
 
 //Dark Mode
@@ -25,9 +25,8 @@ $dark-mode-title-color: $shade-lighter;
 $dark-mode-text-color: $shade-lightest;
 $dark-mode-link-color: $brand-light;
 $dark-mode-page-background: $shade-darkest;
-$dark-mode-border-color: $shade-lighter;
+$dark-mode-border-color: $brand-light;
 $dark-mode-modal-shade: rgba($shade-black, 0.8);
-
 
 //Misc
 $light-border-radius: $space-1;

@@ -26,7 +26,7 @@
                         type: 'link',
                         to: project.full_slug,
                        }"
-                       :classExt="['neutral', 'hover-state', 'full-width']" />
+                       :classExt="['brand', 'hover-state', 'full-width']" />
           </div>
         </template>
         <template v-slot:media>

@@ -5,7 +5,8 @@
       <li v-for="(route, index) in routes"
           :key="`route-${index}`"
           @click="closeHandheldNav">
-        <nuxt-link :to="route.to">
+        <nuxt-link :to="route.to"
+                   :class="{'is-folder': route.isFolder}">
           <span>{{route.name}}</span>
         </nuxt-link>
       </li>
@@ -14,9 +15,11 @@
       <li>
         <dark-mode-toggle />
       </li>
+      <!--
       <li>
         <jargon-toggle />
       </li>
+      -->
     </ul>
   </nav>
 
@@ -87,6 +90,9 @@ export default {
 
     li {
       margin-bottom: $space-6;
+    }
+    a {
+      @include route-link();
     }
 
     .dark-mode & {
