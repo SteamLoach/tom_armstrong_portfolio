@@ -1,6 +1,6 @@
 <template>
 
-  <figure class="media-asset"
+  <figure class="image-asset"
          :class="[
             {'with-caption': content.show_caption},
             classExtensions
@@ -12,14 +12,15 @@
                     :showCaption="content.show_caption"
                     @close="closeLightboxModal" />
 
-    <img class="media-asset--image"
+    <img class="image-asset--image"
+         title="Click to enlarge"
          :class="[{'can-lightbox': content.enable_lightbox}]"
          :src="content.media.filename"
          :alt="content.media.alt"
          @click="openLightboxModal" />
 
     <figcaption v-if="content.show_caption"
-                class="media-asset--caption">
+                class="image-asset--caption">
       {{content.media.title}}
     </figcaption>
 
@@ -50,7 +51,7 @@ export default {
 
     return {
 
-      logRef: `<media-asset> [${new Date().getTime()}]`,
+      logRef: `<image-asset> [${new Date().getTime()}]`,
       classExtensionsMixin: {
         prop: 'class_extensions'
       },
@@ -76,7 +77,7 @@ export default {
 
 <style lang="scss">
 
-  .media-asset {
+  .image-asset {
 
     @include margin-scale(
       y,
@@ -84,60 +85,60 @@ export default {
       $on-laptop: $space-8,
     );
 
-    .media-asset--image {
+    .image-asset--image {
       max-height: 90vh;
     }
 
-    .media-asset--image, .media-asset--caption {
+    .image-asset--image, .image-asset--caption {
       margin: 0 auto;
     }
 
-    .media-asset--caption {
+    .image-asset--caption {
       @include x-pad($space-2);
       text-align: center;
     }
 
     &.with-caption {
-      .media-asset--image {
+      .image-asset--image {
         margin-bottom: $space-3;
       }
     }
 
     &.thumbnail-image {
-      .media-asset--image {
+      .image-asset--image {
         @include media-from($tablet, max-width, 25%);
       }
     }
 
     &.small-image {
-      .media-asset--image {
+      .image-asset--image {
         @include media-from($tablet, max-width, 50%);
       }
     }
 
     &.medium-image {
-      .media-asset--image {max-height: 60vh;}
-      .media-asset--image, .media-asset--caption {
+      .image-asset--image {max-height: 60vh;}
+      .image-asset--image, .image-asset--caption {
         @include media-from($tablet, max-width, 75%);
       }
     }
 
     &.large-image {
-      .media-asset--image {max-height: 75vh;}
-      .media-asset--image, .media-asset--caption {
+      .image-asset--image {max-height: 75vh;}
+      .image-asset--image, .image-asset--caption {
         @include media-from($tablet, max-width, 90%);
       }
     }
 
     &.styled-image {
-      .media-asset--image {
+      .image-asset--image {
         border-radius: $space-1;
         @include shadow($elevation-light);
       }
     }
 
     &.align-left {
-      .media-asset--image, .media-asset--caption {
+      .image-asset--image, .image-asset--caption {
         margin-left: 0;
       }
     }
@@ -157,7 +158,7 @@ export default {
 
   }
 
-  .media-asset--image {
+  .image-asset--image {
     &.can-lightbox {
       &:hover {
         cursor: zoom-in;

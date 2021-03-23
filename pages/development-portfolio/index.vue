@@ -9,34 +9,32 @@
       </h1>
     </page-header-wrapper>
 
-    <content-panel-wrapper>
+    <section class="content-panel x-pad-medium y-pad-medium">
 
-      <media-card v-for="(project, i) in index"
-                  class="development-portfolio--project-preview"
-                  :alignMedia="mediaAlignment(i)"
-                  :classExt="['wide']"
-                  :key="project._uid">
-        <template v-slot:copy>
-          <div class="development-portfolio--project-preview--copy">
-            <h2> {{project.content.title}} </h2>
-            <project-summary :content="project.content.summary" />
-            <tag-list :tags="project.tag_list" />
-            <ui-button :content="{
-                        name: 'Read More',
-                        type: 'link',
-                        to: project.full_slug,
-                       }"
-                       :classExt="['brand', 'hover-state', 'full-width']" />
-          </div>
-        </template>
-        <template v-slot:media>
-          <img v-if="featureImage(project)"
-                :src="featureImage(project).filename"
-                :alt="featureImage(project).alt" />
-        </template>
-      </media-card>
+      <article v-for="(project, i) in index"
+               :class="[
+                  'media-card',
+                  `media-${mediaAlignment(i)}`,
+                  'row-layout',
+                  'wide',
+                  'development-portfolio--project-preview'
+                  ]"
+              :key="project._uid">
 
-    </content-panel-wrapper>
+        <div class="media-card--inner">
+
+          <component :is="`project-preview-${slotOrder(i)[0]}`"
+                    :project="project" />
+
+          <component :is="`project-preview-${slotOrder(i)[1]}`"
+                    :project="project" />
+
+        </div>
+
+      </article>
+
+
+    </section>
 
   </main>
 
@@ -48,6 +46,7 @@
 
 import {storyblokBridge} from '@/mixins/storyblokBridge';
 import {featureImage} from '@/mixins/featureImage';
+import {manualMediaCardAlignment} from '@/mixins/manualMediaCardAlignment'
 
 export default {
 
@@ -56,6 +55,7 @@ export default {
   mixins: [
     storyblokBridge,
     featureImage,
+    manualMediaCardAlignment,
   ],
 
   data() {
@@ -71,16 +71,6 @@ export default {
     }
 
   },
-
-  methods: {
-    mediaAlignment: function(i) {
-      if(!this.$store.getters.isHandheld) {
-        return this.$toolkit.isEven(i) ? 'left' : 'right';
-      }
-    },
-  }
-
-
 
 }
 
@@ -110,20 +100,12 @@ export default {
   }
 
   .development-portfolio--project-preview {
-    @include row(center, start);
-    margin: 0 auto;
+    @include x-margin(auto);
     @include margin-scale(
       bottom,
-      $default: $space-9,
-      $on-laptop: $space-11,
+      $default: $space-10,
     );
-  }
 
-  .development-portfolio--project-preview--copy {
-    h2 {
-      font-size: $title-medium;
-      margin-bottom: $space-4;
-    }
   }
 
 </style>

@@ -9,30 +9,30 @@
       </h1>
     </page-header-wrapper>
 
-    <media-card v-for="(project, i) in index"
-                layout="split-panel"
-                class="design-portfolio--project-preview"
-                :classExt="['full-width']"
-                :key="project._uid">
-      <template v-slot:copy>
-        <div class="design-portfolio--project-preview--copy">
-          <h2> {{project.content.title}} </h2>
-          <project-summary :content="project.content.summary" />
-          <tag-list :tags="project.tag_list" />
-          <ui-button :content="{
-                      name: 'View Project',
-                      type: 'link',
-                      to: project.full_slug,
-                      }"
-                      :classExt="['neutral', 'hover-state', 'full-width']" />
+    <section class="content-panel x-pad-medium y-pad-medium">
+
+      <article v-for="(project, i) in index"
+                :class="[
+                  'media-card',
+                  `media-${mediaAlignment(i)}`,
+                  'split-panel-layout',
+                  'design-portfolio--project-preview'
+                  ]"
+              :key="project._uid">
+
+        <div class="media-card--inner">
+
+          <component :is="`project-preview-${slotOrder(i)[0]}`"
+                    :project="project" />
+
+          <component :is="`project-preview-${slotOrder(i)[1]}`"
+                    :project="project" />
+
         </div>
-      </template>
-      <template v-slot:media>
-        <img v-if="featureImage(project)"
-              :src="featureImage(project).filename"
-              :alt="featureImage(project).alt" />
-      </template>
-    </media-card>
+
+      </article>
+
+    </section>
 
   </main>
 
@@ -43,6 +43,7 @@
 
 import {storyblokBridge} from '@/mixins/storyblokBridge';
 import {featureImage} from '@/mixins/featureImage';
+import {manualMediaCardAlignment} from '@/mixins/manualMediaCardAlignment'
 
 export default {
 
@@ -51,6 +52,7 @@ export default {
   mixins: [
     storyblokBridge,
     featureImage,
+    manualMediaCardAlignment,
   ],
 
   data() {
@@ -79,21 +81,6 @@ export default {
       $default: $space-8,
       $on-laptop: $space-10,
     );
-  }
-
-  .design-portfolio--project-preview--copy {
-    max-width: $narrow-width;
-    @include pad-scale(
-      bottom,
-      $on-desktop: $space-10,
-    );
-    margin: 0 auto;
-
-    h2 {
-      font-size: $title-medium;
-      margin-bottom: $space-4;
-    }
-
   }
 
 </style>

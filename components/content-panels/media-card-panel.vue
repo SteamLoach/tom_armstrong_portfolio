@@ -85,6 +85,8 @@ export default {
               return 'right'
             }
         }
+      } else {
+        return 'right'
       }
     }
   }

@@ -164,13 +164,6 @@ export default {
       }
     }
 
-    &.narrow-copy-width {
-      max-width: $narrow-width;
-    }
-    &.medium-copy-width {
-      max-width: $medium-width;
-    }
-
     &.small-copy-size {
       font-size: $text-root;
       h3 {

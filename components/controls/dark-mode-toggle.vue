@@ -54,9 +54,9 @@ export default {
     padding: $space-1;
     svg {
       @include size($text-largest);
-      fill: $brand-base;
+      //fill: $brand-base;
       .dark-mode & {
-        fill: $brand-light;
+        //fill: $brand-light;
       }
     }
 

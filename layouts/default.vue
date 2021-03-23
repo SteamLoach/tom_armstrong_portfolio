@@ -145,6 +145,58 @@ export default {
     flex: 1;
   }
 
+  //Content Panels
+  .content-panel {
+
+    &.x-pad-medium {
+      @include pad-scale(
+        x,
+        $default: $space-4,
+        $on-lrg-mobile: $space-5,
+        $on-tablet: $space-6,
+        $on-laptop: $space-8,
+      );
+    }
+
+    &.y-pad-medium {
+      @include pad-scale(
+        y,
+        $default: $space-6,
+        $on-tablet: $space-8,
+      );
+    }
+
+  }
+
+  //Max Widths
+  .extra-narrow {
+    max-width: $extra-narrow-width;
+  }
+
+  .narrow {
+    max-width: $narrow-width;
+  }
+
+  .medium {
+    max-width: $medium-width;
+  }
+
+  .wide {
+    max-width: $wide-width;
+  }
+
+  .wider {
+    max-width: $wide-width;
+  }
+
+  .extra-wide {
+    max-width: $extra-wide-width;
+  }
+
+  .super-wide {
+    max-width: $extra-wide-width;
+  }
+
   //Transition
   .page-enter-active,
   .page-leave-active {

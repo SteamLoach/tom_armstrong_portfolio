@@ -1,5 +1,6 @@
 @import './config.scss';
-@import '../../node_modules/steamloach-scss/steamloach.scss';
+//@import '../../node_modules/steamloach-scss/steamloach.scss';
+@import '../../../../steamloach-scss/steamloach.scss';
 
 
 //Global Mixins
@@ -28,15 +29,23 @@
   &.is-folder {
     &.nuxt-link-active {
       font-weight: 400;
+      //color: $brand-base;
       &:after {
         width: 80%;
+      }
+      .dark-mode & {
+        //color: $brand-light;
       }
     }
   }
   &.nuxt-link-exact-active {
     font-weight: 400;
+    //color: $brand-base;
     &:after {
       width: 80%;
+    }
+    .dark-mode & {
+      //color: $brand-light;
     }
   }
 

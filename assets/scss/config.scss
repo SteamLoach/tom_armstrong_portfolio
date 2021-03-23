@@ -1,11 +1,14 @@
 //Colorscheme
-$brand-hue: 271;
-$brand-saturation: 60%;
+$brand-hue: 340;
+$brand-saturation: 90%;
 $accent-hue: 219;
 $accent-saturation: 66%;
 
-@import 'steamloach-scss/variables/color';
-@import 'steamloach-scss/variables/spacing';
+//@import 'steamloach-scss/variables/color';
+@import '../../../../steamloach-scss/variables/color';
+//@import 'steamloach-scss/variables/spacing';
+@import '../../../../steamloach-scss/variables/spacing';
+
 @import url('https://fonts.googleapis.com/css2?family=Overpass:wght@100;200;300;400;600;700;800;900&family=Playfair+Display:wght@400;500;600;700;800;900&display=swap');
 
 //Fonts
@@ -16,16 +19,16 @@ $title-font: 'Playfair Display', sans-serif;
 $title-color: $shade-darkest;
 $text-color: $shade-darker;
 $link-color: $brand-dark;
-$page-background: $shade-lightest;
-$border-color: $brand-base;
+$page-background: $shade-white;
+$border-color: $shade-darkest;
 $modal-shade: rgba($shade-white, 0.9);
 
 //Dark Mode
 $dark-mode-title-color: $shade-lighter;
 $dark-mode-text-color: $shade-lightest;
 $dark-mode-link-color: $brand-light;
-$dark-mode-page-background: $shade-darkest;
-$dark-mode-border-color: $brand-light;
+$dark-mode-page-background: $shade-black;
+$dark-mode-border-color: $shade-lighter;
 $dark-mode-modal-shade: rgba($shade-black, 0.8);
 
 //Misc
