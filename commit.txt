@@ -1,4 +1,6 @@
-add <flex-row> component and refactor <media-card>
+refactor <image-asset> for responsive image loading
 
-flex row is intended as a block level layout element into which a variety of components can be inserted.
-<media-card> refactor removed slots in order to make the component :content driven like others which rely on CMS data. Portfolio index pages now contain pseudo media cards which use the <media-card> classes and render alternating layouts based on index. Also created <project-preview-copy> and <project-preview-media> components to facilitate alternating layouts if needed. 
+<image-asset> and <lightbox-modal> now use the <picture> element request resized images at small/med/large breakpoints. A defaultSize can be defined for instances where size constraints don't align with breakpoints.
+[storyblokImageService] mixin facilitates.
+
+May look at specifying breakpoints through props in future for more flexibility. 

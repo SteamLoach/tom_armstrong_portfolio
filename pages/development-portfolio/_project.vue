@@ -14,8 +14,11 @@
         </div>
         <div v-if="featureImage(story)"
             class="development-project--feature-image">
+            <image-asset :content="{media: featureImage(story)}" />
+            <!--
             <img :src="featureImage(story).filename"
                 :alt="featureImage(story).alt" />
+            -->
         </div>
       </div>
     </page-header-wrapper>

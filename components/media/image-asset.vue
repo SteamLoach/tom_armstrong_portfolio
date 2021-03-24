@@ -8,16 +8,22 @@
 
     <lightbox-modal v-if="content.enable_lightbox"
                     :isActive="lightboxModalIsActive"
-                    :asset="content"
+                    :content="content"
                     :showCaption="content.show_caption"
                     @close="closeLightboxModal" />
 
-    <img class="image-asset--image"
-         title="Click to enlarge"
-         :class="[{'can-lightbox': content.enable_lightbox}]"
-         :src="content.media.filename"
-         :alt="content.media.alt"
-         @click="openLightboxModal" />
+    <picture>
+      <source v-for="breakpoint in breakpoints"
+              :media="`(max-width: ${breakpoint.media})`"
+              :srcset="`${CDN}/fit-in/${breakpoint.dimensions}${src}`"
+              :key="`${breakpoint.media}-breakpoint`" />
+      <img class="image-asset--image"
+          :title="content.enable_lightbox ? 'Click to enlarge' : ''"
+          :class="[{'can-lightbox': content.enable_lightbox}]"
+          :src="defaultSrc"
+          :alt="content.media.alt"
+          @click="openLightboxModal" />
+    </picture>
 
     <figcaption v-if="content.show_caption"
                 class="image-asset--caption">
@@ -31,10 +37,11 @@
 <script>
 
 import {classExtensions} from '@/mixins/classExtensions'
+import {storyblokImageService} from '@/mixins/storyblokImageService'
 
 export default {
 
-  mixins: [classExtensions],
+  mixins: [classExtensions, storyblokImageService],
 
   props: {
     content: {
@@ -44,6 +51,9 @@ export default {
     classExt: {
       type: Array,
       default: () => [],
+    },
+    defaultSize: {
+      type: String,
     }
   },
 
@@ -52,12 +62,25 @@ export default {
     return {
 
       logRef: `<image-asset> [${new Date().getTime()}]`,
+
       classExtensionsMixin: {
         prop: 'class_extensions'
       },
 
+      storyblokImageServiceMixin: {
+        filename: this.content.media.filename,
+      },
+
       lightboxModalIsActive: false,
 
+    }
+  },
+
+  computed: {
+    defaultSrc: function() {
+      return this.defaultSize ?
+        `${this.CDN}/fit-in/${this.defaultSize}/${this.src}`
+        : this.content.media.filename
     }
   },
 
@@ -79,11 +102,13 @@ export default {
 
   .image-asset {
 
-    @include margin-scale(
-      y,
-      $default: $space-6,
-      $on-laptop: $space-8,
-    );
+    &.y-margin-medium {
+      @include margin-scale(
+        y,
+        $default: $space-6,
+        $on-laptop: $space-8,
+      );
+    }
 
     .image-asset--image {
       max-height: 90vh;

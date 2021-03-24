@@ -1,9 +1,13 @@
 <template>
 
   <div class="media-card--media project-preview-media">
+    <image-asset :content="{media: featureImage(project)}"
+                 :defaultSize="'450x450'" />
+    <!--
     <img v-if="featureImage(project)"
           :src="featureImage(project).filename"
           :alt="featureImage(project).alt" />
+    -->
   </div>
 
 </template>
