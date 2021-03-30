@@ -3,17 +3,28 @@
   <div v-if="initPreferencesMixin.isComplete"
        id="site-wrapper"
        class="site-wrapper"
-       :class="{'dark-mode': this.darkMode}">
+       :class="{'dark-mode': this.darkMode}"
+       ref="siteWrapper">
 
-    <top-nav :routes="routes"/>
+    <!--modals -->
     <slide-x-right-transition>
       <handheld-nav v-if="showHandheldNav"
+                    aria-hidden="false"
                     :routes="routes" />
     </slide-x-right-transition>
 
-    <Nuxt />
+    <slide-x-right-transition>
+      <lightbox-modal v-if="lightboxModal.isActive"
+                      aria-hidden="false" />
+    </slide-x-right-transition>
 
-    <site-footer />
+
+
+    <!-- standard view -->
+    <top-nav :aria-hidden="hasActiveModal"
+             :routes="routes"/>
+    <Nuxt :aria-hidden="hasActiveModal" />
+    <site-footer :aria-hidden="hasActiveModal" />
 
   </div>
 
@@ -22,7 +33,7 @@
 <script>
 
 
-import {mapMutations, mapState} from 'vuex'
+import {mapGetters, mapState} from 'vuex'
 
 import {initPreferences} from '@/mixins/initPreferences'
 import {initWindowWidth} from '@/mixins/initWindowWidth'
@@ -33,6 +44,7 @@ export default {
     initPreferences,
     initWindowWidth,
   ],
+
 
 
   data() {
@@ -64,7 +76,7 @@ export default {
       initPreferencesMixin: {
         isComplete: false,
         preferences: ['darkMode', 'withJargon']
-      }
+      },
 
     }
   },
@@ -73,8 +85,12 @@ export default {
 
     ...mapState([
       'showHandheldNav',
+      'lightboxModal',
       'darkMode',
-      'withJargon'
+    ]),
+
+    ...mapGetters([
+      'hasActiveModal',
     ])
 
   },

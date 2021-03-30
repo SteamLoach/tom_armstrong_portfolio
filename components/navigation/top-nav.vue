@@ -45,7 +45,7 @@ export default {
 <style lang="scss">
 
   .top-nav {
-    z-index: 1001;
+    z-index: 1000;
     @include row(end, center);
     @include row-from($tablet, between, center);
     @include pad-scale(

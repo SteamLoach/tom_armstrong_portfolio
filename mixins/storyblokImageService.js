@@ -27,9 +27,9 @@ export const storyblokImageService = {
     return {
       CDN: 'https://img2.storyblok.com',
       defaultBreakpoints: [
-        {media: '549px', dimensions: '600x600'},
-        {media: '767px', dimensions: '800x800'},
-        {media: '1263px', dimensions: '1300x1300'}
+        {media: 549, dimensions: '600x600'},
+        {media: 767, dimensions: '800x800'},
+        {media: 1263, dimensions: '1300x1300'}
       ],
     }
   },

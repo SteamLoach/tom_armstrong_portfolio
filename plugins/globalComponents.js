@@ -60,6 +60,5 @@ Vue.component('image-asset', imageAsset);
 //Forms
 Vue.component('netlify-form', netlifyForm);
 
-
 //Transitions
 Vue.use(Transitions);

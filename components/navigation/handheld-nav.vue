@@ -1,19 +1,24 @@
 <template>
 
-  <nav class="handheld-nav">
+  <tab-lock tag="nav"
+            class="handheld-nav">
+
+    <div class="handheld-nav--toggle-row">
+      <handheld-nav-toggle ref="firstValidTab"/>
+    </div>
     <ul class="handheld-nav--links">
       <li v-for="(route, index) in routes"
           :key="`route-${index}`"
           @click="closeHandheldNav">
         <nuxt-link :to="route.to"
-                   :class="{'is-folder': route.isFolder}">
+                  :class="{'is-folder': route.isFolder}">
           <span>{{route.name}}</span>
         </nuxt-link>
       </li>
     </ul>
     <ul class="handheld-nav--controls">
       <li>
-        <dark-mode-toggle />
+        <dark-mode-toggle ref="lastValidTab"/>
       </li>
       <!--
       <li>
@@ -21,7 +26,13 @@
       </li>
       -->
     </ul>
-  </nav>
+
+  </tab-lock>
+
+
+
+
+
 
 </template>
 
@@ -33,7 +44,6 @@ export default {
 
   props: {
     routes: Array,
-    default: () => [],
   },
 
   methods: {
@@ -55,7 +65,7 @@ export default {
 <style lang="scss">
 
   .handheld-nav {
-    z-index: 1000;
+    z-index: 1001;
     overflow-y: auto;
     height: 100%;
     width: 100%;
@@ -64,15 +74,14 @@ export default {
       left: 0;
     background: $shade-lightest;
     @include x-pad($space-4);
-    @include pad-scale(
-      y,
-      $default: $space-9,
-    );
-
+    @include y-pad($space-4);
     .dark-mode & {
       background: $shade-darkest;
     }
+  }
 
+  .handheld-nav--toggle-row {
+    @include row(end, center);
   }
 
   .handheld-nav--links,

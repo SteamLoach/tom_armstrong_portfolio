@@ -1,15 +1,16 @@
 <template>
 
-  <div class="lightbox-gallery">
+  <tab-lock class="lightbox-gallery">
 
     <button class="lightbox-close"
+            ref="firstValidTab"
             @click="close">
       <svg-loader icon="close-icon" />
     </button>
 
     <slide-y-up-transition mode="out-in">
       <div class="lightbox-gallery-inner"
-          :key="$toolkit.kebabCase(images[currentIndex].alt)">
+           :key="$toolkit.kebabCase(images[currentIndex].alt)">
         <div class="image-wrapper">
           <p class="caption"> {{images[currentIndex].title}} </p>
           <img :src="images[currentIndex].filename" />
@@ -30,7 +31,7 @@
       </button>
     </div>
 
-  </div>
+  </tab-lock>
 
 </template>
 

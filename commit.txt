@@ -1,6 +1,5 @@
-refactor <image-asset> for responsive image loading
+accessibility improvements
 
-<image-asset> and <lightbox-modal> now use the <picture> element request resized images at small/med/large breakpoints. A defaultSize can be defined for instances where size constraints don't align with breakpoints.
-[storyblokImageService] mixin facilitates.
+add <tab-lock> wrapper component which uses two hidden 'buffer' elements to constrain tabs. Will need to look at how to return tab to previous position once modal closes.
 
-May look at specifying breakpoints through props in future for more flexibility. 
+also moved <lightbox-modal> to <default> layout and added aria-hidden to primary layout elements when a modal is open. 

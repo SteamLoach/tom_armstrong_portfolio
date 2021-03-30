@@ -1,18 +1,24 @@
 <template>
 
-  <div class="modal-wrapper"
-       @click="clickAnywhereClose">
 
-    <div class="modal-wrapper--control-row">
-      <button class="modal-wrapper--close"
-              @click="clickButtonClose">
-        <svg-loader :content="{icon_name: 'close-icon'}" />
-      </button>
-    </div>
+    <tab-lock class="modal-wrapper"
+        role="dialog"
+        aria-modal="true"
+        :title="clickAnywhereToClose ? 'Click anywhere to close': ''"
+        @click="clickAnywhereClose">
 
-    <slot />
+        <div class="modal-wrapper--control-row">
+          <button class="modal-wrapper--close"
+                  @click="clickButtonClose"
+                  ref="firstValidTab">
+            <svg-loader :content="{icon_name: 'close-icon'}" />
+            <span>Close</span>
+          </button>
+        </div>
 
-  </div>
+        <slot />
+
+    </tab-lock>
 
 </template>
 
@@ -35,7 +41,7 @@ export default {
     },
     clickButtonClose: function() {
       this.$emit('closeModal');
-    }
+    },
   }
 
 }
@@ -52,13 +58,15 @@ export default {
     position: fixed;
       top: 0;
       left: 0;
-    background: rgba($shade-white, 0.9);
+    background: rgba($shade-white, 1);
+    @include transition($duration: .01s);
 
     .dark-mode & {
-      background: rgba($shade-black, 0.9);
+      background: rgba($shade-black, 1);
     }
-
   }
+
+
 
   .modal-wrapper--control-row {
     @include row(end, center);

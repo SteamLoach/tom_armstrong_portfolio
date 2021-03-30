@@ -1,10 +1,23 @@
 <template>
 
-  <div class="handheld-nav-toggle"
-       @click="toggleState('showHandheldNav')">
-    <div class="handheld-nav-toggle--inner"
-          :class="{'is-active': showHandheldNav}"></div>
-  </div>
+  <button class="handheld-nav-toggle"
+          @click="toggleState('showHandheldNav')">
+    <div class="handheld-nav-toggle--icon"
+         :class="{'is-active': showHandheldNav}"
+         aria-hidden="true"></div>
+    <div class="handheld-nav-toggle--name">
+      <slide-y-down-transition mode="out-in">
+        <span v-if="showHandheldNav"
+              key="close-nav">
+          Close
+        </span>
+        <span v-else-if="!showHandheldNav"
+              key="open-nav">
+          Menu
+        </span>
+      </slide-y-down-transition>
+    </div>
+  </button>
 
 </template>
 
@@ -60,7 +73,15 @@ export default {
 
 }
 
-.handheld-nav-toggle--inner {
+.handheld-nav-toggle--name {
+  position: relative;
+    top: 20px;
+  text-align: center;
+  font-size: $text-body;
+  font-weight: 600;
+}
+
+.handheld-nav-toggle--icon {
 
   @extend %burger-bar;
   position: relative;
@@ -81,7 +102,7 @@ export default {
   }
 }
 
-.handheld-nav-toggle--inner {
+.handheld-nav-toggle--icon {
 
   &.is-active {
   transform: translate(0px, 10px) rotate(-135deg);

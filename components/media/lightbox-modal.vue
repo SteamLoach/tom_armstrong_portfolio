@@ -1,28 +1,23 @@
 <template>
 
-  <slide-x-right-transition>
-    <modal-wrapper  v-if="isActive"
-                    :clickAnywhereToClose="true"
-                    @closeModal="close">
+  <modal-wrapper  :clickAnywhereToClose="true"
+                  @closeModal="close">
 
-      <figure class="lightbox-modal--image">
-        <picture>
-          <source v-for="breakpoint in breakpoints"
-                  :media="`(max-width: ${breakpoint.media})`"
-                  :srcset="`${CDN}/fit-in/${breakpoint.dimensions}${src}`"
-                  :key="`${breakpoint.media}-lightbox-breakpoint`" />
-          <img :title="content.enable_lightbox ? 'Click to close' : ''"
-              :src="content.media.filename"
-              :alt="content.media.alt" />
-        </picture>
-      </figure>
-
-      <figcaption class="lightbox-modal--caption">
-        <span>{{showCaption ? content.media.title : ''}}</span>
+    <figure class="lightbox-modal--inner">
+      <div class="lightbox-modal--image"
+            :style="$toolkit.setBackgroundImage(imageSrc)"
+            role="img"
+            aria-describedby="lightbox-modal-caption">
+      </div>
+      <figcaption id="lightbox-modal-caption"
+                  class="lightbox-modal--caption">
+        <span>
+          {{this.content.show_caption ? content.media.title : ''}}
+        </span>
       </figcaption>
+    </figure>
 
-    </modal-wrapper>
-  </slide-x-right-transition>
+  </modal-wrapper>
 
 </template>
 
@@ -35,40 +30,45 @@ export default {
 
   mixins: [storyblokImageService],
 
-  props: {
-    isActive: {
-      type: Boolean,
-      default: false,
-    },
-    content: {
-      type: Object,
-      default: () => {},
-    },
-    showCaption: {
-      type: Boolean,
-      default: false,
-    }
+  mounted() {
+    this.storyblokImageServiceMixin.filename = this.content.media.filename;
   },
 
   data() {
     return {
+
       logRef: `<lightbox-modal> [${new Date().getTime()}]`,
+
       storyblokImageServiceMixin: {
-        filename: this.content.media.filename
+        filename: ''
       },
+
     }
   },
 
   computed: {
-    imageSrc: function() {
 
+    imageSrc: function() {
+      const breakpoint = this.breakpoints.find((b) => {
+        return b.media > this.$store.state.windowWidth
+      })
+      if(breakpoint) {
+        return `${this.CDN}/fit-in/${breakpoint.dimensions}${this.src}`
+      } else {
+        return this.content.media.filename
+      }
     },
+
+    content: function() {
+      return this.$store.state.lightboxModal.content;
+    },
+
   },
 
   methods: {
     close: function() {
-      this.$emit('close');
-    }
+      this.$store.commit('closeLightboxModal')
+    },
   }
 
 }
@@ -77,24 +77,24 @@ export default {
 
 <style lang="scss">
 
-  .lightbox-modal--image {
-    @include wrapper(center, center);
-    width: 100%;
+  .lightbox-modal--inner {
     flex: 1;
+    @include row(between, center, $direction: column, $no-wrap: true);
     @include pad-scale(
       x,
       $default: $space-2,
       $on-laptop: $space-8,
     );
 
-    img {
-      max-height: 80vh;
-      margin: 0 auto;
-    }
-
     &:hover {
       cursor: zoom-out;
     }
+  }
+
+  .lightbox-modal--image {
+    @include row(center, center);
+    flex: 1;
+    @include background-image($size: contain);
   }
 
   .lightbox-modal--caption {
@@ -107,7 +107,6 @@ export default {
     );
     margin-bottom: $space-6;
     text-align: center;
-    background: rgba($shade-white, 0.9);
     span {
       display: inline-block;
       max-width: $narrow-width;

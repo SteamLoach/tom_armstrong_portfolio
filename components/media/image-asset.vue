@@ -6,24 +6,22 @@
             classExtensions
           ]">
 
-    <lightbox-modal v-if="content.enable_lightbox"
-                    :isActive="lightboxModalIsActive"
-                    :content="content"
-                    :showCaption="content.show_caption"
-                    @close="closeLightboxModal" />
-
-    <picture>
-      <source v-for="breakpoint in breakpoints"
-              :media="`(max-width: ${breakpoint.media})`"
-              :srcset="`${CDN}/fit-in/${breakpoint.dimensions}${src}`"
-              :key="`${breakpoint.media}-breakpoint`" />
-      <img class="image-asset--image"
-          :title="content.enable_lightbox ? 'Click to enlarge' : ''"
-          :class="[{'can-lightbox': content.enable_lightbox}]"
-          :src="defaultSrc"
-          :alt="content.media.alt"
-          @click="openLightboxModal" />
-    </picture>
+    <button class="image-asset--lightbox-control"
+            :class="[{'can-lightbox': content.enable_lightbox}]"
+            :name="content.enable_lightbox ? 'Enlarge image' : ''"
+            :disabled="!content.enable_lightbox"
+            @click="openLightboxModal"
+            >
+      <picture>
+        <source v-for="breakpoint in breakpoints"
+                :media="`(max-width: ${breakpoint.media}px)`"
+                :srcset="`${CDN}/fit-in/${breakpoint.dimensions}${src}`"
+                :key="`${breakpoint.media}-breakpoint`" />
+        <img class="image-asset--image"
+            :src="defaultSrc"
+            :alt="content.media.alt" />
+      </picture>
+    </button>
 
     <figcaption v-if="content.show_caption"
                 class="image-asset--caption">
@@ -87,13 +85,12 @@ export default {
   methods: {
     openLightboxModal: function() {
       if(this.content.enable_lightbox) {
-        this.lightboxModalIsActive = true;
+        this.$store.commit('openLightboxModal', {
+          payload: this.content
+        })
       }
     },
-    closeLightboxModal: function() {
-      this.lightboxModalIsActive = false;
-    }
-  }
+  } 
 
 }
 </script>
@@ -108,6 +105,16 @@ export default {
         $default: $space-6,
         $on-laptop: $space-8,
       );
+    }
+
+    .image-asset--lightbox-control {
+      padding: 0;
+      cursor: default;
+      &.can-lightbox {
+        &:hover {
+          cursor: zoom-in;
+        }
+      }
     }
 
     .image-asset--image {
@@ -181,14 +188,6 @@ export default {
       max-width: $extra-wide-width;
     }
 
-  }
-
-  .image-asset--image {
-    &.can-lightbox {
-      &:hover {
-        cursor: zoom-in;
-      }
-    }
   }
 
 </style>

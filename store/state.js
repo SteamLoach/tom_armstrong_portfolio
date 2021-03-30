@@ -6,6 +6,13 @@ export default () => ({
 
   //Sizing
   windowWidth: '',
+
+  //Modals
   showHandheldNav: false,
+  lightboxModal: {
+    isActive: false,
+    content: {},
+  }
+
 
 })
