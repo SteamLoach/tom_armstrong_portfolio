@@ -14,6 +14,7 @@ export default {
   openLightboxModal (state, action) {
     state.lightboxModal.isActive = true;
     state.lightboxModal.content = action.payload;
+    state.lastTabPosition = action.lastTabPosition
   },
   closeLightboxModal (state) {
     state.lightboxModal.isActive = false;

@@ -15,6 +15,9 @@ import designSmall from '~/assets/svg/design_small.svg?inline';
 import careerSmall from '~/assets/svg/career_small.svg?inline';
 import sunIcon from '~/assets/svg/sun_icon.svg?inline';
 import moonIcon from '~/assets/svg/moon_icon.svg?inline';
+import githubLogo from '~/assets/svg/github_logo.svg?inline';
+import linkedinLogo from '~/assets/svg/linkedin_logo.svg?inline';
+import downloadIcon from '~/assets/svg/download_icon.svg?inline';
 
 export default {
 
@@ -27,6 +30,9 @@ export default {
     careerSmall,
     moonIcon,
     sunIcon,
+    githubLogo,
+    linkedinLogo,
+    downloadIcon,
   },
 
   props: {

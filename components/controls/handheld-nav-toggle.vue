@@ -75,7 +75,7 @@ export default {
 
 .handheld-nav-toggle--name {
   position: relative;
-    top: 20px;
+    top: 22px;
   text-align: center;
   font-size: $text-body;
   font-weight: 600;

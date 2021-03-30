@@ -100,11 +100,21 @@ export default {
   //Classes
   .media-card {
 
+    @include margin-scale(
+      bottom,
+      $default: $space-8,
+    );
+
     &.x-pad-light {
       @include x-pad($space-4);
     }
     &.x-pad-medium {
-      @include x-pad($space-6);
+      @include pad-scale(
+        x,
+        $default: 0,
+        $on-tablet: $space-4,
+        $on-desktop: $space-6,
+      );
     }
     &.x-pad-heavy {
       @include x-pad($space-8);

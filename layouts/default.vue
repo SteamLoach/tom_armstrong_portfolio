@@ -168,9 +168,8 @@ export default {
       @include pad-scale(
         x,
         $default: $space-4,
-        $on-lrg-mobile: $space-5,
-        $on-tablet: $space-6,
-        $on-laptop: $space-8,
+        $on-tablet: $space-5,
+        $on-desktop: $space-8,
       );
     }
 

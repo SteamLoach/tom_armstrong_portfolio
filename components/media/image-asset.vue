@@ -52,6 +52,7 @@ export default {
     },
     defaultSize: {
       type: String,
+      default: '',
     }
   },
 
@@ -83,14 +84,15 @@ export default {
   },
 
   methods: {
-    openLightboxModal: function() {
+    openLightboxModal: function(e) {
       if(this.content.enable_lightbox) {
         this.$store.commit('openLightboxModal', {
-          payload: this.content
+          payload: this.content,
+          lastTabPosition: e.target,
         })
       }
     },
-  } 
+  }
 
 }
 </script>

@@ -2,7 +2,8 @@
 
   <button class="dark-mode-toggle"
           :class="{'is-active': darkMode}"
-          @click="setPreference('darkMode')">
+          @click="setPreference('darkMode')"
+          :aria-label="`toggle ${darkMode ? 'light' : 'dark'} theme`">
           <slide-y-down-transition mode="out-in">
            <svg-loader :content="{icon_name: iconName}"
                        :key="iconName" />
@@ -50,14 +51,10 @@ export default {
 <style lang="scss">
 
   .dark-mode-toggle {
-    @include wrapper(center, center);
+    //@include wrapper(center, center);
     padding: $space-1;
     svg {
       @include size($text-largest);
-      //fill: $brand-base;
-      .dark-mode & {
-        //fill: $brand-light;
-      }
     }
 
     &.in-footer {

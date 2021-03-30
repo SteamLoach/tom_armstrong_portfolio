@@ -57,9 +57,10 @@ export default {
 
     }
 
-},
+  },
 
 }
+
 </script>
 
 <style lang="scss">
@@ -83,7 +84,7 @@ export default {
   }
 
   .flex-row--inner {
-    @include row(center, center);
+    @include row(center, start);
     margin: 0 auto;
 
   }

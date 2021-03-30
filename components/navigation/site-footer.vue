@@ -2,16 +2,24 @@
 
   <footer class="site-footer">
 
-    <span class="site-footer--copyright">
-      © Tom Armstrong {{new Date().getFullYear()}}
-    </span>
-
-    <ul class="site-footer--quick-links">
+    <ul class="site-footer--bio">
       <li>
         <a href="https://github.com/SteamLoach"
            target="_blank">
+           <svg-loader :content="{icon_name: 'github-logo'}"
+                       aria-hidden="true" />
            Github
         </a>
+      </li>
+      <li>
+        © Tom Armstrong {{new Date().getFullYear()}}
+      </li>
+    </ul>
+
+
+    <ul class="site-footer--quick-links">
+      <li>
+        <nuxt-link to="/">Home</nuxt-link>
       </li>
       <li>
         <nuxt-link to="/contact">Contact</nuxt-link>
@@ -59,7 +67,7 @@ export default {
 <style lang="scss">
 
   .site-footer {
-    @include row(between, center);
+    @include row(between, end);
     @include y-pad($space-4);
     margin-top: $space-4;
     border-top: 1px solid $border-color;
@@ -70,7 +78,7 @@ export default {
 
   .site-footer--version,
   .site-footer--quick-links,
-  .site-footer--copyright {
+  .site-footer--bio {
     @include column-scale(
       $default: 24,
       $on-tablet: 8,
@@ -83,11 +91,12 @@ export default {
   .site-footer--quick-links {
     @include wrapper(center, center);
     li {
-      display: inline-block;
+      min-height: 30px;
+      @include wrapper(center, center);
       &:not(:first-child) {
         padding-left: $space-2;
         margin-left: $space-2;
-        border-left: 1px solid $border-color;
+        border-left: 1px solid $shade-base;
         .dark-mode & {
           border-color: $dark-mode-border-color;
         }
@@ -98,8 +107,12 @@ export default {
     }
   }
 
-  .site-footer--copyright {
+  .site-footer--bio {
     @include media-from($tablet, text-align, left);
+    svg {
+      display: inline-block;
+      @include size($text-larger);
+    }
   }
   .site-footer--version {
     @include media-from($tablet, text-align, right);

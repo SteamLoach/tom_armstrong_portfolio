@@ -2,6 +2,9 @@
   "schema": [
     {
       "label": "Your Email",
+      "field": {
+        "type": "email"
+      },
       "validations": {
         "required": {
           "params": null,

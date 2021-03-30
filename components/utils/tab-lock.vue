@@ -39,12 +39,20 @@ export default {
       type: String,
       default: 'div',
     },
+    restoreTabPosition: {
+      type: Boolean,
+      default: true,
+    }
   },
 
   mounted() {
 
     //set unique id for lock context
     this.lockId = this.$toolkit.randomInt();
+
+    if(this.restoreTabPosition) {
+      this.lastTabPosition = document.activeElement;
+    }
 
     this.$nextTick(() => {
 
@@ -87,7 +95,13 @@ export default {
   },
 
   beforeDestroy() {
-    this.$refs['tabLock'].removeEventListener('keyup', this.watchTab)
+
+    this.$refs['tabLock'].removeEventListener('keyup', this.watchTab);
+
+    if(this.restoreTabPosition && this.lastTabPosition) {
+      this.lastTabPosition.focus();
+    
+    }
   },
 
   data() {
@@ -96,6 +110,7 @@ export default {
       lockId: '',
       firstValidTab: {},
       lastValidTab: {},
+      lastTabPosition: null,
     }
   },
 

@@ -3,9 +3,12 @@ import Vue from 'vue'
 //Utils
 import uiButton from '~/components/controls/ui-button';
 import svgLoader from '~/components/utils/svg-loader';
+import socialLink from '~/components/utils/social-link';
+import fileDownload from '~/components/utils/file-download';
 
 //Layout
 import flexRow from '~/components/layout/flex-row';
+import layoutColumn from '~/components/layout/layout-column';
 
 //Panels
 import heroPanel from '~/components/content-panels/hero-panel'
@@ -36,10 +39,13 @@ import Transitions from 'vue2-transitions'
 //Utils
 Vue.component('ui-button', uiButton);
 Vue.component('svg-loader', svgLoader);
+Vue.component('social-link', socialLink);
+Vue.component('file-download', fileDownload);
 
 
 //Layout
 Vue.component('flex-row', flexRow);
+Vue.component('layout-column', layoutColumn);
 
 //Panels
 Vue.component('hero-panel', heroPanel);

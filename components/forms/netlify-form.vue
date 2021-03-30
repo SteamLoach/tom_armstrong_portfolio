@@ -1,6 +1,6 @@
 <template>
 
-  <content-panel-wrapper>
+  <div>
 
     <!-- Same Page Target -->
     <iframe name="hidden-iframe"
@@ -9,9 +9,13 @@
     <!-- End Same Page Target -->
 
     <form class="form"
-          :class="{'row-layout': isRowLayout}"
+          :class="[
+            classExtensions,
+            {'row-layout': isRowLayout}
+          ]"
           data-netlify="true"
           :name="content.name"
+          :aria-label="content.name"
           data-netlify-honeypot="bot-field"
           method="post"
           target="hidden-iframe">
@@ -43,10 +47,16 @@
             class="form--field"
             :key="item.key">
 
-          <label :for="item.label">
+          <label :for="item.id">
             <strong>
                {{item.label}}{{item.validations.required ? '*' : ''}}
             </strong>
+            <fade-transition>
+              <span v-if="fieldHasErrors(item)"
+                  class="form--field--error">
+                {{fieldErrors[item.name][0]}}
+              </span>
+            </fade-transition>
           </label>
 
           <select v-if="item.field.tag === 'select'"
@@ -78,16 +88,6 @@
                 :id="item.id"
                 :required="item.validations.required"
                 :placeholder="item.field.placeholder" />
-
-          <fade-transition>
-            <ul v-if="fieldHasErrors(item)"
-                class="form--field--error">
-              <li v-for="(error, index) in fieldErrors[item.name]"
-                  :key="`${item.name}-error-${index}`">
-                {{error}}
-              </li>
-            </ul>
-          </fade-transition>
 
         </div>
 
@@ -141,22 +141,27 @@
 
     </form>
 
-  </content-panel-wrapper>
+  </div>
 
 </template>
 
 <script>
 
 import {formHandler} from '@/mixins/formHandler';
+import {classExtensions} from '@/mixins/classExtensions';
 
 export default {
 
-  mixins: [formHandler],
+  mixins: [formHandler, classExtensions],
 
   props: {
     content: {
       type: Object,
       default: () => {},
+    },
+    classExt: {
+      type: Array,
+      default: () => [],
     }
   },
 
@@ -169,6 +174,10 @@ export default {
         schema: this.content.schema,
         format: 'JSON',
         netlify: true,
+      },
+
+      classExtensionsMixin: {
+        prop: 'class_extensions',
       },
 
     }
@@ -192,7 +201,28 @@ export default {
 
   .form {
     max-width: $wide-width;
-    margin: 0 auto;
+
+    &.center {
+      margin: 0 auto;
+    }
+
+    &.x-pad-medium {
+      @include pad-scale(
+        x,
+        $default: $space-4,
+        $on-tablet: $space-5,
+        $on-desktop: $space-8,
+      );
+    }
+
+    &.y-pad-medium {
+      @include pad-scale(
+        y,
+        $default: $space-6,
+        $on-tablet: $space-8,
+      );
+    }
+
 
     &.row-layout {
       @include container(start, stretch);
@@ -274,7 +304,7 @@ export default {
 
   .form--field {
     position: relative;
-    margin-bottom: $space-5;
+    margin-bottom: $space-6;
 
     label {
       display: block;
@@ -318,6 +348,8 @@ export default {
 
   .form--field--error {
     position: absolute;
+      top: 100%;
+      left: 0;
     font-size: $text-small;
     color: $danger-dark;
 

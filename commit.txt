@@ -1,5 +1,1 @@
-accessibility improvements
-
-add <tab-lock> wrapper component which uses two hidden 'buffer' elements to constrain tabs. Will need to look at how to return tab to previous position once modal closes.
-
-also moved <lightbox-modal> to <default> layout and added aria-hidden to primary layout elements when a modal is open. 
+add contact page
