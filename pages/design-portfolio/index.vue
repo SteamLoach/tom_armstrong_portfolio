@@ -9,7 +9,7 @@
       </h1>
     </page-header-wrapper>
 
-    <section class="content-panel x-pad-medium y-pad-medium">
+    <section class="layout--content-panel x-pad-medium y-pad-medium">
 
       <article v-for="(project, i) in index"
                 :class="[
@@ -20,15 +20,12 @@
                   ]"
               :key="project._uid">
 
-        <div class="media-card--inner">
+        <component :is="`project-preview-${slotOrder(i)[0]}`"
+                  :project="project" />
 
-          <component :is="`project-preview-${slotOrder(i)[0]}`"
-                    :project="project" />
+        <component :is="`project-preview-${slotOrder(i)[1]}`"
+                  :project="project" />
 
-          <component :is="`project-preview-${slotOrder(i)[1]}`"
-                    :project="project" />
-
-        </div>
 
       </article>
 

@@ -1,23 +1,36 @@
 <template>
 
-  <modal-wrapper  :clickAnywhereToClose="true"
-                  @closeModal="close">
+   <tab-lock class="modal-wrapper">
 
-    <figure class="lightbox-modal--inner">
-      <div class="lightbox-modal--image"
-            :style="$toolkit.setBackgroundImage(imageSrc)"
-            role="img"
-            aria-describedby="lightbox-modal-caption">
+    <modal-wrapper  :clickAnywhereToClose="true"
+                    @closeModal="close">
+
+      <div class="modal-wrapper--control-row">
+        <button class="modal-wrapper--close"
+                @click="close"
+                ref="firstValidTab">
+          <svg-loader :content="{icon_name: 'close-icon'}" />
+          <span>Close</span>
+        </button>
       </div>
-      <figcaption id="lightbox-modal-caption"
-                  class="lightbox-modal--caption">
-        <span>
-          {{this.content.show_caption ? content.media.title : ''}}
-        </span>
-      </figcaption>
-    </figure>
 
-  </modal-wrapper>
+      <figure class="lightbox-modal--inner">
+        <div class="lightbox-modal--image"
+              :lazy-background="asBackground"
+              role="img"
+              aria-describedby="lightbox-modal-caption">
+        </div>
+        <figcaption id="lightbox-modal-caption"
+                    class="lightbox-modal--caption">
+          <span>
+            {{this.content.show_caption ? content.media.title : ''}}
+          </span>
+        </figcaption>
+      </figure>
+
+    </modal-wrapper>
+
+  </tab-lock>
 
 </template>
 
@@ -48,17 +61,6 @@ export default {
 
   computed: {
 
-    imageSrc: function() {
-      const breakpoint = this.breakpoints.find((b) => {
-        return b.media > this.$store.state.windowWidth
-      })
-      if(breakpoint) {
-        return `${this.CDN}/fit-in/${breakpoint.dimensions}${this.src}`
-      } else {
-        return this.content.media.filename
-      }
-    },
-
     content: function() {
       return this.$store.state.lightboxModal.content;
     },
@@ -67,7 +69,7 @@ export default {
 
   methods: {
     close: function() {
-      this.$store.commit('closeLightboxModal')
+      this.$store.commit('closeModal', {modal: 'lightboxModal'})
     },
   }
 

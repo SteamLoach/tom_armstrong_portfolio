@@ -86,9 +86,9 @@ export default {
   methods: {
     openLightboxModal: function(e) {
       if(this.content.enable_lightbox) {
-        this.$store.commit('openLightboxModal', {
+        this.$store.commit('openModal', {
+          modal: 'lightboxModal',
           payload: this.content,
-          lastTabPosition: e.target,
         })
       }
     },
@@ -100,6 +100,13 @@ export default {
 <style lang="scss">
 
   .image-asset {
+
+    &.y-margin-light {
+      @include margin-scale(
+        y,
+        $default: $space-6,
+      );
+    }
 
     &.y-margin-medium {
       @include margin-scale(

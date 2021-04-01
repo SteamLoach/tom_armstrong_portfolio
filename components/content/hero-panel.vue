@@ -2,6 +2,7 @@
 
   <page-header-wrapper class="hero-panel"
                        :class="content.class_extensions">
+
     <section class="hero-panel--copy">
       <component v-for="item in content.copy"
                  :is="item.component"
@@ -10,17 +11,7 @@
                  v-editable="item">
       </component>
 
-      <!--
-      <rich-text :content="content.copy" />
-      <span v-if="hasLinks">
-        <ui-button v-for="link in content.call_to_action"
-                    type="link"
-                   :name="link.name"
-                   :to="link.to"
-                   :key="$toolkit.kebabCase(link.name)">
-        </ui-button>
-      </span>
-      -->
+
     </section>
 
     <section class="hero-panel--media">
@@ -39,12 +30,6 @@ export default {
   props: {
     content: Object,
   },
-
-  computed: {
-    hasLinks: function() {
-      return !this.$toolkit.isEmpty(this.content.call_to_action);
-    }
-  }
 
 }
 

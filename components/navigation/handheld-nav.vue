@@ -82,6 +82,7 @@ export default {
 
   .handheld-nav--toggle-row {
     @include row(end, center);
+    margin-bottom: $space-5;
   }
 
   .handheld-nav--links,

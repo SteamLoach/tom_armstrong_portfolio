@@ -11,14 +11,13 @@ export default {
   },
 
   //Lightbox Modal
-  openLightboxModal (state, action) {
-    state.lightboxModal.isActive = true;
-    state.lightboxModal.content = action.payload;
-    state.lastTabPosition = action.lastTabPosition
+  openModal (state, action) {
+    state[action.modal].isActive = true;
+    state[action.modal].content = action.payload;
   },
-  closeLightboxModal (state) {
-    state.lightboxModal.isActive = false;
-    state.lightboxModal.content = {};
+  closeModal (state, action) {
+    state[action.modal].isActive = false;
+    state[action.modal].content = {};
   }
 
 }

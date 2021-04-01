@@ -1,0 +1,40 @@
+<template>
+
+  <sidebar-action-wrapper>
+    <button class="sidebar-action-wrapper--inner"
+            @click.prevent="openGallery">
+      <strong> {{content.title}} </strong>
+      <svg-loader :content="{icon_name: 'picture-icon'}" />
+    </button>
+  </sidebar-action-wrapper>
+
+</template>
+
+<script>
+
+export default {
+
+  props: {
+    content: {
+      type: Object,
+      default: () => {},
+    }
+  },
+
+  methods: {
+    openGallery: function() {
+      this.$store.commit('openModal', {
+        modal: 'galleryModal',
+        payload: this.content,
+      })
+    }
+  }
+
+}
+
+</script>
+
+<style lang="scss">
+
+
+</style>

@@ -1,61 +1,56 @@
 <template>
 
-  <a class="file-download"
-     :href="content.file.filename"
-     :download="content.file.title">
+  <sidebar-action-wrapper>
+    <a class="sidebar-action-wrapper--inner"
+      :class="[classExtensions]"
+      :href="content.file.filename"
+      :download="content.file.title"
+      target="_blank">
 
-    <strong>
-      {{content.title}}
-    </strong>
+      <strong>
+        {{content.title}}
+      </strong>
 
-    <svg-loader :content="{icon_name: content.icon_name}"
-                aria-hidden="true" />
+      <svg-loader :content="{icon_name: content.icon_name}"
+                  aria-hidden="true" />
 
 
-  </a>
+    </a>
+  </sidebar-action-wrapper>
+
 
 </template>
 
 <script>
 
+import {classExtensions} from '@/mixins/classExtensions';
+
 export default {
+
+  mixins: [classExtensions],
+
   props: {
     content: {
       type: Object,
       default: () => {},
+    },
+    classExt: {
+      type: Array,
+      default: () => [],
+    }
+  },
+
+  data() {
+    return {
+      classExtensionsMixin: {},
     }
   }
+
 }
 
 </script>
 
 <style lang="scss">
 
-  .file-download {
-    @include wrapper(between, center, $no-wrap: true);
-    padding: $space-2 $space-3;
-    margin-bottom: $space-4;
-    font-size: $text-body;
-    color: $dark-mode-text-color;
-    background: $dark-mode-page-background;
-    border-radius: $border-radius;
-
-    .dark-mode & {
-      color: $text-color;
-      background: $page-background;
-      svg {
-        fill: $text-color;
-      }
-    }
-
-    strong {
-      vertical-align: baseline;
-    }
-
-    svg {
-      fill: $dark-mode-text-color;
-      @include size($title-large);
-    }
-  }
 
 </style>

@@ -1,24 +1,15 @@
 <template>
 
 
-    <tab-lock class="modal-wrapper"
+    <div class="modal-wrapper"
         role="dialog"
         aria-modal="true"
         :title="clickAnywhereToClose ? 'Click anywhere to close': ''"
         @click="clickAnywhereClose">
 
-        <div class="modal-wrapper--control-row">
-          <button class="modal-wrapper--close"
-                  @click="clickButtonClose"
-                  ref="firstValidTab">
-            <svg-loader :content="{icon_name: 'close-icon'}" />
-            <span>Close</span>
-          </button>
-        </div>
-
         <slot />
 
-    </tab-lock>
+    </div>
 
 </template>
 
@@ -38,9 +29,6 @@ export default {
       if(this.clickAnywhereToClose) {
         this.$emit('closeModal');
       }
-    },
-    clickButtonClose: function() {
-      this.$emit('closeModal');
     },
   }
 

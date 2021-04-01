@@ -18,6 +18,7 @@ import moonIcon from '~/assets/svg/moon_icon.svg?inline';
 import githubLogo from '~/assets/svg/github_logo.svg?inline';
 import linkedinLogo from '~/assets/svg/linkedin_logo.svg?inline';
 import downloadIcon from '~/assets/svg/download_icon.svg?inline';
+import pictureIcon from '~/assets/svg/picture_icon.svg?inline';
 
 export default {
 
@@ -33,6 +34,7 @@ export default {
     githubLogo,
     linkedinLogo,
     downloadIcon,
+    pictureIcon,
   },
 
   props: {

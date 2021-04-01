@@ -15,23 +15,10 @@
         <div v-if="featureImage(story)"
             class="development-project--feature-image">
             <image-asset :content="{media: featureImage(story)}" />
-            <!--
-            <img :src="featureImage(story).filename"
-                :alt="featureImage(story).alt" />
-            -->
         </div>
       </div>
     </page-header-wrapper>
 
-  <!--
-    <fade-transition>
-      <lightbox-gallery v-if="lightboxGalleryMixin.isActive"
-                        :images="story.content.images"
-                        :currentIndex="lightboxGalleryMixin.currentIndex"
-                        @setImage="setLightboxGalleryIndex"
-                        @closeLightboxGallery="closeLightboxGallery" />
-    </fade-transition>
-  -->
 
    <component v-for="item in story.content.body"
               :is="item.component"
@@ -39,33 +26,6 @@
               :key="item._uid"
               v-editable="item" />
 
-    <!--
-    <article class="development-project--body">
-
-      <section class="development-project--copy">
-        <component v-for="item in story.content.body"
-                  :is="item.component"
-                  :content="item"
-                  :key="item._uid"
-                  v-editable="item" />
-      </section>
-
-      <aside class="development-project--media">
-        <ul>
-          <li v-for="(item, index) in story.content.images"
-              class="development-project--media--item"
-              :key="item.id">
-            <img :src="item.filename"
-                 :alt="item.alt"
-                 @click="openLightboxGallery(index)" />
-            <p>
-              {{item.title}}
-            </p>
-          </li>
-        </ul>
-      </aside>
-    </article>
-    -->
 
   </main>
 
@@ -74,7 +34,6 @@
 <script>
 
 import {storyblokBridge} from '@/mixins/storyblokBridge';
-import {lightboxGallery} from '@/mixins/lightboxGallery';
 import {featureImage} from '@/mixins/featureImage';
 
 export default {
@@ -83,7 +42,6 @@ export default {
 
   mixins: [
     storyblokBridge,
-    lightboxGallery,
     featureImage,
   ],
 
@@ -129,8 +87,7 @@ export default {
       bottom,
       $default: $space-8,
       $on-phablet: $space-10,
-      $on-tablet: $space-11,
-      $on-laptop: $space-12,
+
     );
     margin: 0 auto;
   }

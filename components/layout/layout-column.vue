@@ -55,11 +55,46 @@ export default {
 
   .layout-column {
 
-    &.half-width {
+
+    &.half-width-fixed,
+    &.third-width-fixed,
+    &.quarter-width-fixed {
+      @include margin-scale(
+        bottom,
+        $default: $space-8,
+        $on-tablet: 0,
+      );
+    }
+
+    &.half-width,
+    &.third-width,
+    &.quarter-width {
+      @include margin-scale(
+        bottom,
+        $default: $space-8,
+        $on-laptop: 0,
+      );
+    }
+
+    &.half-width-fixed {
       @include column-scale(
         $default: 24,
-        $on-laptop: 12,
+        $on-tablet: 12,
       )
+    }
+
+    &.third-width-fixed {
+      @include column-scale(
+        $default: 24,
+        $on-tablet: 8,
+      );
+    }
+
+    &.quarter-width-fixed {
+      @include column-scale(
+        $default: 24,
+        $on-tablet: 6,
+      );
     }
 
     &.third-width {
@@ -70,16 +105,17 @@ export default {
       )
     }
 
-    &.quarter-width {
-      @include column-scale(
-        $default: 24,
-        $on-tablet: 12,
-        $on-laptop: 6,
-      )
-    }
-
     &.available-width {
       flex: 1;
+    }
+
+    &.x-pad-light {
+      @include pad-scale(
+        x,
+        $default: 0,
+        $on-tablet: $space-2,
+        $on-desktop: $space-4,
+      );
     }
 
     &.x-pad-medium {

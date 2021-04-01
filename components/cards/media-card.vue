@@ -7,8 +7,6 @@
               `${layout}-layout`
             ]">
 
-    <div class="media-card--inner">
-
       <div :class="[`media-card--${slotOrder[0]}`]">
         <component v-for="item in content[slotOrder[0]]"
                    :is="item.component"
@@ -24,8 +22,6 @@
                    :key="item._uid"
                    v-editable="item" />
       </div>
-
-    </div>
 
   </article>
 
@@ -149,10 +145,8 @@ export default {
 
     &.column-layout {
 
-      .media-card--inner {
-        height: 100%;
-        @include container(center, start, $direction: column);
-      }
+      height: 100%;
+      @include container(center, start, $direction: column);
 
       .media-card--copy,
       .media-card--media {
@@ -175,9 +169,7 @@ export default {
     //Row Layout
     &.row-layout {
 
-      .media-card--inner {
-        @include container(between, stretch);
-      }
+      @include container(between, stretch);
 
       .media-card--copy {
         @include column-scale(
@@ -216,9 +208,9 @@ export default {
 
     //Split Panel Layout
     &.split-panel-layout {
-      .media-card--inner {
-        @include row(center, center);
-      }
+
+      @include row(center, center);
+
       .media-card--copy,
       .media-card--media {
         height: 100%;
@@ -258,27 +250,24 @@ export default {
     }
 
     &.outlined {
-      .media-card--inner {
-        padding: $space-6;
-        border: solid 2px $border-color;
-        border-radius: $space-1;
-        box-shadow: 3px 3px $border-color;
-        @include transition();
+      padding: $space-6;
+      border: solid 2px $border-color;
+      border-radius: $space-1;
+      box-shadow: 3px 3px $border-color;
+      @include transition();
 
-        &:hover {
+      &:hover {
+        border-color: $accent-base;
+        box-shadow: 6px 6px $accent-base;
+        .dark-mode & {
           border-color: $accent-base;
           box-shadow: 6px 6px $accent-base;
-          .dark-mode & {
-            border-color: $accent-base;
-            box-shadow: 6px 6px $accent-base;
-          }
         }
+      }
 
-        .dark-mode & {
-          border: solid 2px $dark-mode-border-color;
-          box-shadow: 3px 3px $dark-mode-border-color;
-        }
-
+      .dark-mode & {
+        border: solid 2px $dark-mode-border-color;
+        box-shadow: 3px 3px $dark-mode-border-color;
       }
     }
 

@@ -5,15 +5,17 @@ import uiButton from '~/components/controls/ui-button';
 import svgLoader from '~/components/utils/svg-loader';
 import socialLink from '~/components/utils/social-link';
 import fileDownload from '~/components/utils/file-download';
+import galleryLink from '~/components/utils/gallery-link';
+
+//Wrappers
+import modalWrapper from '~/components/_wrappers/modal-wrapper';
 
 //Layout
 import flexRow from '~/components/layout/flex-row';
 import layoutColumn from '~/components/layout/layout-column';
 
 //Panels
-import heroPanel from '~/components/content-panels/hero-panel'
-import twoColumnPanel from '~/components/content-panels/two-column-panel'
-import mediaCardPanel from '~/components/content-panels/media-card-panel'
+import heroPanel from '~/components/content/hero-panel';
 
 //Cards
 import mediaCard from '~/components/cards/media-card'
@@ -41,6 +43,10 @@ Vue.component('ui-button', uiButton);
 Vue.component('svg-loader', svgLoader);
 Vue.component('social-link', socialLink);
 Vue.component('file-download', fileDownload);
+Vue.component('gallery-link', galleryLink);
+
+//Wrappers
+Vue.component('modal-wrapper', modalWrapper);
 
 
 //Layout
@@ -49,8 +55,6 @@ Vue.component('layout-column', layoutColumn);
 
 //Panels
 Vue.component('hero-panel', heroPanel);
-Vue.component('two-column-panel', twoColumnPanel);
-Vue.component('media-card-panel', mediaCardPanel);
 
 //Cards
 Vue.component('media-card', mediaCard);

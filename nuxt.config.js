@@ -51,6 +51,7 @@ export default {
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
     '@nuxtjs/style-resources',
+    'nuxt-lazy-load',
     [
       'storyblok-nuxt',
       {

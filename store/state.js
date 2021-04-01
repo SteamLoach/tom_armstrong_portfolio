@@ -13,6 +13,10 @@ export default () => ({
     isActive: false,
     content: {},
   },
+  galleryModal: {
+    isActive: false,
+    content: {},
+  }
 
 
 })

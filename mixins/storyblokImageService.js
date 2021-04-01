@@ -49,7 +49,17 @@ export const storyblokImageService = {
       return this.storyblokImageServiceMixin.filename.split(
         '//a.storyblok.com'
       )[1]
-    }
+    },
+    asBackground: function() {
+      const breakpoint = this.breakpoints.find((b) => {
+        return b.media > this.$store.state.windowWidth
+      })
+      if(breakpoint) {
+        return `${this.CDN}/fit-in/${breakpoint.dimensions}${this.src}`
+      } else {
+        return this.storyblokImageServiceMixin.filename
+      }
+    },
   }
 
 }

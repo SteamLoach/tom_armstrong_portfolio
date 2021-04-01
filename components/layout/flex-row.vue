@@ -1,7 +1,7 @@
 <template>
 
 
-  <div class="flex-row content-panel"
+  <div class="flex-row layout--content-panel"
        :class="[classExtensions]">
 
     <h2 v-if="content.title"
@@ -11,7 +11,7 @@
 
     <div class="flex-row--inner"
          :class="content.content_width">
-      <component v-for="(item, index) in content.items"
+      <component v-for="(item, index) in stackOrder"
             :is="item.component"
             :content="item"
             :key="item._uid"
@@ -57,6 +57,24 @@ export default {
 
     }
 
+  },
+
+  computed: {
+
+    isMobile: function() {
+      return this.$store.getters.isMobile;
+    },
+
+    stackOrder: function() {
+      if(this.isMobile) {
+        return [...this.content.items].sort((a,b) => {
+          return b.stack_order - a.stack_order;
+        })
+      } else {
+        return this.content.items;
+      }
+
+    }
   },
 
 }

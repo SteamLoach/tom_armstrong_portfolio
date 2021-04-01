@@ -1,1 +1,2 @@
-add contact page
+add <gallery-modal> and components for sidebar actions such as file downloads.
+general tidyup

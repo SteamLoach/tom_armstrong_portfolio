@@ -1,7 +1,7 @@
 <template>
 
   <a class="social-link"
-     :href="content.url">
+     :href="content.url.url">
 
     <svg-loader :content="{icon_name: content.icon_name}"
                 aria-hidden="true" />

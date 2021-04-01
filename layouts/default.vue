@@ -18,6 +18,11 @@
                       aria-hidden="false" />
     </slide-x-right-transition>
 
+    <slide-x-right-transition>
+      <gallery-modal v-if="galleryModal.isActive"
+                      aria-hidden="false" />
+    </slide-x-right-transition>
+
 
 
     <!-- standard view -->
@@ -86,6 +91,7 @@ export default {
     ...mapState([
       'showHandheldNav',
       'lightboxModal',
+      'galleryModal',
       'darkMode',
     ]),
 
@@ -162,7 +168,7 @@ export default {
   }
 
   //Content Panels
-  .content-panel {
+  .layout--content-panel {
 
     &.x-pad-medium {
       @include pad-scale(
@@ -178,6 +184,15 @@ export default {
         y,
         $default: $space-6,
         $on-tablet: $space-8,
+      );
+    }
+
+    &.y-pad-heavy {
+      @include pad-scale(
+        y,
+        $default: $space-8,
+        $on-tablet: $space-10,
+        $on-desktop: $space-11,
       );
     }
 

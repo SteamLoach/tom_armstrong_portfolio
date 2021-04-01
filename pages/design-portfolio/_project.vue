@@ -3,22 +3,16 @@
   <main v-if="story.content"
         v-editable="story.content">
 
-
-
     <header class="design-project--header">
 
-      <div class="design-project--feature-image"
-            :style="$toolkit.setBackgroundImage(
-              featureImage(story).filename
-            )">
+      <div class="design-project--feature-image">
+        <image-asset :content="{media: featureImage(story)}" />
       </div>
 
       <div class="design-project--title">
-        <div class="design-project--title--inner">
-          <h1> {{story.content.title}} </h1>
-          <project-summary :content="story.content.summary" />
-          <tag-list :tags="story.tag_list" />
-        </div>
+        <h1> {{story.content.title}} </h1>
+        <project-summary :content="story.content.summary" />
+        <tag-list :tags="story.tag_list" />
       </div>
 
     </header>
@@ -61,38 +55,45 @@ export default {
 
   .design-project--header {
     @include row(center, stretch);
-    margin: 0 auto;
-  }
-
-  .design-project--feature-image,
-  .design-project--title {
-    @include column-scale(
-      $default: 24,
-      $on-laptop: 12,
+    max-width: $super-wide-width;
+    @include pad-scale(
+      x,
+      $default: $space-4,
+      $on-tablet: $space-6,
     );
+    @include pad-scale(
+      y,
+      $default: $space-6,
+      $on-tablet: $space-8,
+      $on-laptop: $space-10,
+    );
+    margin: 0 auto;
   }
 
 
   .design-project--feature-image {
-    height: 80vh;
-    @include margin-scale(
-      bottom,
-      $default: $space-6,
-      $on-laptop: $space-12,
+    @include wrapper(center, center);
+    @include column-scale(
+      $default: 24,
+      $on-laptop: 14,
     );
-    @include background-image(
-      $position: center,
-    );
-    @include media-from($laptop, background-position, left);
   }
 
   .design-project--title {
-    @include wrapper(center, center);
-    @include margin-scale(
-      bottom,
-      $default: $space-8,
-      $on-tablet: $space-10,
-      $on-laptop: $space-12,
+    @include column-scale(
+      $default: 24,
+      $on-laptop: 10,
+    );
+    @include pad-scale(
+      x,
+      $on-phablet: $space-4,
+      $on-laptop: $space-6,
+    );
+    @include pad-scale(
+      top,
+      $default: $space-4,
+      $on-laptop: $space-6,
+      $on-desktop: $space-10,
     );
     h1 {
       margin-bottom: $space-4;

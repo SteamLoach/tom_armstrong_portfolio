@@ -1,7 +1,6 @@
 <template>
 
-  <section v-if="displayCondition"
-           class="rich-text"
+  <section class="rich-text"
            :class="[{'is-component' : isComponent}, classExtensions]"
            v-html="resolvedText" />
 
@@ -33,27 +32,6 @@ export default {
   },
 
   computed: {
-
-    withJargon: function() {
-      return this.$store.state.withJargon;
-    },
-
-    displayCondition: function() {
-      if(this.withJargon) {
-        if(this.content.display_condition === 'no_jargon') {
-          return false;
-        } else {
-          return true;
-        }
-      }
-      if(!this.withJargon) {
-        if(this.content.display_condition === 'with_jargon') {
-          return false;
-        } else {
-          return true;
-        }
-      }
-    },
 
     isComponent: function() {
       return this.content ? this.content.component : false;
@@ -157,12 +135,14 @@ export default {
       }
     }
 
+    /*
     b, strong {
       color: $brand-base;
       .dark-mode & {
         color: $brand-light;
       }
     }
+    */
 
     &.small-copy-size {
       font-size: $text-root;
