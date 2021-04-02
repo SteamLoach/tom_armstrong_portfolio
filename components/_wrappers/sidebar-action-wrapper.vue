@@ -19,7 +19,7 @@ export default {
   .sidebar-action-wrapper {
 
     .sidebar-action-wrapper--inner {
-      max-width: 285px;
+      width: 225px;
       @include wrapper(between, center, $no-wrap: true);
       padding: $space-2 $space-3;
       margin-bottom: $space-6;

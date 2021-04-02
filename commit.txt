@@ -1,2 +1,1 @@
-add <gallery-modal> and components for sidebar actions such as file downloads.
-general tidyup
+start <hero-panel> component for primary page headers

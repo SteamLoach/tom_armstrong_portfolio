@@ -4,7 +4,8 @@
             class="handheld-nav">
 
     <div class="handheld-nav--toggle-row">
-      <handheld-nav-toggle ref="firstValidTab"/>
+      <handheld-nav-toggle ref="firstValidTab"
+                           :delay="true"/>
     </div>
     <ul class="handheld-nav--links">
       <li v-for="(route, index) in routes"

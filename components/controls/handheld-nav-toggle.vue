@@ -107,13 +107,15 @@ export default {
   &.is-active {
   transform: translate(0px, 10px) rotate(-135deg);
 
-  &:before {
-    transform: scale(0) translate(0px, -8px) rotate(-270deg);
+    &:before {
+      transform: scale(0) translate(0px, -8px) rotate(-270deg);
+    }
+    &:after {
+      transform: translate(0px, -20px) rotate(270deg);
+    }
+
   }
-  &:after {
-    transform: translate(0px, -20px) rotate(270deg);
-  }
-  }
+
 
 }
 

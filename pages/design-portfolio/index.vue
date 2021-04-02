@@ -3,11 +3,11 @@
   <main v-if="story.content"
         v-editable="story.content">
 
-    <page-header-wrapper>
-      <h1 class="design-portfolio--title">
-        {{story.content.title}}
-      </h1>
-    </page-header-wrapper>
+    <component v-for="item in story.content.body"
+          :is="item.component"
+          :key="item._uid"
+          :content="item"
+          v-editable="item" />
 
     <section class="layout--content-panel x-pad-medium y-pad-medium">
 

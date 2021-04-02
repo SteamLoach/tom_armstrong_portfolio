@@ -97,6 +97,18 @@ export default {
       font-size: $title-smallest;
     }
 
+    &.in-hero {
+      margin-bottom: 0;
+      h1 {
+        margin-bottom: 0;
+        @include font-size-scale(
+          $default: $title-large,
+          $on-tablet: $title-larger,
+          $on-laptop: $title-largest,
+        );
+      }
+    }
+
 
     #{$major-headers} {
       margin-bottom: $space-5;

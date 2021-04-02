@@ -9,7 +9,8 @@
           <button class="modal-wrapper--close"
                   @click="close"
                   ref="firstValidTab">
-            <svg-loader :content="{icon_name: 'close-icon'}" />
+            <svg-loader :content="{icon_name: 'close-icon'}"
+                        aria-hidden="true" />
             <span>Close</span>
           </button>
         </div>

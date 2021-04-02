@@ -62,8 +62,9 @@ export default {
 
   .modal-wrapper--close {
     padding: $space-4;
+    text-align: center;
     svg {
-      @include size(45px);
+      @include size(40px);
     }
   }
 
