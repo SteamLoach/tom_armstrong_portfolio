@@ -44,7 +44,10 @@ export default {
 <style lang="scss">
 
   .hero-panel {
-    height: 80vh;
+    @include height-scale(
+        $default: auto,
+        $on-laptop: 50vh,
+    );
     @include row(start, start);
     @include row-from($tablet, end, center);
     max-width: $extra-wide-width;
@@ -55,13 +58,33 @@ export default {
     );
     margin: 0 auto;
 
+    &.portfolio-header {
+      @include height-scale(
+        $default: auto,
+        $on-tablet: 50vh,
+        $on-desktop: 70vh,
+      );
+    }
+
+    &.homepage-header {
+      @include height-scale(
+        $default: auto,
+        $on-tablet: 50vh,
+        $on-laptop: 60vh,
+      );
+      @include max-height-scale(
+        $on-laptop: 600px,
+      );
+    }
+
+
   }
 
   .hero-panel--copy {
     @include position-from(
       $tablet,
       absolute,
-      $top: $space-8,
+      $top: 0,
       $left: 0
     );
     max-width: $narrow-width;
@@ -70,29 +93,39 @@ export default {
       $on-laptop: $space-6,
       $on-desktop: $space-8,
     );
-    h1 {
-      @include font-size-scale(
-        $default: $title-large,
-        $on-tablet: $title-larger,
-        $on-laptop: $title-largest,
-      );
-    }
+    @include margin-scale(
+      top,
+      $on-tablet: $space-6,
+      $on-laptop: $space-8,
+    );
+    @include margin-until($tablet, $bottom: $space-6);
   }
 
   .hero-panel--media {
+    height: 100%;
+    @include wrapper(center, end);
     @include column-scale(
       $default: 24,
       $on-tablet: 16,
-      $on-desktop: 14,
+      //$on-desktop: 14,
     );
   }
 
   svg {
     width: 100%;
     height: auto;
+    @include transition();
     .highlight-fill {
-      fill: $brand-base;
+      fill: $accent-dark;
+    }
+    .background-fill {
+      fill: $brand-lighter;
+      .dark-mode & {
+        fill: $brand-darker;
+      }
     }
   }
+
+
 
 </style>

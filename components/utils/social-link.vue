@@ -29,7 +29,7 @@ export default {
 
   .social-link {
     @include wrapper(start, end);
-    margin-bottom: $space-4;
+    margin-bottom: $space-6;
     svg {
       display: inline-block;
       @include size($text-largest);

@@ -1,1 +1,1 @@
-start <hero-panel> component for primary page headers
+finalise <hero-panel> and add assets

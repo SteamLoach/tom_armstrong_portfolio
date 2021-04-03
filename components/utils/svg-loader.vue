@@ -22,6 +22,7 @@ import pictureIcon from '~/assets/svg/picture_icon.svg?inline';
 import homepageHeader from '~/assets/svg/homepage_header.svg?inline';
 import designPageHeader from '~/assets/svg/design_page_header.svg?inline';
 import developmentPageHeader from '~/assets/svg/development_page_header.svg?inline';
+import contactPageHeader from '~/assets/svg/contact_page_header.svg?inline';
 
 export default {
 
@@ -41,6 +42,7 @@ export default {
     homepageHeader,
     designPageHeader,
     developmentPageHeader,
+    contactPageHeader,
   },
 
   props: {
