@@ -48,14 +48,10 @@ export default {
     margin: 0 auto;
     width: 15%;
     height: 15%;
-    background-color: $title-color;
+    background-color: $accent-base;
     border-radius: 100%;
     -webkit-animation: sk-circleBounceDelay 1.2s infinite ease-in-out both;
     animation: sk-circleBounceDelay 1.2s infinite ease-in-out both;
-
-    .dark-mode & {
-      background-color: $dark-mode-title-color;
-    }
   }
   .sk-circle .sk-circle2 {
     -webkit-transform: rotate(30deg);

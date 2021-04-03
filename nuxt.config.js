@@ -1,5 +1,7 @@
 import {version} from './package.json'
 
+const IS_DRAFT = process.env.NUXT_ENV_CONTENT_VERSION === 'draft';
+
 export default {
   // Target: https://go.nuxtjs.dev/config-target
   target: 'static',
@@ -13,10 +15,28 @@ export default {
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: '' }
+      { hid: 'description', name: 'description', content: '' },
+      IS_DRAFT ? {name: 'robots', content: 'noindex,nofollow'} : {},
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      {
+        rel: 'apple-touch-icon',
+        sizes: '180x180',
+        href: '/apple-touch-icon'
+      },
+      {
+        rel: 'icon',
+        type: 'image/png',
+        sizes: '32x32',
+        href: '/favicon-32x32'
+      },
+      {
+        rel: 'icon',
+        type: 'image/png',
+        sizes: '16x16',
+        href: '/favicon-16x16'
+      },
     ]
   },
 

@@ -196,6 +196,23 @@ export default {
       );
     }
 
+    &.margin-bottom-medium {
+      @include margin-scale(
+        bottom,
+        $default: $space-6,
+        $on-tablet: $space-8,
+      );
+    }
+
+    &.margin-bottom-heavy {
+      @include margin-scale(
+        bottom,
+        $default: $space-8,
+        $on-tablet: $space-10,
+        $on-desktop: $space-11,
+      );
+    }
+
   }
 
   //Max Widths

@@ -66,9 +66,9 @@ export const storyblokBridge = {
         }
 
         if(isIndex) {
-          logger.line(`request data for [${name}] index`, 'load');
+          logger.line(`request [${contentVersion}] data for [${name}] index`, 'load');
         } else {
-          logger.line(`request data for [${slug}] route`, 'load');
+          logger.line(`request [${contentVersion}] data for [${slug}] route`, 'load');
         }
 
         const res = await this.$storyapi.get(reqRoute, reqConfig);

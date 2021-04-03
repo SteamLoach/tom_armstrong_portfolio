@@ -49,7 +49,7 @@ export default {
         $on-laptop: 50vh,
     );
     @include row(start, start);
-    @include row-from($tablet, end, center);
+    @include row-from($tablet, end, end);
     max-width: $extra-wide-width;
     @include pad-scale(
       x,
@@ -67,13 +67,14 @@ export default {
     }
 
     &.homepage-header {
+      min-height: 500px;
       @include height-scale(
         $default: auto,
         $on-tablet: 50vh,
         $on-laptop: 60vh,
       );
       @include max-height-scale(
-        $on-laptop: 600px,
+        $on-tablet: 600px,
       );
     }
 
@@ -119,10 +120,7 @@ export default {
       fill: $accent-dark;
     }
     .background-fill {
-      fill: $brand-lighter;
-      .dark-mode & {
-        fill: $brand-darker;
-      }
+      fill: $brand-base;
     }
   }
 

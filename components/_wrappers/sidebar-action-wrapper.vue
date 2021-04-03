@@ -20,6 +20,7 @@ export default {
 
     .sidebar-action-wrapper--inner {
       width: 225px;
+      max-width: 100%;
       @include wrapper(between, center, $no-wrap: true);
       padding: $space-2 $space-3;
       margin-bottom: $space-6;
@@ -38,6 +39,10 @@ export default {
 
       &.brand {
         background: $brand-base;
+      }
+
+      &.accent {
+        background: $accent-base;
       }
 
       strong {

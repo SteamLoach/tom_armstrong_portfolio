@@ -171,7 +171,7 @@ export default {
     &.brand {
       @include button(
         $fill: $brand-dark,
-        $dark-mode-fill: $brand-light,
+        $dark-mode-fill: $brand-base,
       );
     }
 

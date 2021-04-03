@@ -10,7 +10,7 @@
                   to: project.full_slug,
                 }"
                 :classExt="[
-                  'brand',
+                  'accent',
                   'hover-state',
                   'full-width'
                 ]" />

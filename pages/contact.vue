@@ -17,6 +17,7 @@
 
 <script>
 
+import {metaData} from '@/mixins/metaData';
 import {storyblokBridge} from '@/mixins/storyblokBridge';
 
 export default {
@@ -24,6 +25,7 @@ export default {
   transition: 'page',
 
   mixins: [
+    metaData,
     storyblokBridge,
   ],
 
