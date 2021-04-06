@@ -18,11 +18,8 @@
                   :is="item.component"
                   :key="item._uid"
                   :content="item" />
-
       </section>
     </div>
-
-
 
   </page-header-wrapper>
 

@@ -4,10 +4,10 @@ $brand-saturation: 66%;
 $accent-hue: 340;
 $accent-saturation: 90%;
 
-//@import 'steamloach-scss/variables/color';
-@import '../../../../steamloach-scss/variables/color';
-//@import 'steamloach-scss/variables/spacing';
-@import '../../../../steamloach-scss/variables/spacing';
+@import 'steamloach-scss/variables/color';
+//@import '../../../../steamloach-scss/variables/color';
+@import 'steamloach-scss/variables/spacing';
+//@import '../../../../steamloach-scss/variables/spacing';
 
 @import url('https://fonts.googleapis.com/css2?family=Overpass:wght@100;200;300;400;600;700;800;900&family=Playfair+Display:wght@400;500;600;700;800;900&display=swap');
 
@@ -37,10 +37,10 @@ $medium-border-radius: $space-2;
 $heavy-border-radius: $space-4;
 
 //Component Width
-$super-wide-width: 1600px;
-$extra-wide-width: 1420px;
-$wider-width: 1248px;
-$wide-width: 1024px;
-$medium-width: 768px;
-$narrow-width: 550px;
 $extra-narrow-width: 400px;
+$narrow-width: 550px;
+$medium-width: 768px;
+$wide-width: 1024px;
+$wider-width: 1248px;
+$extra-wide-width: 1420px;
+$super-wide-width: 1600px;

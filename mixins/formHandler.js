@@ -243,9 +243,6 @@ export const formHandler = {
     },
 
     postForm: function() {
-      logger.group(this.logRef)
-      logger.warn('[postForm] function is not hooked up to <form> onsubmit')
-      logger.groupEnd(this.logRef)
       this.isSubmitting = true;
       setTimeout(() => {
         this.isSubmitting = false;

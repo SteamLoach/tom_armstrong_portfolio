@@ -18,7 +18,8 @@
           :aria-label="content.name"
           data-netlify-honeypot="bot-field"
           method="post"
-          target="hidden-iframe">
+          target="hidden-iframe"
+          v-on:submit="postForm">
 
       <header class="form--header">
         <rich-text :content="content.header" />
@@ -114,17 +115,10 @@
       </aside>
 
       <div class="form--submit">
-        <ui-button :classExt="[
-                    'neutral',
-                    'full-width',
-                    'hover-state',
-                    ]"
-                   :content="{
-                     name: 'Send',
-                     type: 'button'
-                    }"
-                   :disabled="!canSubmit"
-                   @handleClick="postForm" />
+        <input class="ui-button neutral full-width hover-state"
+               type="submit"
+               :value="content.submit_prompt || 'Send'"
+               :disabled="!canSubmit" />
 
           <slide-x-right-transition mode="out-in">
           <div class="form--submit--sending"

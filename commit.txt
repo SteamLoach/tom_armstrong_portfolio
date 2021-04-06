@@ -1,2 +1,1 @@
-add [metaData] mixin
-mixin takes title and description attributes from storyblok's meta_data plugin and applies them to pages. 
+Initial netlify commit
