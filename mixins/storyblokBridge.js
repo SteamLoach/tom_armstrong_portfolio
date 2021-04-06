@@ -16,8 +16,6 @@ const logger = log({
   ref: 'storyblokBridge (Mixin)'
 })
 
-const contentVersion = process.env.NUXT_ENV_CONTENT_VERSION
-
 
 export const storyblokBridge = {
 
@@ -49,6 +47,8 @@ export const storyblokBridge = {
 
     logger.group(this.logRef);
 
+    console.log(this.$config.testVar);
+
     if(this.storyblokBridgeMixin) {
 
       try {
@@ -59,16 +59,16 @@ export const storyblokBridge = {
 
         const reqRoute = isIndex ? 'cdn/stories' : `cdn/stories/${slug}`
         const reqConfig = {
-          version: contentVersion
+          version: this.$config.contentVersion
         }
         if(isIndex) {
           reqConfig['by_slugs'] = `${name}/*`
         }
 
         if(isIndex) {
-          logger.line(`request [${contentVersion}] data for [${name}] index`, 'load');
+          logger.line(`request [${this.$config.contentVersion}] data for [${name}] index`, 'load');
         } else {
-          logger.line(`request [${contentVersion}] data for [${slug}] route`, 'load');
+          logger.line(`request [${this.$config.contentVersion}] data for [${slug}] route`, 'load');
         }
 
         const res = await this.$storyapi.get(reqRoute, reqConfig);

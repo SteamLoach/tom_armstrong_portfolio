@@ -1,6 +1,6 @@
 import {version} from './package.json'
 
-const IS_DRAFT = process.env.NUXT_ENV_CONTENT_VERSION === 'draft';
+const IS_DRAFT = process.env.CONTENT_VERSION === 'draft';
 
 export default {
   // Target: https://go.nuxtjs.dev/config-target
@@ -40,9 +40,12 @@ export default {
     ]
   },
 
-  env: {
-    BUILD_VERSION: version,
+  publicRuntimeConfig: {
+    contentVersion: process.env.CONTENT_VERSION,
+    buildVersion: version,
   },
+  privateRuntimeConfig: {},
+
 
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [

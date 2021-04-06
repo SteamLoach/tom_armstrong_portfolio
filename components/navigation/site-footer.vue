@@ -35,7 +35,7 @@
     </ul>
 
     <span class="site-footer--version">
-      v{{buildVersion}}
+      v{{$config.buildVersion}}
     </span>
 
 
@@ -45,12 +45,6 @@
 
 <script>
 export default {
-
-  computed: {
-    buildVersion: function() {
-      return process.env.BUILD_VERSION;
-    }
-  },
 
   methods: {
     toTop: function() {

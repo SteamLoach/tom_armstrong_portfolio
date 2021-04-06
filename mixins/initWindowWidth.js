@@ -21,8 +21,11 @@ export const initWindowWidth = {
 
   },
 
-  destroyed() {
+  beforeDestroy() {
+    logger.group(this.logRef);
+    logger.line('remove event listener');
     window.removeEventListener('resize', this.setWindowWidth);
+    logger.groupEnd(this.logRef);
   },
 
   methods: {
