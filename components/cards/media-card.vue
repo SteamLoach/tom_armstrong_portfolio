@@ -96,11 +96,6 @@ export default {
   //Classes
   .media-card {
 
-    @include margin-scale(
-      bottom,
-      $default: $space-8,
-    );
-
     &.x-pad-light {
       @include x-pad($space-4);
     }
@@ -161,6 +156,9 @@ export default {
       &.media-left {
         .media-card--media {
           margin-bottom: $space-5;
+        }
+        .media-card--copy {
+          margin-bottom: 0;
         }
       }
 

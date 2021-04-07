@@ -9,7 +9,7 @@ const logType = {
   error: true,
 }
 
-const showLogs = (process.env.SHOW_LOGS ? true : false);
+const showLogs = (process.env.NUXT_ENV_SHOW_LOGS ? true : false);
 
 const setStyle = (type) => {
 

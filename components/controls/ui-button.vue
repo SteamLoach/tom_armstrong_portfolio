@@ -69,26 +69,23 @@ export default {
 <style lang="scss">
 
   @mixin button(
-    $fill,
-    $dark-mode-fill: false,
+    $fill: $dark-mode-title-color,
+    $color: $page-background,
+    $dark-mode-fill: $title-color,
+    $dark-mode-color: $dark-mode-page-background,
   ) {
 
 
-    color: $dark-mode-title-color;
+    color: $color;
     background: $fill;
     border: 2px solid $fill;
     @include transition($duration: 0.1s);
 
 
     .dark-mode & {
-
-      color: $dark-mode-page-background;
-
-      @if $dark-mode-fill {
-        background: $dark-mode-fill;
-        border-color: $dark-mode-fill;
-      }
-
+      color: $dark-mode-color;
+      background: $dark-mode-fill;
+      border-color: $dark-mode-fill;
     }
 
     &:hover:not(:disabled) {
@@ -100,23 +97,22 @@ export default {
 
       color: $fill;
       border-color: $fill;
-      background: $page-background;
+      background: transparent;
 
       .dark-mode & {
 
         color: $dark-mode-fill;
         border-color: $dark-mode-fill;
-        background: $dark-mode-page-background;
 
       }
 
       &:hover:not(:disabled) {
 
-        color: $dark-mode-title-color;
+        color: $color;
         background: $fill;
 
         .dark-mode & {
-          color: $title-color;
+          color: $dark-mode-color;
           background: $dark-mode-fill;
         }
 
@@ -127,15 +123,13 @@ export default {
     &:disabled {
       cursor: not-allowed;
       color: $shade-light;
-      background: $page-background;
+      background: transparent;
       border-color: $shade-light;
       .dark-mode & {
         color: $shade-darker;
-        background: $dark-mode-page-background;
         border-color: $shade-darker;
       }
     }
-
 
   }
 

@@ -47,8 +47,6 @@ export const storyblokBridge = {
 
     logger.group(this.logRef);
 
-    console.log(this.$config.testVar);
-
     if(this.storyblokBridgeMixin) {
 
       try {

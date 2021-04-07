@@ -41,6 +41,7 @@ export default {
 <style lang="scss">
 
   .hero-panel {
+    max-height: 650px;
     @include height-scale(
         $default: auto,
         $on-laptop: 50vh,

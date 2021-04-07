@@ -127,6 +127,13 @@ export default {
       );
     }
 
+    &.margin-bottom-mediun {
+      @include margin-scale(
+        bottom,
+        $default: $space-8,
+      );
+    }
+
     &.border-left {
       @include media-from($tablet, border-left, 1px solid $border-color);
     }

@@ -1,7 +1,7 @@
 <template>
 
 
-  <div class="flex-row layout--content-panel"
+  <section class="flex-row layout--content-panel"
        :class="[classExtensions]">
 
     <h2 v-if="content.title"
@@ -20,7 +20,7 @@
     </div>
 
 
-  </div>
+  </section>
 
 
 </template>

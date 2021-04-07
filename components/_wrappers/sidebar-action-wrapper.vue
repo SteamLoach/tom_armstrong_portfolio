@@ -26,23 +26,29 @@ export default {
       margin-bottom: $space-6;
       font-size: $text-body;
       color: $dark-mode-text-color;
-      background: $dark-mode-page-background;
+      background: $title-color;
       border-radius: $border-radius;
 
       .dark-mode & {
         color: $title-color;
-        background: $page-background;
+        background: $dark-mode-title-color;
         svg {
           fill: $title-color;
         }
       }
 
       &.brand {
-        background: $brand-base;
+        background: $brand-dark;
+        .dark-mode & {
+          background: $brand-base;
+        }
       }
 
       &.accent {
-        background: $accent-base;
+        background: $accent-dark;
+        .dark-mode & {
+          background: $accent-base;
+        }
       }
 
       strong {
