@@ -75,6 +75,20 @@ export default {
       $default: $text-body,
     );
 
+    .brand {
+      color: $brand-dark;
+      .dark-mode & {
+        color: $brand-light;
+      }
+    }
+
+    .accent {
+      color: $accent-dark;
+      .dark-mode & {
+        color: $accent-base;
+      }
+    }
+
     h1 {
       @include font-size-scale(
         $default: $title-large,

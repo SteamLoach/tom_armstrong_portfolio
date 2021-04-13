@@ -80,7 +80,7 @@ export default {
 
       initPreferencesMixin: {
         isComplete: false,
-        preferences: ['darkMode', 'withJargon']
+        preferences: ['darkMode']
       },
 
     }

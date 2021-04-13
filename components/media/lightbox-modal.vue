@@ -97,19 +97,21 @@ export default {
   .lightbox-modal--image {
     @include row(center, center);
     flex: 1;
+    margin-bottom: $space-4;
     @include background-image($size: contain);
   }
 
   .lightbox-modal--caption {
     width: 100%;
+    max-width: $medium-width;
     @include x-pad($space-4);
-    @include pad-scale(
-      y,
-      $default: $space-4,
-      $on-laptop: $space-6,
-    );
-    margin-bottom: $space-6;
+    padding-bottom: $space-1;
+    margin-bottom: $space-2;
     text-align: center;
+    border-bottom: 1px solid $border-color;
+    .dark-mode & {
+      border-color: $dark-mode-border-color;
+    }
     span {
       display: inline-block;
       max-width: $narrow-width;

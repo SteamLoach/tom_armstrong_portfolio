@@ -2,7 +2,7 @@ import log from '@/utils/log'
 
 const logger = log({
   type: 'store',
-  ref: 'Preferences'
+  ref: 'Set Preferences (Mixin)'
 })
 
 export const setPreferences = {
@@ -18,7 +18,6 @@ export const setPreferences = {
 
       const preferences = {
         darkMode: this.$store.state.darkMode,
-        withJargon: this.$store.state.withJargon,
       }
 
       logger.line(`set preferences in local storage`)
