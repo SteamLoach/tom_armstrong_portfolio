@@ -1,1 +1,1 @@
-add _redirects 
+removed _redirects and added generate prop to nuxt.config to fix spa 404 issue
