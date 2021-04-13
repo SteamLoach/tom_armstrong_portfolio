@@ -40,7 +40,7 @@ export const classExtensions = {
             classObject[this.$toolkit.kebabCase(ext)] = true
           );
           if(this.content && this.content[classProp]) {
-            const classExtensions = this.content.class_extensions.split(',');
+            const classExtensions = this.content[classProp].split(',');
             classExtensions.forEach(ext =>
               classObject[this.$toolkit.kebabCase(ext)] = true
             );

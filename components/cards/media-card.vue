@@ -207,7 +207,7 @@ export default {
     //Split Panel Layout
     &.split-panel-layout {
 
-      @include row(center, center);
+      @include row(center, start);
 
       .media-card--copy,
       .media-card--media {
@@ -222,7 +222,11 @@ export default {
         );
         @include pad-scale(
           x,
-          $on-desktop: $space-6,
+          $on-laptop: $space-6,
+        );
+        @include pad-scale(
+          top,
+          $on-desktop: $space-8,
         );
       }
       .media-card--media {
@@ -231,6 +235,7 @@ export default {
           $on-laptop: 15,
         );
       }
+      /*
       &.media-right {
         @include pad-scale(
           left,
@@ -245,6 +250,7 @@ export default {
           $on-desktop: $space-8,
         );
       }
+      */
     }
 
     &.outlined {

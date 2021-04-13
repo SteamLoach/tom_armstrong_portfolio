@@ -216,31 +216,31 @@ export default {
   }
 
   //Max Widths
-  .extra-narrow {
+  .max-width-extra-narrow {
     max-width: $extra-narrow-width;
   }
 
-  .narrow {
+  .max-width-narrow {
     max-width: $narrow-width;
   }
 
-  .medium {
+  .max-width-medium {
     max-width: $medium-width;
   }
 
-  .wide {
+  .max-width-wide {
     max-width: $wide-width;
   }
 
-  .wider {
+  .max-width-wider {
     max-width: $wide-width;
   }
 
-  .extra-wide {
+  .max-width-extra-wide {
     max-width: $extra-wide-width;
   }
 
-  .super-wide {
+  .max-width-super-wide {
     max-width: $extra-wide-width;
   }
 

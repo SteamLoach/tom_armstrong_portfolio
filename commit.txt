@@ -1,1 +1,1 @@
-removed _redirects and added generate prop to nuxt.config to fix spa 404 issue
+various style changes to content components

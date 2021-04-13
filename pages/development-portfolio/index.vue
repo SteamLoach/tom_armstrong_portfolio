@@ -17,7 +17,7 @@
                   'media-card',
                   `media-${mediaAlignment(i)}`,
                   'row-layout',
-                  'wide',
+                  'max-width-wide',
                   'development-portfolio--project-preview'
                   ]"
               :key="project._uid">

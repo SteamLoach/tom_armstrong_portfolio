@@ -90,7 +90,12 @@ export default {
       .flex-row--inner {
         @include row(center, stretch);
       }
+    }
 
+    &.start-stretch {
+      .flex-row--inner {
+        @include row(start, stretch);
+      }
     }
 
   }

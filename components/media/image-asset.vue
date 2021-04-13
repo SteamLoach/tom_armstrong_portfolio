@@ -9,6 +9,7 @@
     <button class="image-asset--lightbox-control"
             :class="[{'can-lightbox': content.enable_lightbox}]"
             :name="content.enable_lightbox ? 'Enlarge image' : ''"
+            :title="content.enable_lightbox ? 'Click to enlarge' : ''"
             :disabled="!content.enable_lightbox"
             @click="openLightboxModal"
             >
@@ -101,6 +102,8 @@ export default {
 
   .image-asset {
 
+    margin: 0 auto;
+
     &.y-margin-light {
       @include margin-scale(
         y,
@@ -147,32 +150,33 @@ export default {
 
     &.thumbnail-image {
       .image-asset--image {
-        @include media-from($tablet, max-width, 25%);
+        @include media-from($tablet, max-width, 175px);
       }
     }
 
     &.small-image {
       .image-asset--image {
-        @include media-from($tablet, max-width, 50%);
+        @include media-from($tablet, max-width, 250px);
       }
     }
 
     &.medium-image {
       .image-asset--image {max-height: 60vh;}
       .image-asset--image, .image-asset--caption {
-        @include media-from($tablet, max-width, 75%);
+        @include media-from($tablet, max-width, 500px);
       }
     }
 
     &.large-image {
       .image-asset--image {max-height: 75vh;}
       .image-asset--image, .image-asset--caption {
-        @include media-from($tablet, max-width, 90%);
+        @include media-from($tablet, max-width, 750px);
       }
     }
 
     &.styled-image {
       .image-asset--image {
+        background: $shade-light;
         border-radius: $space-1;
         @include shadow($elevation-light);
       }

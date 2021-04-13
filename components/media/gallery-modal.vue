@@ -16,7 +16,7 @@
         </div>
 
         <slide-y-up-transition mode="out-in">
-          <figure class="lightbox-modal--inner"
+          <figure class="lightbox-modal--inner gallery-modal"
               :key="$toolkit.kebabCase(content.images[currentIndex].alt)">
             <div class="lightbox-modal--image"
                 :lazy-background="asBackground"

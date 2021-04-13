@@ -46,9 +46,11 @@ export const storyblokImageService = {
       }
     },
     src: function() {
-      return this.storyblokImageServiceMixin.filename.split(
-        '//a.storyblok.com'
-      )[1]
+      if(this.storyblokImageServiceMixin.filename) {
+        return this.storyblokImageServiceMixin.filename.split(
+          '//a.storyblok.com'
+        )[1]
+      }
     },
     asBackground: function() {
       const breakpoint = this.breakpoints.find((b) => {

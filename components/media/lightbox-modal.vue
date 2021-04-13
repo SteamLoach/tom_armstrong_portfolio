@@ -21,10 +21,11 @@
               role="img"
               aria-describedby="lightbox-modal-caption">
         </div>
-        <figcaption id="lightbox-modal-caption"
+        <figcaption v-if="content.show_caption_in_lightbox"
+                    id="lightbox-modal-caption"
                     class="lightbox-modal--caption">
           <span>
-            {{this.content.show_caption ? content.media.title : ''}}
+            {{content.media.title}}
           </span>
         </figcaption>
       </figure>
@@ -88,6 +89,13 @@ export default {
       $default: $space-2,
       $on-laptop: $space-8,
     );
+    @include pad-scale(
+      bottom,
+      $default: $space-6,
+    );
+    &.gallery-modal {
+      padding-bottom: 0;
+    }
 
     &:hover {
       cursor: zoom-out;
@@ -106,7 +114,7 @@ export default {
     max-width: $medium-width;
     @include x-pad($space-4);
     padding-bottom: $space-1;
-    margin-bottom: $space-2;
+    margin-bottom: $space-4;
     text-align: center;
     border-bottom: 1px solid $border-color;
     .dark-mode & {

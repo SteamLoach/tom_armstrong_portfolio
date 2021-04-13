@@ -70,7 +70,6 @@ export default {
 
   .rich-text {
     max-width: $medium-width;
-    margin-bottom: $space-6;
     @include font-size-scale(
       $default: $text-body,
     );
@@ -123,6 +122,18 @@ export default {
       }
     }
 
+    &.margin-bottom-light {
+      margin-bottom: $space-4;
+    }
+
+    &.margin-bottom-medium {
+      margin-bottom: $space-6;
+    }
+
+    &.margin-bottom-heavy {
+      margin-bottom: $space-8;
+    }
+
 
     #{$major-headers} {
       margin-bottom: $space-5;
@@ -151,6 +162,16 @@ export default {
       li {
         margin-bottom: $space-1;
         p {margin-bottom: 0;}
+      }
+    }
+
+    blockquote {
+      padding-left: $space-2;
+      font-style: italic;
+      font-family: $title-font;
+      border-left: 3px solid $border-color;
+      .dark-mode & {
+        border-color: $dark-mode-border-color;
       }
     }
 
@@ -235,11 +256,6 @@ export default {
       }
     }
 
-
-    &.with-border-bottom {
-      padding-bottom: $space-2;
-      //border-bottom: 1px solid $shade-darkest;
-    }
 
     //Dark Mode
     .dark-mode & {
