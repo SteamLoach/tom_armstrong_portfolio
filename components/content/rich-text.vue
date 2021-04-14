@@ -182,15 +182,6 @@ export default {
       }
     }
 
-    /*
-    b, strong {
-      color: $brand-base;
-      .dark-mode & {
-        color: $brand-light;
-      }
-    }
-    */
-
     &.small-copy-size {
       font-size: $text-root;
       h3 {

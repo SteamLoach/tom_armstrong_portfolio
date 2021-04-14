@@ -97,7 +97,7 @@
       <aside class="form--aside">
 
         <rich-text v-if="content.show_privacy_statement"
-                   class="small-copy-size"
+                   class="small-copy-size margin-bottom-medium"
                    :content="content.privacy_statement" />
 
         <div v-if="content.require_consent"

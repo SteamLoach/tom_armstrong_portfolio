@@ -96,9 +96,12 @@ export default {
   //Classes
   .media-card {
 
+    margin: 0 auto;
+
     &.x-pad-light {
       @include x-pad($space-4);
     }
+
     &.x-pad-medium {
       @include pad-scale(
         x,
@@ -107,6 +110,7 @@ export default {
         $on-desktop: $space-6,
       );
     }
+
     &.x-pad-heavy {
       @include x-pad($space-8);
     }

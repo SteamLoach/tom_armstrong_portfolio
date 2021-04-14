@@ -19,10 +19,9 @@
         <div class="lightbox-modal--image"
               :lazy-background="asBackground"
               role="img"
-              aria-describedby="lightbox-modal-caption">
+              :aria-describedby="content.media.title">
         </div>
         <figcaption v-if="content.show_caption_in_lightbox"
-                    id="lightbox-modal-caption"
                     class="lightbox-modal--caption">
           <span>
             {{content.media.title}}
@@ -95,10 +94,6 @@ export default {
     );
     &.gallery-modal {
       padding-bottom: 0;
-    }
-
-    &:hover {
-      cursor: zoom-out;
     }
   }
 

@@ -1,8 +1,8 @@
 <template>
 
-  <span class="sidebar-action-wrapper">
+  <div class="sidebar-action-wrapper">
     <slot />
-  </span>
+  </div>
 
 </template>
 
@@ -17,6 +17,7 @@ export default {
 <style lang="scss">
 
   .sidebar-action-wrapper {
+    width: 100%;
 
     .sidebar-action-wrapper--inner {
       width: 225px;

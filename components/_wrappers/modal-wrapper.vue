@@ -4,6 +4,7 @@
     <div class="modal-wrapper"
         role="dialog"
         aria-modal="true"
+        :class="{'click-anywhere-to-close' : clickAnywhereToClose}"
         :title="clickAnywhereToClose ? 'Click anywhere to close': ''"
         @click="clickAnywhereClose">
 
@@ -48,6 +49,12 @@ export default {
       left: 0;
     background: rgba($shade-white, 1);
     @include transition($duration: .01s);
+
+    &.click-anywhere-to-close {
+      &:hover {
+        cursor: zoom-out;
+      }
+    }
 
     .dark-mode & {
       background: rgba($shade-black, 1);

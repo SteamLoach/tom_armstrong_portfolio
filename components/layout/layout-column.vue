@@ -55,7 +55,6 @@ export default {
 
   .layout-column {
 
-
     &.half-width-fixed,
     &.third-width-fixed,
     &.quarter-width-fixed {

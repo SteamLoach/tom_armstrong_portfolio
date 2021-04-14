@@ -1,1 +1,1 @@
-various style changes to content components
+minor styling changes to content components | remove 'zoom-out' cursor when image modal is not clickAnywhereToClose
