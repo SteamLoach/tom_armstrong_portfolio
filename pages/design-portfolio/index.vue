@@ -1,7 +1,6 @@
 <template>
 
-  <main v-if="story.content"
-        v-editable="story.content">
+  <main v-editable="story.content">
 
     <component v-for="item in story.content.body"
           :is="item.component"
@@ -11,7 +10,7 @@
 
     <section class="layout--content-panel x-pad-medium y-pad-medium">
 
-      <article v-for="(project, i) in index"
+      <article v-for="(project, i) in stories"
                 :class="[
                   'media-card',
                   `media-${mediaAlignment(i)}`,

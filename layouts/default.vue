@@ -1,7 +1,6 @@
 <template>
 
-  <div v-if="initPreferencesMixin.isComplete"
-       id="site-wrapper"
+  <div id="site-wrapper"
        class="site-wrapper"
        :class="{'dark-mode': this.darkMode}"
        ref="siteWrapper">
@@ -50,8 +49,6 @@ export default {
     initWindowWidth,
   ],
 
-
-
   data() {
     return {
 
@@ -79,7 +76,7 @@ export default {
       ],
 
       initPreferencesMixin: {
-        isComplete: false,
+        isComplete: true,
         preferences: ['darkMode']
       },
 

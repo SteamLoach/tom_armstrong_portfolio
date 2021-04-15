@@ -19,8 +19,8 @@ import heroPanel from '~/components/content/hero-panel';
 
 //Cards
 import mediaCard from '~/components/cards/media-card'
-import projectPreviewCopy from '~/components/cards/utils/project-preview-copy';
-import projectPreviewMedia from '~/components/cards/utils/project-preview-media';
+import projectPreviewCopy from '~/components/cards/project-preview-copy';
+import projectPreviewMedia from '~/components/cards/project-preview-media';
 
 //Content
 import richText from '~/components/content/rich-text'

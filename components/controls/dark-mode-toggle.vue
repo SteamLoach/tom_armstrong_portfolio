@@ -38,12 +38,6 @@ export default {
 
   },
 
-  methods: {
-    ...mapMutations([
-      'toggleState',
-    ])
-  }
-
 }
 
 </script>

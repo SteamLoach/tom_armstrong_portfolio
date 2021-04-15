@@ -6,7 +6,7 @@ export default {
   // Target: https://go.nuxtjs.dev/config-target
   target: 'static',
   generate: {
-    fallback: true,
+    fallback: IS_DRAFT,
   },
 
   // Global page headers: https://go.nuxtjs.dev/config-head
@@ -63,7 +63,17 @@ export default {
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
-  components: true,
+  components: [
+    '~/components/_wrappers',
+    '~/components/cards',
+    '~/components/content',
+    '~/components/controls',
+    '~/components/forms',
+    '~/components/layout',
+    '~/components/media',
+    '~/components/navigation',
+    '~/components/utils',
+  ],
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [

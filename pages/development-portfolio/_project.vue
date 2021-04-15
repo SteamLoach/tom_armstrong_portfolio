@@ -1,7 +1,6 @@
 <template>
 
-  <main v-if="story.content"
-        v-editable="story.content">
+  <main v-editable="story.content">
 
     <page-header-wrapper>
       <div class="development-project--header">

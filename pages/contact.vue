@@ -1,7 +1,6 @@
 <template>
 
-  <main v-if="story.content"
-        v-editable="story.content">
+  <main v-editable="story.content">
 
     <component v-for="panel in story.content.body"
                :is="panel.component"

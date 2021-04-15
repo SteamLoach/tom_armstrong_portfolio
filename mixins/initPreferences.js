@@ -25,10 +25,10 @@ export const initPreferences = {
 
     if(this.initPreferencesMixin) {
 
-      if(window.localStorage.preferences) {
+      if(localStorage.preferences) {
 
         logger.line('preferences found in localStorage', 'done')
-        const preferences = JSON.parse(window.localStorage.preferences)
+        const preferences = JSON.parse(localStorage.preferences)
         logger.line(preferences, 'return')
 
         this.initPreferencesMixin.preferences.forEach(prop => {
@@ -49,7 +49,7 @@ export const initPreferences = {
           );
           storageObj[prop] = this.$store.state[prop]
         })
-        window.localStorage.setItem('preferences', JSON.stringify(storageObj))
+        localStorage.setItem('preferences', JSON.stringify(storageObj))
       }
 
       this.initPreferencesMixin.isComplete = true;

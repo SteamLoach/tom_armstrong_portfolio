@@ -1,1 +1,3 @@
-minor styling changes to content components | remove 'zoom-out' cursor when image modal is not clickAnywhereToClose
+refactor storyblokBridge to use asyncData instead of fetch. function now fetches page data based on route and retrieves indexed pages if page is not the home route and has the name 'index'
+
+removed v-if condition on app wrapper as it was blocking static generation

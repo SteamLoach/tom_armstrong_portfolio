@@ -19,10 +19,61 @@ const logger = log({
 
 export const storyblokBridge = {
 
-  data() {
-    return {
-      story: {},
-      index: [],
+  async asyncData({
+    app,
+    route,
+    $config,
+  }) {
+
+    try {
+
+      const timestamp = new Date().getTime();
+
+      const isHome = route.path === '/' || route.path === ''
+      const slug = isHome ? 'home' : route.path
+
+      logger.group(`<${slug}> page [${timestamp}]`);
+
+      const reqConfig = {
+        version: $config.contentVersion,
+      };
+
+      logger.line(`request [${$config.contentVersion}] data for ${slug} route`, 'load');
+
+      const pageRes = await app.$storyapi.get(
+        `cdn/stories/${slug}`,
+         reqConfig,
+      );
+      const story = pageRes.data.story;
+      logger.line('set page data', 'done');
+
+
+      const isIndex = story.name.toLowerCase() === 'index' && !isHome;
+      const stories = [];
+
+      if(isIndex) {
+        logger.line('fetching indexed pages', 'load');
+        reqConfig['by_slugs'] = `${route.name}/*`
+        const indexRes = await app.$storyapi.get(
+          'cdn/stories',
+          reqConfig,
+        )
+        indexRes.data.stories.forEach(item => {
+          if(item.name.toLowerCase() !== 'index') {
+            logger.line(`add [${item.name}] to index`, 'done')
+            stories.push(item);
+          }
+        })
+      }
+
+      const dataObj = isIndex ? {story, stories} : {story};
+
+      logger.groupEnd(`<${slug}> page [${timestamp}]`)
+
+      return dataObj;
+
+    } catch(err) {
+      logger.error(err);
     }
   },
 
@@ -43,62 +94,5 @@ export const storyblokBridge = {
     })
   },
 
-  async fetch() {
-
-    logger.group(this.logRef);
-
-    if(this.storyblokBridgeMixin) {
-
-      try {
-
-        const isIndex = this.storyblokBridgeMixin.isIndex ? true : false;
-        const { path, name } = this.$route;
-        const slug = (path == '/' || path == '') ? 'home' : path
-
-        const reqRoute = isIndex ? 'cdn/stories' : `cdn/stories/${slug}`
-        const reqConfig = {
-          version: this.$config.contentVersion
-        }
-        if(isIndex) {
-          reqConfig['by_slugs'] = `${name}/*`
-        }
-
-        if(isIndex) {
-          logger.line(`request [${this.$config.contentVersion}] data for [${name}] index`, 'load');
-        } else {
-          logger.line(`request [${this.$config.contentVersion}] data for [${slug}] route`, 'load');
-        }
-
-        const res = await this.$storyapi.get(reqRoute, reqConfig);
-
-        if(isIndex) {
-          const {stories} = res.data
-
-          this.story = stories.find(story => story.name === 'Index')
-          logger.line('page data assigned to [this.story]')
-
-          this.index = stories.filter(story => story.name !== 'Index')
-          logger.line('index data assigned to [this.index]')
-
-        } else {
-          this.story = res.data.story;
-          logger.line('page data assigned to [this.story]')
-        }
-
-        logger.line('request complete', 'done')
-
-      } catch(err) {
-        logger.error(err);
-      }
-
-
-
-    } else {
-      logger.warn('define a [storyblokBridgeMixin] config object')
-    }
-
-    logger.groupEnd(this.logRef);
-
-  },
 
 }
