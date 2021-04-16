@@ -27,6 +27,10 @@
 
       <section class="form--body">
 
+        <!-- Netlify Form Name Prop -->
+        <input type="hidden" name="form-name" :value="content.name" >
+        <!-- -->
+
         <!-- Bot Field -->
         <input v-if="formHandlerMixin.netlify"
                v-model="$v.form.honeypot.$model"
@@ -35,7 +39,7 @@
                type="text"
                id="paranoidandroid"
                placeholder="sneaky sneaky"
-               style="display: none;"/>
+               style="display: none;" >
         <!-- End Bot Field -->
 
         <component v-for="field in content.fields"
@@ -59,7 +63,7 @@
           <input v-model="$v.form.user_consent.$model"
                 type="checkbox"
                 name="user_consent"
-                id="user-consent" />
+                id="user-consent" >
           <label class="user-consent"
                  for="user-consent">
             {{content.consent_message}}
@@ -72,7 +76,7 @@
         <input class="ui-button neutral full-width hover-state"
                type="submit"
                :value="content.submit_prompt || 'Send'"
-               :disabled="!canSubmit" />
+               :disabled="!canSubmit" >
 
           <slide-x-right-transition mode="out-in">
           <div class="form--submit--sending"

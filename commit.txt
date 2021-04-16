@@ -1,3 +1,3 @@
-refactor <netlify-form> component to to take storyblok items instead of schema.
+add manual hidden input for netlify forms
 
-component was causing issues with static generation as it was trying to minipulate the DOM after render through programmatic field generation. Form now takes content blocks like other content components.
+issue seems to be related to how netlify adds their hidden input - will see if adding one manually fixes the issue.
