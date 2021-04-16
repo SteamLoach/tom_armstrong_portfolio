@@ -51,7 +51,7 @@ import galleryModal from '@/components/local/modals/gallery-modal'
 export default {
 
   mixins: [
-    //initPreferences,
+    initPreferences,
     initWindowWidth,
   ],
 

@@ -32,7 +32,7 @@ export const initPreferences = {
         logger.line(preferences, 'return')
 
         this.initPreferencesMixin.preferences.forEach(prop => {
-          logger.line(`set state[${prop}] to ${preferences[prop]}`)
+          logger.line(`set state['${prop}'] to ${preferences[prop]}`)
           this.setState({
             target: prop,
             payload: preferences[prop]

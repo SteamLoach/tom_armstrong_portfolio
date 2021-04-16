@@ -1,3 +1,1 @@
-add manual hidden input for netlify forms
-
-issue seems to be related to how netlify adds their hidden input - will see if adding one manually fixes the issue.
+reenable initPreferences

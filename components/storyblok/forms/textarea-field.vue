@@ -10,7 +10,8 @@
               :placeholder="content.placeholder"
               rows="5"
               :value="value"
-              @input="sendInput"/>
+              @input="sendInput" >
+    </textarea>
 
   </div>
 

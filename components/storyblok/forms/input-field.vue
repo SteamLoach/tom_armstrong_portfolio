@@ -11,7 +11,7 @@
            :id="$toolkit.kebabCase(content.name)"
            :placeholder="content.placeholder"
            :value="value"
-           @input="sendInput"/>
+           @input="sendInput" >
 
 
   </div>
