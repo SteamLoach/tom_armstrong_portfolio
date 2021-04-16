@@ -14,7 +14,7 @@ export const setPreferences = {
       logger.group(`${this.logRef} - set [${target}] preference`)
 
       this.$store.commit('toggleState', target);
-      logger.line(`set state[${target}] to ${this.$store.state[target]}`)
+      logger.line(`set state['${target}'] to ${this.$store.state[target]}`)
 
       const preferences = {
         darkMode: this.$store.state.darkMode,

@@ -2,7 +2,7 @@
 
   <button class="dark-mode-toggle"
           :class="{'is-active': darkMode}"
-          @click="toggleState('darkMode')"
+          @click="setPreferences('darkMode')"
           :aria-label="`toggle ${darkMode ? 'light' : 'dark'} theme`">
           <slide-y-down-transition mode="out-in">
            <svg-loader :content="{icon_name: iconName}"
