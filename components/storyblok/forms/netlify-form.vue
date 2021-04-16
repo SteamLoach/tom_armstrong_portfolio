@@ -27,12 +27,6 @@
 
       <section class="form--body">
 
-        <!-- Netlify Form Name Prop
-        <input type="hidden"
-               name="form-name"
-              :value="content.name" />
-        -->
-
         <!-- Bot Field -->
         <input v-if="formHandlerMixin.netlify"
                v-model="$v.form.honeypot.$model"
@@ -44,53 +38,13 @@
                style="display: none;"/>
         <!-- End Bot Field -->
 
-        <div v-for="item in fields"
-            class="form--field"
-            :key="item.key">
-
-          <label :for="item.id">
-            <strong>
-               {{item.label}}{{item.validations.required ? '*' : ''}}
-            </strong>
-            <fade-transition>
-              <span v-if="fieldHasErrors(item)"
-                  class="form--field--error">
-                {{fieldErrors[item.name][0]}}
-              </span>
-            </fade-transition>
-          </label>
-
-          <select v-if="item.field.tag === 'select'"
-                  v-model="$v.form[item.name].$model"
-                  :name="item.name"
-                  :id="item.id"
-                  :required="item.validations.required"
-                  :placeholder="item.field.placeholder">
-
-            <option v-for="(option, index) in item.field.options"
-                    :key="`${item.name}-option-${index}`">
-              {{option}}
-            </option>
-
-          </select>
-
-          <textarea v-else-if="item.field.tag === 'textarea'"
-                    v-model="$v.form[item.name].$model"
-                    :name="item.name"
-                    :id="item.id"
-                    :required="item.validations.required"
-                    :placeholder="item.field.placeholder"
-                    rows="5" />
-
-          <input v-else
-                v-model="$v.form[item.name].$model"
-                :type="item.field.type"
-                :name="item.name"
-                :id="item.id"
-                :required="item.validations.required"
-                :placeholder="item.field.placeholder" />
-
-        </div>
+        <component v-for="field in content.fields"
+                   :is="field.component"
+                   :key="field._uid"
+                   :content="field"
+                   :fieldErrors="fieldErrors[$toolkit.snakeCase(field.name)]"
+                   v-model="$v.form[field.name].$model"
+                   />
 
       </section>
 
@@ -171,8 +125,6 @@ export default {
       logRef: `<netflify-form> [${new Date().getTime()}]`,
 
       formHandlerMixin: {
-        schema: this.content.schema,
-        format: 'JSON',
         netlify: true,
       },
 

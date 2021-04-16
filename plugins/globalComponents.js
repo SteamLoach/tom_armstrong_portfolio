@@ -29,6 +29,9 @@ import svgLoader from '~/components/storyblok/media/svg-loader';
 
 //Forms
 import netlifyForm from '~/components/storyblok/forms/netlify-form'
+import inputField from '~/components/storyblok/forms/input-field'
+import selectField from '~/components/storyblok/forms/select-field'
+import textareaField from '~/components/storyblok/forms/textarea-field'
 
 //Utils
 import fileDownload from '~/components/storyblok/utils/file-download'
@@ -75,6 +78,9 @@ Vue.component('gallery-link', galleryLink);
 
 //Forms
 Vue.component('netlify-form', netlifyForm);
+Vue.component('input-field', inputField);
+Vue.component('select-field', selectField);
+Vue.component('textarea-field', textareaField);
 
 
 

@@ -1,5 +1,3 @@
-refactor component file structure | remove auto-import | remove darkMode form local storage
+refactor <netlify-form> component to to take storyblok items instead of schema.
 
-components are now divided between [storyblok] and [local] folders. Any components generated with v-is are registered globally in the [globalComponents] plugin. All others are imported manually into respective components.
-
-initPreferences mixin may be causing issues when site is statically generated. Removed for now to investigate.
+component was causing issues with static generation as it was trying to minipulate the DOM after render through programmatic field generation. Form now takes content blocks like other content components.
