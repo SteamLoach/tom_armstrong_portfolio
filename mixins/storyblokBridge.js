@@ -13,8 +13,9 @@ Mixin requires a [storyblokBridgeMixin] component data object:
 
 const logger = log({
   type: 'storyblok',
-  ref: 'storyblokBridge (Mixin)'
-})
+  ref: 'storyblokBridge (Mixin)',
+  mute: !process.client,
+});
 
 
 export const storyblokBridge = {

@@ -42,12 +42,26 @@ import {mapGetters, mapState} from 'vuex'
 import {initPreferences} from '@/mixins/initPreferences'
 import {initWindowWidth} from '@/mixins/initWindowWidth'
 
+import handheldNav from '@/components/local/navigation/handheld-nav'
+import topNav from '@/components/local/navigation/top-nav'
+import siteFooter from '@/components/local/navigation/site-footer'
+import lightboxModal from '@/components/local/modals/lightbox-modal'
+import galleryModal from '@/components/local/modals/gallery-modal'
+
 export default {
 
   mixins: [
-    initPreferences,
+    //initPreferences,
     initWindowWidth,
   ],
+
+  components: {
+    handheldNav,
+    topNav,
+    siteFooter,
+    lightboxModal,
+    galleryModal,
+  },
 
   data() {
     return {

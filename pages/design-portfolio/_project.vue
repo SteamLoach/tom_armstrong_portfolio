@@ -33,6 +33,9 @@ import {metaData} from '@/mixins/metaData';
 import {storyblokBridge} from '@/mixins/storyblokBridge';
 import {featureImage} from '@/mixins/featureImage';
 
+import projectSummary from '@/components/local/content/project-summary';
+import tagList from '@/components/local/content/tag-list';
+
 export default {
 
   mixins: [
@@ -40,6 +43,11 @@ export default {
     storyblokBridge,
     featureImage,
   ],
+
+  components: {
+    projectSummary,
+    tagList,
+  },
 
   data() {
     return {

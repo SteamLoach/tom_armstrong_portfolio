@@ -41,10 +41,18 @@
 
 import {mapState, mapMutations} from 'vuex'
 
+import handheldNavToggle from '@/components/local/utils/handheld-nav-toggle';
+import darkModeToggle from '@/components/local/utils/dark-mode-toggle';
+
 export default {
 
   props: {
     routes: Array,
+  },
+
+  components: {
+    handheldNavToggle,
+    darkModeToggle,
   },
 
   methods: {

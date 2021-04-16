@@ -16,11 +16,6 @@
       <li>
         <dark-mode-toggle />
       </li>
-      <!--
-      <li>
-        <jargon-toggle />
-      </li>
-      -->
     </ul>
 
     <handheld-nav-toggle />
@@ -31,12 +26,20 @@
 
 <script>
 
+import handheldNavToggle from '@/components/local/utils/handheld-nav-toggle';
+import darkModeToggle from '@/components/local/utils/dark-mode-toggle';
+
 export default {
 
   props: {
     routes: Array,
     default: () => [],
-  }
+  },
+
+  components: {
+    handheldNavToggle,
+    darkModeToggle,
+  },
 
 }
 

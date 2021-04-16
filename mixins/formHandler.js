@@ -7,8 +7,8 @@ const isTrue = (val) => val === true;
 const logger = log({
   type: 'script',
   ref: 'formHandler (Mixin)',
+  mute: !process.client,
 })
-
 
 /*
 Mixin requires a [formHandlerMixin] config object:
@@ -35,7 +35,17 @@ export const formHandler = {
   mixins: [validationMixin],
 
   created() {
+
+    if(this.formHandlerMixin.format === 'JSON') {
+      this.schema = JSON.parse(this.formHandlerMixin.schema).schema;
+    } else {
+      this.schema = this.formHandlerMixin.schema
+    }
+
+    this.fields = this.setFields();
+
     this.resetForm();
+
   },
 
   data() {
@@ -52,6 +62,7 @@ export const formHandler = {
 
   computed: {
 
+    /*
     schema: function() {
       if(this.formHandlerMixin.format === 'JSON') {
         return JSON.parse(this.formHandlerMixin.schema).schema;
@@ -63,6 +74,7 @@ export const formHandler = {
     fields: function() {
       return this.setFields();
     },
+    */
 
     canSubmit: function() {
       return (

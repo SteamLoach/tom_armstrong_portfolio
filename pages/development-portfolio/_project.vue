@@ -36,6 +36,10 @@ import {metaData} from '@/mixins/metaData';
 import {storyblokBridge} from '@/mixins/storyblokBridge';
 import {featureImage} from '@/mixins/featureImage';
 
+import pageHeaderWrapper from '@/components/local/_wrappers/page-header-wrapper';
+import projectSummary from '@/components/local/content/project-summary';
+import tagList from '@/components/local/content/tag-list';
+
 export default {
 
   transition: 'page',
@@ -45,6 +49,12 @@ export default {
     storyblokBridge,
     featureImage,
   ],
+
+  components: {
+    pageHeaderWrapper,
+    projectSummary,
+    tagList,
+  },
 
   data() {
 

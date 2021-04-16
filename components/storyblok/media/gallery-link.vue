@@ -12,6 +12,8 @@
 
 <script>
 
+import sidebarActionWrapper from '@/components/local/_wrappers/sidebar-action-wrapper'
+
 export default {
 
   props: {
@@ -19,6 +21,10 @@ export default {
       type: Object,
       default: () => {},
     }
+  },
+
+  components: {
+    sidebarActionWrapper,
   },
 
   methods: {

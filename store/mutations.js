@@ -1,8 +1,18 @@
+import log from '@/utils/log'
+
+const logger = log({
+  type: 'store',
+  ref: 'Mutation',
+})
+
 export default {
 
   //Toggle Boolean
   toggleState (state, target) {
+    logger.group('toggleState');
     state[target] = !state[target]
+    logger.line(`toggle ${target} to ${state[target]}`)
+    logger.groupEnd('toggleState');
   },
 
   //Set State Prop

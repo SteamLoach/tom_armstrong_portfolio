@@ -25,6 +25,8 @@
 
 import {classExtensions} from '@/mixins/classExtensions';
 
+import sidebarActionWrapper from '@/components/local/_wrappers/sidebar-action-wrapper'
+
 export default {
 
   mixins: [classExtensions],
@@ -38,6 +40,10 @@ export default {
       type: Array,
       default: () => [],
     }
+  },
+
+  components: {
+    sidebarActionWrapper,
   },
 
   data() {

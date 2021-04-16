@@ -28,10 +28,16 @@
 
 <script>
 
+import pageHeaderWrapper from '@/components/local/_wrappers/page-header-wrapper';
+
 export default {
 
   props: {
     content: Object,
+  },
+
+  components: {
+    pageHeaderWrapper,
   },
 
 }

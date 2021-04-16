@@ -127,7 +127,7 @@
             <span v-else-if="hasSubmitted">
               {{content.thankyou_message}}
             </span>
-            <circle-loader v-if="isSubmitting" class="margin-left"/>
+            <circle-spinner v-if="isSubmitting" class="margin-left"/>
           </div>
           </slide-x-right-transition>
 
@@ -144,6 +144,8 @@
 import {formHandler} from '@/mixins/formHandler';
 import {classExtensions} from '@/mixins/classExtensions';
 
+import circleSpinner from '@/components/local/utils/circle-spinner';
+
 export default {
 
   mixins: [formHandler, classExtensions],
@@ -157,6 +159,10 @@ export default {
       type: Array,
       default: () => [],
     }
+  },
+
+  components: {
+    circleSpinner,
   },
 
   data() {
@@ -219,6 +225,7 @@ export default {
 
 
     &.row-layout {
+      @include container-until($tablet, center, stretch);
       @include container(start, stretch);
     }
 
@@ -227,6 +234,7 @@ export default {
   .form--header {
     width: 100%;
     margin-bottom: $space-6;
+    @include media-until($tablet, text-align, center);
   }
 
   .form--body,

@@ -44,7 +44,14 @@
 </template>
 
 <script>
+
+import darkModeToggle from '@/components/local/utils/dark-mode-toggle';
+
 export default {
+
+  components: {
+    darkModeToggle,
+  },
 
   methods: {
     toTop: function() {

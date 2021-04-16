@@ -55,9 +55,17 @@
 
 import {storyblokImageService} from '@/mixins/storyblokImageService'
 
+import modalWrapper from '@/components/local/_wrappers/modal-wrapper';
+import tabLock from '@/components/local/utils/tab-lock';
+
 export default {
 
   mixins: [storyblokImageService],
+
+  components: {
+    modalWrapper,
+    tabLock,
+  },
 
   mounted() {
     this.storyblokImageServiceMixin.filename = this.content.images[this.currentIndex].filename;

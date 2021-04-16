@@ -19,6 +19,10 @@
 </template>
 
 <script>
+
+import projectSummary from '@/components/local/content/project-summary';
+import tagList from '@/components/local/content/tag-list';
+
 export default {
 
   props: {
@@ -26,6 +30,11 @@ export default {
       type: Object,
       required: true,
     }
+  },
+
+  components: {
+    projectSummary,
+    tagList,
   }
 
 }

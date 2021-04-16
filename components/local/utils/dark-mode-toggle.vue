@@ -2,7 +2,7 @@
 
   <button class="dark-mode-toggle"
           :class="{'is-active': darkMode}"
-          @click="setPreference('darkMode')"
+          @click="toggleState('darkMode')"
           :aria-label="`toggle ${darkMode ? 'light' : 'dark'} theme`">
           <slide-y-down-transition mode="out-in">
            <svg-loader :content="{icon_name: iconName}"
@@ -37,6 +37,10 @@ export default {
     ...mapState(['darkMode'])
 
   },
+
+  methods: {
+    ...mapMutations(['toggleState'])
+  }
 
 }
 

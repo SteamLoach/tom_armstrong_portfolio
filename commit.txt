@@ -1,3 +1,5 @@
-refactor storyblokBridge to use asyncData instead of fetch. function now fetches page data based on route and retrieves indexed pages if page is not the home route and has the name 'index'
+refactor component file structure | remove auto-import | remove darkMode form local storage
 
-removed v-if condition on app wrapper as it was blocking static generation
+components are now divided between [storyblok] and [local] folders. Any components generated with v-is are registered globally in the [globalComponents] plugin. All others are imported manually into respective components.
+
+initPreferences mixin may be causing issues when site is statically generated. Removed for now to investigate.
