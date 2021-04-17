@@ -1,6 +1,7 @@
 <template>
 
-  <div id="site-wrapper"
+  <div v-if="initPreferencesMixin.isComplete"
+       id="site-wrapper"
        class="site-wrapper"
        :class="{'dark-mode': this.darkMode}"
        ref="siteWrapper">
