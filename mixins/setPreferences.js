@@ -11,7 +11,7 @@ export const setPreferences = {
 
     setPreference: function(target) {
 
-      logger.group(`${this.logRef} - set [${target}] preference`)
+      logger.group(`${this.logRef}`)
 
       this.$store.commit('toggleState', target);
       logger.line(`set state['${target}'] to ${this.$store.state[target]}`)
@@ -27,7 +27,7 @@ export const setPreferences = {
         JSON.stringify(preferences)
       )
 
-      logger.groupEnd(`${this.logRef} - set [${target}] preference`)
+      logger.groupEnd(`${this.logRef}`)
 
     }
   }

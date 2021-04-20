@@ -1,11 +1,11 @@
 {
   "name": "tom_armstrong_portfolio",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "private": true,
   "scripts": {
     "dev": "nuxt",
     "build": "nuxt build",
-    "test-static": "nuxt start",
+    "test": "nuxt start",
     "generate-live": "nuxt generate",
     "generate-staging": "nuxt generate --spa",
     "lint:js": "eslint --ext \".js,.vue\" --ignore-path .gitignore .",

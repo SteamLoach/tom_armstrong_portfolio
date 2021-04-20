@@ -1,5 +1,1 @@
-fix minor issues | add <first-load-modal> | bump to 1.0.0
-
-added nuxt-interpolation module to add 'rel="noopener" to external links in <rich-text> component and manually added to footer and link utils.
-minor styling edits to design project previews
-add <first-load-modal> to close once preferences are loaded
+fix overly verbose logging on setPreferences mixin
