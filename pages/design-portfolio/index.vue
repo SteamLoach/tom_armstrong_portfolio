@@ -8,7 +8,7 @@
           :content="item"
           v-editable="item" />
 
-    <section class="layout--content-panel x-pad-medium y-pad-medium">
+    <section class="layout--content-panel max-width-super-wide x-pad-medium y-pad-medium">
 
       <article v-for="(project, i) in stories"
                 :class="[
@@ -76,8 +76,8 @@ export default {
   .design-portfolio--project-preview {
     @include margin-scale(
       bottom,
-      $default: $space-8,
-      $on-laptop: $space-10,
+      $default: $space-10,
+      $on-tablet: $space-11,
     );
   }
 

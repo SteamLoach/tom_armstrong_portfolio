@@ -40,6 +40,10 @@ export default {
         sizes: '16x16',
         href: '/favicon-16x16'
       },
+      {
+        rel: 'stylesheet',
+        href: 'https://fonts.googleapis.com/css2?family=Overpass:wght@200;400;600&family=Playfair+Display:wght@400;600;900&display=swap'
+      }
     ]
   },
 
@@ -78,6 +82,7 @@ export default {
     '@nuxtjs/axios',
     '@nuxtjs/style-resources',
     'nuxt-lazy-load',
+    'nuxt-interpolation',
     [
       'storyblok-nuxt',
       {

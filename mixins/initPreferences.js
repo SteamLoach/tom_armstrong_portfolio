@@ -1,5 +1,4 @@
 import log from '@/utils/log'
-
 /*
 
 Mixin requires an [initPreferences] component data object:
@@ -52,7 +51,9 @@ export const initPreferences = {
         localStorage.setItem('preferences', JSON.stringify(storageObj))
       }
 
-      this.initPreferencesMixin.isComplete = true;
+      setTimeout(() => {
+        this.initPreferencesMixin.isComplete = true;
+      }, 800);
 
     } else {
       logger.warn('define an [initPreferencesMixin] config object')

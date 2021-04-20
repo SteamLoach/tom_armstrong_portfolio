@@ -33,6 +33,10 @@ export default {
       margin-left: $space-2;
     }
 
+    &.large {
+      @include size($title-largest);
+    }
+
   }
 
   .sk-circle .sk-child {

@@ -5,14 +5,21 @@
     <ul class="site-footer--bio">
       <li>
         <a href="https://github.com/SteamLoach"
-           target="_blank">
+           target="_blank"
+           rel="noopener">
            <svg-loader :content="{icon_name: 'github-logo'}"
                        aria-hidden="true" />
            Github
         </a>
       </li>
       <li>
-        © Tom Armstrong {{new Date().getFullYear()}}
+        <a href="https://www.linkedin.com/in/its-tom-armstrong/"
+           target="_blank"
+           rel="noopener">
+           <svg-loader :content="{icon_name: 'linkedin-logo'}"
+                       aria-hidden="true" />
+           LinkedIn
+        </a>
       </li>
     </ul>
 
@@ -34,9 +41,13 @@
 
     </ul>
 
-    <span class="site-footer--version">
-      v{{$config.buildVersion}}
-    </span>
+    <ul class="site-footer--version">
+      <li>v{{$config.buildVersion}}</li>
+
+      <li>
+        © Tom Armstrong {{new Date().getFullYear()}}
+      </li>
+    </ul>
 
 
   </footer>
@@ -110,9 +121,16 @@ export default {
 
   .site-footer--bio {
     @include media-from($tablet, text-align, left);
+    li:not(:last-child) {
+      margin-bottom: $space-4;
+    }
+    a {
+      @include wrapper(center, center);
+      @include wrapper-from($tablet, start, center);
+    }
     svg {
-      display: inline-block;
       @include size($text-larger);
+      margin-right: $space-1;
     }
   }
   .site-footer--version {

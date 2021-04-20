@@ -5,7 +5,8 @@
       :class="[classExtensions]"
       :href="content.file.filename"
       :download="content.file.title"
-      target="_blank">
+      target="_blank"
+      rel="noopener">
 
       <strong>
         {{content.title}}

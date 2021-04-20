@@ -41,7 +41,7 @@ export default {
       &.brand {
         background: $brand-dark;
         .dark-mode & {
-          background: $brand-base;
+          background: $brand-light;
         }
       }
 

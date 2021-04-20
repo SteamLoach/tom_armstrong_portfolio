@@ -2,7 +2,9 @@
 
   <section class="rich-text"
            :class="[{'is-component' : isComponent}, classExtensions]"
-           v-html="resolvedText" />
+           v-html="resolvedText"
+           v-interpolation>
+  </section>
 
 </template>
 
@@ -183,7 +185,10 @@ export default {
     }
 
     &.small-copy-size {
-      font-size: $text-root;
+      @include font-size-scale(
+        $default: $text-body,
+        $on-tablet: $text-root,
+      );
       h3 {
         font-size: $title-smaller;
         margin-bottom: $space-3;

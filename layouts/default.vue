@@ -1,12 +1,17 @@
 <template>
 
-  <div v-if="initPreferencesMixin.isComplete"
-       id="site-wrapper"
+  <div id="site-wrapper"
        class="site-wrapper"
        :class="{'dark-mode': this.darkMode}"
        ref="siteWrapper">
 
     <!--modals -->
+
+    <fade-transition>
+      <first-load-modal v-if="!initPreferencesMixin.isComplete"
+                        aria-hidden="false" />
+    </fade-transition>
+
     <slide-x-right-transition>
       <handheld-nav v-if="showHandheldNav"
                     aria-hidden="false"
@@ -22,7 +27,6 @@
       <gallery-modal v-if="galleryModal.isActive"
                       aria-hidden="false" />
     </slide-x-right-transition>
-
 
 
     <!-- standard view -->
@@ -46,8 +50,10 @@ import {initWindowWidth} from '@/mixins/initWindowWidth'
 import handheldNav from '@/components/local/navigation/handheld-nav'
 import topNav from '@/components/local/navigation/top-nav'
 import siteFooter from '@/components/local/navigation/site-footer'
+import firstLoadModal from '@/components/local/modals/first-load-modal'
 import lightboxModal from '@/components/local/modals/lightbox-modal'
 import galleryModal from '@/components/local/modals/gallery-modal'
+
 
 export default {
 
@@ -60,6 +66,7 @@ export default {
     handheldNav,
     topNav,
     siteFooter,
+    firstLoadModal,
     lightboxModal,
     galleryModal,
   },
@@ -91,7 +98,7 @@ export default {
       ],
 
       initPreferencesMixin: {
-        isComplete: true,
+        isComplete: false,
         preferences: ['darkMode']
       },
 
@@ -182,6 +189,8 @@ export default {
   //Content Panels
   .layout--content-panel {
 
+    margin: 0 auto;
+
     &.x-pad-medium {
       @include pad-scale(
         x,
@@ -253,7 +262,7 @@ export default {
   }
 
   .max-width-super-wide {
-    max-width: $extra-wide-width;
+    max-width: $super-wide-width;
   }
 
   //Transition
