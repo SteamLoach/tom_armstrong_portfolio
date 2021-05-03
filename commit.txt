@@ -1,3 +1,1 @@
-fix css margin error on <media-card> | add readme
-
-'margin: 0 auto' on root .media-card class was overriding project index styling depending on route. Removed margin decleration on .media-card class to fix.
+fix readme headers

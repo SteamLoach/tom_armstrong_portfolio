@@ -22,14 +22,14 @@ $ npm run start
 
 ## Component Directories
 
-###`/storyblok`
+### `/storyblok`
 Components have a corresponding Storyblok content schema and are generally loaded dynamically with the `:is` directive. Components take a `:content` prop and are globally registered in the `globalComponents` plugin.
 
-###`/local`
+### `/local`
 Components **do not** have a corresponding Storyblok content schema and are hard-coded. Components are imported into components manually where needed.
 
-##Storyblok Integration
+## Storyblok Integration
 Requires a token and content version as `env` variables. Content sync is managed by `storyblokBridge` mixin. Live preview works in `dev` and `spa` modes.
 
-##Logging
+## Logging
 Add `NUXT_ENV_SHOW_LOGS=true` to `env`.
