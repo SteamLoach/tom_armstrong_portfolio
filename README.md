@@ -1,6 +1,7 @@
 # tom_armstrong_portfolio
+Personal portfolio site for development and design work. Built with Nuxt & Storyblok, deployed as a static site via Netlify.
 
-## Build Setup
+## Builds
 
 ```bash
 # install dependencies
@@ -9,12 +10,26 @@ $ npm install
 # serve with hot reload at localhost:3000
 $ npm run dev
 
-# build for production and launch server
+# build as spa (staging) for Storyblok live preview
+$ npm run generate-staging
+# build as static (live)
+$ npm run generate-live
+
+# build for production and start server
 $ npm run build
 $ npm run start
-
-# generate static project
-$ npm run generate
 ```
 
-For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
+## Component Directories
+
+###`/storyblok`
+Components have a corresponding Storyblok content schema and are generally loaded dynamically with the `:is` directive. Components take a `:content` prop and are globally registered in the `globalComponents` plugin.
+
+###`/local`
+Components **do not** have a corresponding Storyblok content schema and are hard-coded. Components are imported into components manually where needed.
+
+##Storyblok Integration
+Requires a token and content version as `env` variables. Content sync is managed by `storyblokBridge` mixin. Live preview works in `dev` and `spa` modes.
+
+##Logging
+Add `NUXT_ENV_SHOW_LOGS=true` to `env`.

@@ -96,8 +96,6 @@ export default {
   //Classes
   .media-card {
 
-    margin: 0 auto;
-
     &.x-pad-light {
       @include x-pad($space-4);
     }

@@ -42,7 +42,7 @@ export default {
       },
       {
         rel: 'stylesheet',
-        href: 'https://fonts.googleapis.com/css2?family=Overpass:wght@200;400;600&family=Playfair+Display:wght@400;600;900&display=swap'
+        href: 'https://fonts.googleapis.com/css2?family=Overpass:wght@200;400;600&family=Playfair+Display:wght@400;600;800&display=swap'
       }
     ]
   },

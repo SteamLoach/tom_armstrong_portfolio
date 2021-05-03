@@ -169,6 +169,7 @@ export default {
 
     blockquote {
       padding-left: $space-2;
+      @include y-margin($space-6);
       font-style: italic;
       font-family: $title-font;
       border-left: 3px solid $border-color;
