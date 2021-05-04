@@ -1,4 +1,4 @@
-fix trailing '/' issue with routes
+fix trailing '/' issue with porftolio routes | delete middleware dir
 
 Development/Design indexes were generating incorrect project links after page refresh as a trailing '/' is added to the url. Fixed by defining absolute routes ('/${fullSlug}')
 Also fixed an issue in <project-preview-media> component where default image size was looking for an exact route match. Changed this to a startsWith match to account for page refresh
