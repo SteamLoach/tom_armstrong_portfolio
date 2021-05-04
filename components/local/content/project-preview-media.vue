@@ -25,7 +25,7 @@ export default {
 
   computed: {
     defaultSize: function() {
-      return this.$route.path === '/design-portfolio' ?
+      return this.$route.path.startsWith('/design-portfolio') ?
         '' : '450x450';
     }
   }

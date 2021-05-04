@@ -7,7 +7,7 @@
     <ui-button :content="{
                   name: 'Read More',
                   type: 'link',
-                  to: project.full_slug,
+                  to: `/${project.full_slug}`,
                 }"
                 :classExt="[
                   'accent',
